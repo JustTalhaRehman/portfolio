@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Talha Rehman | DevOps Engineer</title>
+  <meta name="description" content="Technical blog posts by Talha Rehman covering Kubernetes, AWS, Terraform, security, observability and production engineering." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
+</head>
+<body>
+<style>
+  .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  @media(max-width:1024px){ .blog-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media(max-width:640px){ .blog-grid{ grid-template-columns: 1fr; } }
+  .blog-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: all 0.3s ease; display: flex; flex-direction: column; }
+  .blog-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+  .blog-card-cover { height: 6px; background: linear-gradient(90deg, var(--grad-a, var(--accent)), var(--grad-b, var(--purple))); }
+  .blog-card-body { padding: 28px; flex:1; display:flex; flex-direction:column; gap:12px; }
+  .blog-category { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--accent); font-weight: 700; text-transform: uppercase; }
+  .blog-title { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: var(--text-primary); line-height: 1.3; }
+  .blog-excerpt { font-size: 14px; color: var(--text-secondary); line-height: 1.7; flex:1; }
+  .blog-meta { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--border); }
+  .blog-date { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); letter-spacing: 0.06em; }
+  .blog-badge { font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); padding: 3px 10px; border: 1px solid var(--border); border-radius: 20px; letter-spacing: 0.06em; }
+  .blog-badge.soon { color: var(--amber); border-color: rgba(245,158,11,.3); background: rgba(245,158,11,.06); }
+  .blog-notify-box { max-width: 540px; margin: 64px auto 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px; text-align: center; box-shadow: var(--shadow-sm); }
+  .bn-title { font-family: var(--font-display); font-size: 26px; font-weight: 900; color: var(--text-primary); margin-bottom: 10px; }
+  .bn-desc { font-size: 16px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
+</style>
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TALHA.REHMAN</a>
+    <ul class="nav-links" role="list">
+      <li><a href="about.html" class="nav-link">About Me</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+      <li><a href="pipeline.html" class="nav-link">Pipeline</a></li>
+      <li><a href="kubernetes.html" class="nav-link">Kubernetes</a></li>
+      <li><a href="security.html" class="nav-link">Security</a></li>
+      <li><a href="work.html" class="nav-link">Work</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="blogs.html" class="nav-link active">Blogs</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-status" id="nav-status-pill">
+      <span class="nav-status-dot"></span>
+      <span class="nav-status-text">ONLINE</span>
+    </div>
+  </div>
+</nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label-tag">TECHNICAL BLOG</div>
+      <h1 class="page-title">Production<br>Engineering Notes.</h1>
+      <p class="page-desc">Deep-dives, postmortems, architecture decisions, and lessons learned from running real systems in production.</p>
+    </div>
+    <div class="page-number">06</div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="blog-grid">
+
+        <article class="blog-card">
+          <div class="blog-card-cover" style="--grad-a:#8B5CF6;--grad-b:#0066FF"></div>
+          <div class="blog-card-body">
+            <div class="blog-category">Security · HIPAA</div>
+            <h2 class="blog-title">Building a PHI/PII-Safe Logging Pipeline for Kubernetes</h2>
+            <p class="blog-excerpt">How I designed a 3-layer defense-in-depth architecture using Istio, Grafana Alloy, and Loki to achieve full HIPAA-compliant logging without losing developer visibility.</p>
+            <div class="blog-meta"><span class="blog-date">COMING SOON</span><span class="blog-badge soon">DRAFTING</span></div>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card-cover" style="--grad-a:#10B981;--grad-b:#0066FF"></div>
+          <div class="blog-card-body">
+            <div class="blog-category">Security · IAM</div>
+            <h2 class="blog-title">Zero-Trust CI/CD: Replacing Long-Lived Keys with OIDC</h2>
+            <p class="blog-excerpt">A walkthrough of eliminating all static AWS credentials from the pipeline using OIDC federated auth, STS AssumeRole, and 15-minute temporary credential lifecycles.</p>
+            <div class="blog-meta"><span class="blog-date">COMING SOON</span><span class="blog-badge soon">DRAFTING</span></div>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card-cover" style="--grad-a:#F59E0B;--grad-b:#EF4444"></div>
+          <div class="blog-card-body">
+            <div class="blog-category">Postmortem · Database</div>
+            <h2 class="blog-title">1 Query. 45M Rows. 4 Hours of Chaos.</h2>
+            <p class="blog-excerpt">What happens when "just add an index" triggers a full production incident with 7 replicas lagging by 4 hours. A real postmortem with lessons and what changed after.</p>
+            <div class="blog-meta"><span class="blog-date">COMING SOON</span><span class="blog-badge soon">DRAFTING</span></div>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card-cover" style="--grad-a:#0066FF;--grad-b:#8B5CF6"></div>
+          <div class="blog-card-body">
+            <div class="blog-category">Networking · Istio</div>
+            <h2 class="blog-title">Centralized Egress with Istio — Investigation Before Implementation</h2>
+            <p class="blog-excerpt">How I approached centralizing all outbound Kubernetes traffic through Istio Egress Gateway: investigation, PoC testing, production rollout, and the key decisions made along the way.</p>
+            <div class="blog-meta"><span class="blog-date">COMING SOON</span><span class="blog-badge soon">DRAFTING</span></div>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card-cover" style="--grad-a:#F97316;--grad-b:#F59E0B"></div>
+          <div class="blog-card-body">
+            <div class="blog-category">Observability · AWS</div>
+            <h2 class="blog-title">Multi-Account Observability with PrivateLink — Architecture Deep-Dive</h2>
+            <p class="blog-excerpt">End-to-end walkthrough of building a secure telemetry ingestion platform using AWS PrivateLink, NLBs, Route53, and EKS — with zero public endpoints.</p>
+            <div class="blog-meta"><span class="blog-date">COMING SOON</span><span class="blog-badge soon">DRAFTING</span></div>
+          </div>
+        </article>
+
+        <article class="blog-card">
+          <div class="blog-card-cover" style="--grad-a:#EF4444;--grad-b:#8B5CF6"></div>
+          <div class="blog-card-body">
+            <div class="blog-category">Kubernetes · Security</div>
+            <h2 class="blog-title">Why VPC CNI Running on Node IAM Roles Is a Security Problem</h2>
+            <p class="blog-excerpt">The silent security risk of aws-node relying on node IAM roles, how to investigate the complete credential flow, and a step-by-step guide to migrating to EKS Pod Identity.</p>
+            <div class="blog-meta"><span class="blog-date">COMING SOON</span><span class="blog-badge soon">DRAFTING</span></div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="blog-notify-box">
+        <div class="bn-title">Blog posts dropping soon.</div>
+        <p class="bn-desc">I'm converting my LinkedIn write-ups into full technical posts. Follow me on LinkedIn to get notified when they go live, or reach out directly.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="btn btn-accent">Follow on LinkedIn</a>
+          <a href="contact.html" class="btn btn-outline">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer id="footer" role="contentinfo">
+  <div class="footer-top-border"></div>
+  <div class="footer-inner">
+    <div class="footer-status">
+      <div class="fs-title">SYSTEM STATUS</div>
+      <div class="fs-grid">
+        <div class="fs-row"><span class="fs-label">Infrastructure</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">CI/CD</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">Kubernetes</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">Observability</span><span class="fs-val operational">OPERATIONAL</span></div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-brand-row">
+      <div class="footer-brand">
+        <div class="fb-name">TALHA REHMAN</div>
+        <div class="fb-title">DevOps / Cloud Engineer</div>
+        <p class="fb-quote">Building infrastructure that works<br>when nobody is watching.</p>
+      </div>
+      <div class="footer-nav">
+        <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
+        <a href="https://instagram.com/talharehman_" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+        <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        <a href="mailto:talha32rehman@gmail.com" class="footer-link">Email</a>
+      </div>
+    </div>
+    <div class="footer-tagline">Ship reliable. Operate confidently.</div>
+  </div>
+</footer><script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+</script>
+</body>
+</html>

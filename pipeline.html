@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CI/CD Pipeline — Talha Rehman | DevOps Engineer</title>
+  <meta name="description" content="From git commit to production — every line of code takes the same controlled, automated path through Talha Rehman's CI/CD pipeline." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
+  <style>
+    /* ── SNAKE PIPELINE STYLES ─────────────────────────── */
+    .snake-pipeline {
+      max-width: 860px;
+      margin: 0 auto;
+      position: relative;
+      padding: 0 20px 60px;
+    }
+    /* SVG connector lines sit behind cards */
+    .snake-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .snake-row {
+      display: flex;
+      justify-content: flex-start;
+      gap: 0;
+      margin-bottom: 0;
+    }
+    .snake-row.right { justify-content: flex-end; }
+    /* Each pipeline stage card */
+    .ps-card {
+      width: 340px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 28px 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .ps-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-lg), 0 0 0 4px var(--accent-dim);
+      transform: translateY(-3px);
+    }
+    .ps-card.active-card {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, #F7F9FF, #EEF2FF);
+    }
+    .ps-card-icon {
+      width: 52px; height: 52px;
+      background: var(--accent-dim);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      color: var(--accent);
+      transition: all 0.25s ease;
+    }
+    .ps-card:hover .ps-card-icon {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 8px 20px var(--accent-glow);
+    }
+    .ps-card-icon svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+    .ps-step-num {
+      font-family: var(--font-mono);
+      font-size: 10px; letter-spacing: 0.14em;
+      color: var(--text-muted); margin-bottom: 6px; font-weight: 700;
+      text-transform: uppercase;
+    }
+    .ps-card-name {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 900;
+      color: var(--text-primary);
+      margin-bottom: 6px; line-height: 1.1;
+    }
+    .ps-card-tools {
+      font-family: var(--font-mono);
+      font-size: 12px; color: var(--accent);
+      margin-bottom: 14px; font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .ps-card-desc {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    /* vertical gap rows between snake cards */
+    .snake-gap { height: 48px; position: relative; }
+    /* The animated dot */
+    #pipeline-dot {
+      position: absolute;
+      width: 12px; height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px var(--accent-dim), 0 0 12px var(--accent);
+      z-index: 20;
+      pointer-events: none;
+      display: none;
+      transition: none;
+    }
+    /* SVG path lines */
+    .snake-path {
+      fill: none;
+      stroke: var(--border-light);
+      stroke-width: 2;
+      stroke-dasharray: 6 4;
+    }
+    .snake-path-anim {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 2.5;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      stroke-linecap: round;
+      filter: drop-shadow(0 0 4px var(--accent));
+    }
+    /* Result badge */
+    .pipeline-result {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-top: 60px; flex-wrap: wrap;
+    }
+    .pr-badge {
+      display: flex; align-items: center; gap: 8px;
+      padding: 14px 24px; border-radius: 40px;
+      font-family: var(--font-mono); font-size: 14px; font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .pr-badge.success {
+      background: rgba(16,185,129,.1); color: var(--green);
+      border: 1.5px solid rgba(16,185,129,.3);
+      box-shadow: 0 0 24px rgba(16,185,129,.15);
+    }
+    .pr-badge.time {
+      background: var(--accent-dim); color: var(--accent);
+      border: 1.5px solid var(--border-glow);
+    }
+    .pr-dot { width: 9px; height: 9px; border-radius: 50%; background: currentColor; animation: pulse-green 2s infinite; }
+  </style>
+</head>
+<body>
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TALHA.REHMAN</a>
+    <ul class="nav-links" role="list">
+      <li><a href="about.html" class="nav-link">About Me</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+      <li><a href="pipeline.html" class="nav-link active">Pipeline</a></li>
+      <li><a href="kubernetes.html" class="nav-link">Kubernetes</a></li>
+      <li><a href="security.html" class="nav-link">Security</a></li>
+      <li><a href="work.html" class="nav-link">Work</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-status" id="nav-status-pill">
+      <span class="nav-status-dot"></span>
+      <span class="nav-status-text">ONLINE</span>
+    </div>
+  </div>
+</nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label-tag">DEPLOYMENT PIPELINE</div>
+      <h1 class="page-title">From Commit<br>to Production.</h1>
+      <p class="page-desc">Every line of code takes the same controlled, automated path. No manual steps. No exceptions. No surprises.</p>
+    </div>
+    <div class="page-number">01</div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="snake-pipeline" id="snake-pipeline">
+        <div id="pipeline-dot"></div>
+        <svg class="snake-svg" id="snake-svg" aria-hidden="true"></svg>
+
+        <!-- STAGE 1 — left aligned -->
+        <div class="snake-row" id="ps-row-0">
+          <div class="ps-card" id="ps-0" data-stage="0">
+            <div class="ps-card-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg>
+            </div>
+            <div class="ps-step-num">STEP 01 / SOURCE</div>
+            <div class="ps-card-name">Git Repository</div>
+            <div class="ps-card-tools">GitHub · GitLab · Bitbucket</div>
+            <div class="ps-card-desc">Every infrastructure change starts as a pull request. Branch protection, signed commits, and automated status checks gate every single merge.</div>
+          </div>
+        </div>
+        <div class="snake-gap" id="gap-0"></div>
+
+        <!-- STAGE 2 — right aligned -->
+        <div class="snake-row right" id="ps-row-1">
+          <div class="ps-card" id="ps-1" data-stage="1">
+            <div class="ps-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <div class="ps-step-num">STEP 02 / BUILD</div>
+            <div class="ps-card-name">Containerized Build</div>
+            <div class="ps-card-tools">GitHub Actions · Jenkins · CircleCI</div>
+            <div class="ps-card-desc">Multi-stage Dockerfiles with layer caching. Artifacts tagged, versioned, and pushed to ECR on every successful build. Zero manual steps.</div>
+          </div>
+        </div>
+        <div class="snake-gap" id="gap-1"></div>
+
+        <!-- STAGE 3 — left aligned -->
+        <div class="snake-row" id="ps-row-2">
+          <div class="ps-card" id="ps-2" data-stage="2">
+            <div class="ps-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="ps-step-num">STEP 03 / TEST</div>
+            <div class="ps-card-name">Automated Testing</div>
+            <div class="ps-card-tools">pytest · Jest · SonarQube · Terratest</div>
+            <div class="ps-card-desc">Unit, integration, and infrastructure tests run in parallel. Coverage gates and code quality thresholds enforced. Failures block the pipeline completely.</div>
+          </div>
+        </div>
+        <div class="snake-gap" id="gap-2"></div>
+
+        <!-- STAGE 4 — right aligned -->
+        <div class="snake-row right" id="ps-row-3">
+          <div class="ps-card" id="ps-3" data-stage="3">
+            <div class="ps-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="ps-step-num">STEP 04 / SECURITY</div>
+            <div class="ps-card-name">Image Scanning</div>
+            <div class="ps-card-tools">Trivy · Snyk · OWASP ZAP</div>
+            <div class="ps-card-desc">Container images scanned for CVEs with Trivy before any deployment. CRITICAL vulnerabilities automatically block the pipeline. Supply chain security enforced.</div>
+          </div>
+        </div>
+        <div class="snake-gap" id="gap-3"></div>
+
+        <!-- STAGE 5 — left aligned -->
+        <div class="snake-row" id="ps-row-4">
+          <div class="ps-card" id="ps-4" data-stage="4">
+            <div class="ps-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            </div>
+            <div class="ps-step-num">STEP 05 / DEPLOY</div>
+            <div class="ps-card-name">GitOps Deployment</div>
+            <div class="ps-card-tools">ArgoCD · Helm · Terraform</div>
+            <div class="ps-card-desc">GitOps-driven deployments through ArgoCD and Helm charts. Canary and blue-green strategies. Automatic rollback on health check failure within 60 seconds.</div>
+          </div>
+        </div>
+        <div class="snake-gap" id="gap-4"></div>
+
+        <!-- STAGE 6 — right aligned -->
+        <div class="snake-row right" id="ps-row-5">
+          <div class="ps-card active-card" id="ps-5" data-stage="5">
+            <div class="ps-card-icon" style="background:var(--green);color:white;">
+              <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <div class="ps-step-num" style="color:var(--green)">STEP 06 / PRODUCTION</div>
+            <div class="ps-card-name">EKS — Live</div>
+            <div class="ps-card-tools">Kubernetes · Istio · Kyverno · KEDA</div>
+            <div class="ps-card-desc">Production workloads running on EKS with Istio service mesh. Cluster Autoscaler and KEDA manage scaling. Kyverno policies enforce compliance on every admission.</div>
+          </div>
+        </div>
+
+        <div class="pipeline-result">
+          <div class="pr-badge success"><div class="pr-dot"></div>DEPLOYED TO PRODUCTION</div>
+          <div class="pr-badge time">⏱ AVG DEPLOY TIME 2–4 MIN</div>
+          <div class="pr-badge success"><div class="pr-dot"></div>0 MANUAL STEPS</div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px;max-width:860px;margin-left:auto;margin-right:auto;">
+        <div class="astat"><div class="astat-val">100%</div><div class="astat-label">Automated Testing</div></div>
+        <div class="astat"><div class="astat-val">2–4m</div><div class="astat-label">Avg Deploy Time</div></div>
+        <div class="astat"><div class="astat-val">60s</div><div class="astat-label">Auto-Rollback</div></div>
+        <div class="astat"><div class="astat-val">0</div><div class="astat-label">Manual Steps</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="footer" role="contentinfo">
+    <div class="footer-top-border"></div>
+    <div class="footer-inner">
+      <div class="footer-status">
+        <div class="fs-title">SYSTEM STATUS</div>
+        <div class="fs-grid">
+          <div class="fs-row"><span class="fs-label">Infrastructure</span><span class="fs-val operational">OPERATIONAL</span></div>
+          <div class="fs-row"><span class="fs-label">CI/CD</span><span class="fs-val operational">OPERATIONAL</span></div>
+          <div class="fs-row"><span class="fs-label">Kubernetes</span><span class="fs-val operational">OPERATIONAL</span></div>
+          <div class="fs-row"><span class="fs-label">Observability</span><span class="fs-val operational">OPERATIONAL</span></div>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-brand-row">
+        <div class="footer-brand">
+          <div class="fb-name">TALHA REHMAN</div>
+          <div class="fb-title">DevOps / Cloud Engineer</div>
+          <p class="fb-quote">Building infrastructure that works<br>when nobody is watching.</p>
+        </div>
+        <div class="footer-nav">
+          <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
+          <a href="https://instagram.com/talharehman_" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+          <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+          <a href="mailto:talha32rehman@gmail.com" class="footer-link">Email</a>
+        </div>
+      </div>
+      <div class="footer-tagline">Ship reliable. Operate confidently.</div>
+    </div>
+  </footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // ── SNAKE PIPELINE ANIMATOR ─────────────────────────────
+  (function() {
+    const dot = document.getElementById('pipeline-dot');
+    const svg = document.getElementById('snake-svg');
+    const wrap = document.getElementById('snake-pipeline');
+    if (!dot || !svg || !wrap) return;
+
+    function getCenter(el) {
+      const wr = wrap.getBoundingClientRect();
+      const er = el.getBoundingClientRect();
+      return {
+        x: er.left - wr.left + er.width / 2,
+        y: er.top  - wr.top  + er.height / 2
+      };
+    }
+
+    function getCardEdge(el, side) {
+      const wr = wrap.getBoundingClientRect();
+      const er = el.getBoundingClientRect();
+      const cy = er.top - wr.top + er.height / 2;
+      if (side === 'right') return { x: er.right - wr.left, y: cy };
+      return { x: er.left - wr.left, y: cy };
+    }
+
+    function getCardBottom(el) {
+      const wr = wrap.getBoundingClientRect();
+      const er = el.getBoundingClientRect();
+      return {
+        x: er.left - wr.left + er.width / 2,
+        y: er.bottom - wr.top
+      };
+    }
+    function getCardTop(el) {
+      const wr = wrap.getBoundingClientRect();
+      const er = el.getBoundingClientRect();
+      return {
+        x: er.left - wr.left + er.width / 2,
+        y: er.top - wr.top
+      };
+    }
+
+    const cards = [0,1,2,3,4,5].map(i => document.getElementById('ps-' + i));
+
+    function buildPaths() {
+      svg.innerHTML = '';
+      const wr = wrap.getBoundingClientRect();
+      svg.setAttribute('viewBox', `0 0 ${wr.width} ${wr.height}`);
+      svg.setAttribute('width', wr.width);
+      svg.setAttribute('height', wr.height);
+
+      const pathPoints = [];
+
+      // Build waypoints: start at center of card 0, snake down
+      for (let i = 0; i < cards.length - 1; i++) {
+        const a = cards[i];
+        const b = cards[i+1];
+        const aRow = i % 2; // 0=left, 1=right
+        const bRow = (i+1) % 2;
+
+        const aBottom = getCardBottom(a);
+        const bTop = getCardTop(b);
+
+        if (i === 0) pathPoints.push(getCenter(a));
+        pathPoints.push(aBottom);
+        pathPoints.push(bTop);
+      }
+      pathPoints.push(getCenter(cards[cards.length - 1]));
+
+      // Draw dashed background path
+      let d = `M ${pathPoints[0].x} ${pathPoints[0].y}`;
+      for (let i = 1; i < pathPoints.length; i++) {
+        d += ` L ${pathPoints[i].x} ${pathPoints[i].y}`;
+      }
+
+      const bg = document.createElementNS('http://www.w3.org/2000/svg','path');
+      bg.setAttribute('d', d);
+      bg.setAttribute('class', 'snake-path');
+      svg.appendChild(bg);
+
+      const animPath = document.createElementNS('http://www.w3.org/2000/svg','path');
+      animPath.setAttribute('d', d);
+      animPath.setAttribute('class', 'snake-path-anim');
+      animPath.id = 'anim-path';
+      svg.appendChild(animPath);
+
+      return { pathPoints, animPath };
+    }
+
+    function animateDot(pathPoints) {
+      dot.style.display = 'block';
+      let segIdx = 0;
+      let progress = 0; // 0..1 within segment
+
+      function lerp(a, b, t) { return a + (b - a) * t; }
+
+      let last = performance.now();
+      const speed = 0.0012; // fraction per ms
+
+      function frame(now) {
+        const dt = now - last; last = now;
+        progress += speed * dt;
+        if (progress >= 1) {
+          segIdx++;
+          progress = 0;
+          if (segIdx >= pathPoints.length - 1) {
+            segIdx = 0;
+            setTimeout(() => requestAnimationFrame(frame), 800);
+            return;
+          }
+        }
+        const a = pathPoints[segIdx];
+        const b = pathPoints[segIdx+1];
+        const x = lerp(a.x, b.x, progress);
+        const y = lerp(a.y, b.y, progress);
+        dot.style.left = (x - 6) + 'px';
+        dot.style.top  = (y - 6) + 'px';
+        requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    // Animate the stroke draw
+    function animatePath(animPath) {
+      const length = animPath.getTotalLength();
+      animPath.style.strokeDasharray = length;
+      animPath.style.strokeDashoffset = length;
+      animPath.style.transition = 'stroke-dashoffset 2.4s ease-in-out';
+      requestAnimationFrame(() => {
+        animPath.style.strokeDashoffset = '0';
+      });
+    }
+
+    // Wait for layout to settle then build
+    setTimeout(() => {
+      const result = buildPaths();
+      animatePath(result.animPath);
+      setTimeout(() => animateDot(result.pathPoints), 2500);
+    }, 300);
+
+    window.addEventListener('resize', () => {
+      setTimeout(() => { buildPaths(); }, 100);
+    });
+  })();
+</script>
+</body>
+</html>

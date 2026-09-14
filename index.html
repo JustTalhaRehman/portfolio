@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Talha Rehman — DevOps & Cloud Engineer</title>
+  <meta name="description" content="Talha Rehman is a DevOps and Cloud Engineer who builds, automates, secures and operates cloud infrastructure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
+</head>
+<body>
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- BOOT OVERLAY -->
+  <div id="boot-overlay" role="dialog" aria-label="System initializing">
+    <div class="boot-content">
+      <div class="boot-logo">TALHA.REHMAN</div>
+      <div class="boot-subtitle">CONTROL PLANE — INITIALIZING</div>
+      <div class="boot-progress-wrap">
+        <div class="boot-progress-track"><div class="boot-progress-fill" id="boot-fill"></div></div>
+        <span class="boot-percent" id="boot-percent">0%</span>
+      </div>
+      <div class="boot-checks" id="boot-checks">
+        <div class="boot-check" id="bc-aws">✓ AWS</div>
+        <div class="boot-check" id="bc-k8s">✓ Kubernetes</div>
+        <div class="boot-check" id="bc-cicd">✓ CI/CD Pipeline</div>
+        <div class="boot-check" id="bc-infra">✓ Infrastructure</div>
+        <div class="boot-check" id="bc-sec">✓ Security Layer</div>
+        <div class="boot-check" id="bc-obs">✓ Observability Stack</div>
+      </div>
+      <div class="boot-ready" id="boot-ready">SYSTEM READY</div>
+    </div>
+  </div>
+
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TALHA.REHMAN</a>
+    <ul class="nav-links" role="list">
+      <li><a href="about.html" class="nav-link">About Me</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+      <li><a href="pipeline.html" class="nav-link">Pipeline</a></li>
+      <li><a href="kubernetes.html" class="nav-link">Kubernetes</a></li>
+      <li><a href="security.html" class="nav-link">Security</a></li>
+      <li><a href="work.html" class="nav-link">Work</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-status" id="nav-status-pill">
+      <span class="nav-status-dot"></span>
+      <span class="nav-status-text">ONLINE</span>
+    </div>
+  </div>
+</nav>
+
+  <!-- HERO -->
+  <section id="hero" aria-label="Hero">
+    <canvas id="three-canvas" aria-hidden="true"></canvas>
+    <div class="hero-grid-overlay" aria-hidden="true"></div>
+
+    <div class="hero-status-panel" role="status">
+      <div class="hsp-header"><span class="hsp-dot"></span> SYSTEMS ONLINE</div>
+      <div class="hsp-rows">
+        <div class="hsp-row"><span class="hsp-label">AWS</span><span class="hsp-val" data-status="online">ONLINE</span></div>
+        <div class="hsp-row"><span class="hsp-label">KUBERNETES</span><span class="hsp-val" data-status="online">ONLINE</span></div>
+        <div class="hsp-row"><span class="hsp-label">CI/CD</span><span class="hsp-val" data-status="online">ONLINE</span></div>
+        <div class="hsp-row"><span class="hsp-label">MONITORING</span><span class="hsp-val" data-status="online">ONLINE</span></div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">CONTROL PLANE — v2.6.0</div>
+      <h1 class="hero-name">Talha Rehman</h1>
+      <div class="hero-title">DevOps / Cloud Engineer</div>
+      <p class="hero-tagline">I build, automate, secure and operate cloud<br>infrastructure that doesn't fall apart in production.</p>
+      <div class="hero-cta">
+        <a href="infrastructure.html" class="btn btn-primary">VIEW INFRASTRUCTURE</a>
+        <a href="about.html" class="btn btn-ghost">ABOUT ME</a>
+      </div>
+      <div class="hero-topology" aria-hidden="true">
+        <span class="topo-node">Git</span><span class="topo-arrow">→</span>
+        <span class="topo-node">CI</span><span class="topo-arrow">→</span>
+        <span class="topo-node">Container</span><span class="topo-arrow">→</span>
+        <span class="topo-node">Kubernetes</span><span class="topo-arrow">→</span>
+        <span class="topo-node">AWS</span><span class="topo-arrow">→</span>
+        <span class="topo-node">Monitoring</span>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>EXPLORE THE PORTFOLIO</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+<footer id="footer" role="contentinfo">
+  <div class="footer-top-border"></div>
+  <div class="footer-inner">
+    <div class="footer-status">
+      <div class="fs-title">SYSTEM STATUS</div>
+      <div class="fs-grid">
+        <div class="fs-row"><span class="fs-label">Infrastructure</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">CI/CD</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">Kubernetes</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">Observability</span><span class="fs-val operational">OPERATIONAL</span></div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-brand-row">
+      <div class="footer-brand">
+        <div class="fb-name">TALHA REHMAN</div>
+        <div class="fb-title">DevOps / Cloud Engineer</div>
+        <p class="fb-quote">Building infrastructure that works<br>when nobody is watching.</p>
+      </div>
+      <div class="footer-nav">
+        <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
+        <a href="https://instagram.com/talharehman_" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+        <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        <a href="mailto:talha32rehman@gmail.com" class="footer-link">Email</a>
+      </div>
+    </div>
+    <div class="footer-tagline">Ship reliable. Operate confidently.</div>
+  </div>
+</footer>
+  <script src="main.js"></script>
+<script>
+  // Nav scroll state
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+</script>
+</body>
+</html>

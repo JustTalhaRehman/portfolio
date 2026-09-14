@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — Talha Rehman</title>
+  <meta name="description" content="Real infrastructure solving real problems in production." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
+</head>
+<body><nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TALHA.REHMAN</a>
+    <ul class="nav-links" role="list">
+      <li><a href="about.html" class="nav-link">About Me</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+      <li><a href="pipeline.html" class="nav-link">Pipeline</a></li>
+      <li><a href="kubernetes.html" class="nav-link">Kubernetes</a></li>
+      <li><a href="security.html" class="nav-link">Security</a></li>
+      <li><a href="work.html" class="nav-link active">Work</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-status" id="nav-status-pill">
+      <span class="nav-status-dot"></span>
+      <span class="nav-status-text">ONLINE</span>
+    </div>
+  </div>
+</nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label-tag">MISSIONS</div>
+      <h1 class="page-title">Production Work.</h1>
+      <p class="page-desc">Not side projects. Real infrastructure solving real problems in production environments.</p>
+    </div>
+    <div class="page-number">07</div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="missions-grid">
+        <article class="mission-card">
+          <div class="mc-id">MISSION_001</div>
+          <h3 class="mc-title">Production EKS Security Hardening</h3>
+          <div class="mc-meta">
+            <div class="mcm-row"><span class="mcm-key">ENVIRONMENT</span><span class="mcm-val">AWS GovCloud</span></div>
+            <div class="mcm-row"><span class="mcm-key">STACK</span><span class="mcm-val">EKS · Kyverno · Istio · NetworkPolicy</span></div>
+            <div class="mcm-row"><span class="mcm-key">FOCUS</span><span class="mcm-val">Security · Networking · Compliance</span></div>
+          </div>
+          <p class="mc-desc">Hardened production EKS cluster from baseline to CIS-compliant. Implemented Kyverno admission policies, default-deny network policies, and Istio mTLS across all services. Reduced attack surface by 70%.</p>
+          <div class="mc-tags"><span class="mtag">Kyverno</span><span class="mtag">Istio</span><span class="mtag">NetworkPolicy</span><span class="mtag">CIS Benchmark</span></div>
+          <div class="mc-glow"></div>
+        </article>
+        <article class="mission-card">
+          <div class="mc-id">MISSION_002</div>
+          <h3 class="mc-title">Centralized Egress Architecture</h3>
+          <div class="mc-meta">
+            <div class="mcm-row"><span class="mcm-key">PROBLEM</span><span class="mcm-val">Unrestricted outbound traffic</span></div>
+            <div class="mcm-row"><span class="mcm-key">APPROACH</span><span class="mcm-val">Istio Egress Gateway · ServiceEntries</span></div>
+            <div class="mcm-row"><span class="mcm-key">RESULT</span><span class="mcm-val">Controlled external communication</span></div>
+          </div>
+          <p class="mc-desc">Designed and deployed a centralized egress architecture using Istio Egress Gateway and ServiceEntries. All outbound traffic now routes through audited, monitored gateways with explicit allowlists.</p>
+          <div class="mc-tags"><span class="mtag">Istio</span><span class="mtag">Egress Gateway</span><span class="mtag">ServiceEntry</span><span class="mtag">mTLS</span></div>
+          <div class="mc-glow"></div>
+        </article>
+        <article class="mission-card">
+          <div class="mc-id">MISSION_003</div>
+          <h3 class="mc-title">Full-Stack Observability Platform</h3>
+          <div class="mc-meta">
+            <div class="mcm-row"><span class="mcm-key">STACK</span><span class="mcm-val">Grafana · Loki · Mimir · Tempo · Alloy</span></div>
+            <div class="mcm-row"><span class="mcm-key">SCOPE</span><span class="mcm-val">Multi-cluster · Multi-tenant</span></div>
+            <div class="mcm-row"><span class="mcm-key">OUTCOME</span><span class="mcm-val">MTTR 45m → 8m</span></div>
+          </div>
+          <p class="mc-desc">Built and deployed the full Grafana LGTM stack across a multi-cluster environment. Unified logs, metrics, and traces into a single pane. Mean time to resolution dropped from 45 minutes to under 8 minutes.</p>
+          <div class="mc-tags"><span class="mtag">Grafana</span><span class="mtag">Loki</span><span class="mtag">Tempo</span><span class="mtag">Mimir</span><span class="mtag">Alloy</span></div>
+          <div class="mc-glow"></div>
+        </article>
+      </div>
+
+      <!-- Observability Section -->
+      <div style="margin-top: 80px;">
+        <div class="section-label-tag">OBSERVABILITY</div>
+        <h2 class="section-heading" style="font-size:clamp(32px,4vw,48px);margin-bottom:16px;">If it runs in production,<br>I want to see it.</h2>
+        <p class="section-sub" style="margin-bottom:36px;">Full-stack observability across logs, metrics, and distributed traces.</p>
+
+        <div class="obs-metrics-bar" id="obs-metrics-bar" role="status">
+          <div class="obs-metric-item"><div class="omi-val" id="omi-rps">2,847</div><div class="omi-label">REQ / SEC</div></div>
+          <div class="obs-metric-item"><div class="omi-val green" id="omi-uptime">99.98%</div><div class="omi-label">UPTIME</div></div>
+          <div class="obs-metric-item"><div class="omi-val" id="omi-latency">124ms</div><div class="omi-label">P99 LATENCY</div></div>
+          <div class="obs-metric-item"><div class="omi-val amber" id="omi-error">0.02%</div><div class="omi-label">ERROR RATE</div></div>
+          <div class="obs-metric-item"><div class="omi-val" id="omi-pods">24</div><div class="omi-label">ACTIVE PODS</div></div>
+        </div>
+
+        <div class="obs-panels">
+          <div class="obs-panel">
+            <div class="op-header"><div class="op-title">LOGS</div><div class="op-tools">Loki · Alloy</div><div class="op-dot green"></div></div>
+            <div class="op-body">
+              <div class="log-stream" id="log-stream" aria-live="polite">
+                <div class="log-line ll-info">[INFO] 15:23:41 api-server started successfully on :8080</div>
+                <div class="log-line ll-info">[INFO] 15:23:42 health check passed — all 24 pods ready</div>
+                <div class="log-line ll-warn">[WARN] 15:23:43 rate limit approaching configured threshold</div>
+                <div class="log-line ll-info">[INFO] 15:23:44 argocd sync completed — revision abc1234f</div>
+                <div class="log-line ll-info">[INFO] 15:23:45 kyverno policy admitted 3/3 pods</div>
+              </div>
+            </div>
+          </div>
+          <div class="obs-panel">
+            <div class="op-header"><div class="op-title">METRICS</div><div class="op-tools">Prometheus · Mimir · Grafana</div><div class="op-dot green"></div></div>
+            <div class="op-body">
+              <div class="chart-block"><div class="chart-label">REQUEST RATE (req/s)</div><canvas id="chart-rps" width="260" height="70"></canvas></div>
+              <div class="chart-block"><div class="chart-label">CPU UTILIZATION (%)</div><canvas id="chart-cpu" width="260" height="70"></canvas></div>
+            </div>
+          </div>
+          <div class="obs-panel">
+            <div class="op-header"><div class="op-title">TRACES</div><div class="op-tools">Tempo · Istio</div><div class="op-dot green"></div></div>
+            <div class="op-body">
+              <div class="trace-list">
+                <div class="trace-item"><div class="ti-name">GET /api/health</div><div class="ti-track"><div class="ti-fill" style="width:8%"></div></div><div class="ti-ms">12ms</div></div>
+                <div class="trace-item"><div class="ti-name">POST /api/deploy</div><div class="ti-track"><div class="ti-fill" style="width:85%"></div></div><div class="ti-ms">312ms</div></div>
+                <div class="trace-item"><div class="ti-name">GET /api/pods</div><div class="ti-track"><div class="ti-fill" style="width:30%"></div></div><div class="ti-ms">48ms</div></div>
+                <div class="trace-item"><div class="ti-name">PUT /api/config</div><div class="ti-track"><div class="ti-fill" style="width:55%"></div></div><div class="ti-ms">124ms</div></div>
+                <div class="trace-item"><div class="ti-name">GET /metrics</div><div class="ti-track"><div class="ti-fill" style="width:5%"></div></div><div class="ti-ms">8ms</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- IaC Terminal -->
+      <div style="margin-top:80px;">
+        <div class="section-label-tag">INFRASTRUCTURE AS CODE</div>
+        <h2 class="section-heading" style="font-size:clamp(32px,4vw,48px);margin-bottom:16px;">Infrastructure Should<br>Be Reproducible.</h2>
+        <p class="section-sub" style="margin-bottom:36px;">Every resource defined, versioned, reviewed, and applied through a controlled pipeline.</p>
+        <div class="iac-layout">
+          <div class="iac-pipeline">
+            <div class="iac-step"><div class="iac-step-icon">📝</div><div class="iac-step-info"><div class="iac-step-name">Terraform</div><div class="iac-step-desc">Modular HCL, reusable modules, state in S3</div></div></div>
+            <div class="iac-arrow-down">↓</div>
+            <div class="iac-step"><div class="iac-step-icon">🔧</div><div class="iac-step-info"><div class="iac-step-name">Terragrunt</div><div class="iac-step-desc">DRY configs, environment hierarchy</div></div></div>
+            <div class="iac-arrow-down">↓</div>
+            <div class="iac-step"><div class="iac-step-icon">🚀</div><div class="iac-step-info"><div class="iac-step-name">Spacelift</div><div class="iac-step-desc">Policy-driven automation, drift detection</div></div></div>
+            <div class="iac-arrow-down">↓</div>
+            <div class="iac-step iac-step-target"><div class="iac-step-icon">☁</div><div class="iac-step-info"><div class="iac-step-name">AWS</div><div class="iac-step-desc">EKS · VPC · IAM · RDS · S3 · Route53 · KMS</div></div></div>
+          </div>
+          <div class="iac-terminal" id="iac-terminal">
+            <div class="term-header">
+              <div class="term-dots"><span class="td red"></span><span class="td yellow"></span><span class="td green"></span></div>
+              <div class="term-title">spacelift — terraform plan</div>
+            </div>
+            <div class="term-body" id="term-body">
+              <div class="tl prompt">$ spacelift run --stack production-eks</div>
+              <div class="tl output">Initializing provider plugins...</div>
+              <div class="tl output">Refreshing Terraform state in-flight...</div>
+              <div class="tl blank"></div>
+              <div class="tl output">Terraform generated the following execution plan:</div>
+              <div class="tl blank"></div>
+              <div class="tl output">  # aws_eks_node_group.workers will be updated in-place</div>
+              <div class="tl output">  ~ resource "aws_eks_node_group" "workers" {</div>
+              <div class="tl add">      + desired_size = 5  <span class="tl-comment"># (was 3)</span></div>
+              <div class="tl add">      + max_size     = 10 <span class="tl-comment"># (was 6)</span></div>
+              <div class="tl output">    }</div>
+              <div class="tl blank"></div>
+              <div class="tl success">Plan: 18 to add, 2 to change, 0 to destroy.</div>
+              <div class="tl blank"></div>
+              <div class="tl check">✓ Infrastructure validated</div>
+              <div class="tl check">✓ Security policies passed</div>
+              <div class="tl check">✓ Cost estimate: +$124.50/month</div>
+              <div class="tl blank"></div>
+              <div class="tl prompt">$ <span class="cursor" id="term-cursor">█</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer id="footer" role="contentinfo">
+  <div class="footer-top-border"></div>
+  <div class="footer-inner">
+    <div class="footer-status">
+      <div class="fs-title">SYSTEM STATUS</div>
+      <div class="fs-grid">
+        <div class="fs-row"><span class="fs-label">Infrastructure</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">CI/CD</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">Kubernetes</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">Observability</span><span class="fs-val operational">OPERATIONAL</span></div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-brand-row">
+      <div class="footer-brand">
+        <div class="fb-name">TALHA REHMAN</div>
+        <div class="fb-title">DevOps / Cloud Engineer</div>
+        <p class="fb-quote">Building infrastructure that works<br>when nobody is watching.</p>
+      </div>
+      <div class="footer-nav">
+        <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
+        <a href="https://instagram.com/talharehman_" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+        <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        <a href="mailto:talha32rehman@gmail.com" class="footer-link">Email</a>
+      </div>
+    </div>
+    <div class="footer-tagline">Ship reliable. Operate confidently.</div>
+  </div>
+</footer>
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Live metrics
+  let rps = 2847, latency = 124, pods = 24;
+  const rpsEl = document.getElementById('omi-rps');
+  const latEl = document.getElementById('omi-latency');
+  const podEl = document.getElementById('omi-pods');
+  setInterval(() => {
+    rps += Math.floor((Math.random()-0.45)*80); rps = Math.max(2200,Math.min(3400,rps));
+    latency += Math.floor((Math.random()-0.5)*10); latency = Math.max(80,Math.min(200,latency));
+    pods += Math.random()>0.9?(Math.random()>0.5?1:-1):0; pods=Math.max(20,Math.min(30,pods));
+    if(rpsEl) rpsEl.textContent = rps.toLocaleString();
+    if(latEl) latEl.textContent = latency+'ms';
+    if(podEl) podEl.textContent = pods;
+  }, 2000);
+
+  // Log stream
+  const logs = ['[INFO] api-server handling 2847 req/s','[INFO] argocd sync completed','[INFO] kyverno admitted pod','[INFO] cert-manager renewed certificate','[INFO] istio-proxy: mTLS handshake','[WARN] rate limit at 87%','[INFO] vault unsealed','[INFO] prometheus scraped 3842 metrics'];
+  const stream = document.getElementById('log-stream');
+  let idx = 0;
+  setInterval(() => {
+    if(!stream) return;
+    const line = document.createElement('div');
+    const now = new Date();
+    const ts = [now.getHours(),now.getMinutes(),now.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
+    line.className = 'log-line '+(logs[idx].includes('WARN')?'ll-warn':'ll-info');
+    line.textContent = logs[idx]+' — '+ts;
+    stream.appendChild(line);
+    while(stream.children.length>10) stream.removeChild(stream.firstChild);
+    idx=(idx+1)%logs.length;
+  }, 1800);
+
+  // Sparklines
+  function drawChart(id, color) {
+    const canvas = document.getElementById(id);
+    if(!canvas) return;
+    const parent = canvas.parentElement;
+    canvas.width = parent ? parent.clientWidth - 36 : 260;
+    canvas.height = 70;
+    const ctx = canvas.getContext('2d');
+    let data = Array.from({length:30}, (_,i) => 40 + 40*(0.5+0.5*Math.sin(i*0.5+Math.random()*0.4)));
+    function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      const cw=canvas.width,ch=canvas.height;
+      const mn=Math.min(...data),mx=Math.max(...data),rng=mx-mn||1;
+      const pts=data.map((v,i)=>({x:i/(data.length-1)*cw,y:ch-((v-mn)/rng)*(ch-8)-4}));
+      const grad=ctx.createLinearGradient(0,0,0,ch);
+      grad.addColorStop(0,color+'40'); grad.addColorStop(1,color+'00');
+      ctx.beginPath(); ctx.moveTo(pts[0].x,ch); ctx.lineTo(pts[0].x,pts[0].y);
+      pts.forEach((p,i)=>{if(!i)return;const pv=pts[i-1],cpx=(pv.x+p.x)/2;ctx.bezierCurveTo(cpx,pv.y,cpx,p.y,p.x,p.y);});
+      ctx.lineTo(pts[pts.length-1].x,ch); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(pts[0].x,pts[0].y);
+      pts.forEach((p,i)=>{if(!i)return;const pv=pts[i-1],cpx=(pv.x+p.x)/2;ctx.bezierCurveTo(cpx,pv.y,cpx,p.y,p.x,p.y);});
+      ctx.strokeStyle=color; ctx.lineWidth=1.5; ctx.shadowColor=color; ctx.shadowBlur=4; ctx.stroke(); ctx.shadowBlur=0;
+      const last=pts[pts.length-1];
+      ctx.beginPath(); ctx.arc(last.x,last.y,3,0,Math.PI*2); ctx.fillStyle=color; ctx.shadowColor=color; ctx.shadowBlur=8; ctx.fill(); ctx.shadowBlur=0;
+    }
+    let frame=0;
+    function tick() {frame++;if(frame%40===0){data.push(Math.max(20,Math.min(100,data[data.length-1]+(Math.random()-0.48)*8)));if(data.length>40)data.shift();draw();}requestAnimationFrame(tick);}
+    draw(); tick();
+  }
+  drawChart('chart-rps','#0066FF');
+  drawChart('chart-cpu','#10B981');
+
+  // Terminal reveal
+  const terminal = document.getElementById('iac-terminal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        const lines = document.querySelectorAll('#term-body .tl');
+        lines.forEach(l => l.style.opacity='0');
+        lines.forEach((l,i) => setTimeout(()=>{l.style.transition='opacity 0.3s ease';l.style.opacity='1';},i*120));
+        observer.unobserve(terminal);
+      }
+    });
+  },{threshold:0.3});
+  if(terminal) observer.observe(terminal);
+</script>
+</body></html>

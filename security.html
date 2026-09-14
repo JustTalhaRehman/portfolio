@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security — Talha Rehman | DevOps &amp; Cloud Engineer</title>
+  <meta name="description" content="Production security engineering by Talha Rehman — Kyverno, Zero-Trust networking, IAM/IRSA, GitOps enforcement, GovCloud compliance and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
+  <style>
+    /* ── SECURITY RINGS ────────────────────────────── */
+    .security-layout { display: grid; grid-template-columns: 320px 1fr; gap: 64px; align-items: start; }
+    .security-rings-wrap { display: flex; align-items: center; justify-content: center; }
+    .sec-rings { position: relative; width: 280px; height: 280px; }
+    .sec-ring { position: absolute; border-radius: 50%; border: 1.5px solid; display: flex; align-items: flex-start; justify-content: center; padding-top: 8px; animation: rotSlow 18s linear infinite; }
+    .ring-4 { inset: 0;   border-color: rgba(239,68,68,.35);   background: rgba(239,68,68,.04);  animation-direction: normal; }
+    .ring-3 { inset: 28px; border-color: rgba(0,102,255,.35);  background: rgba(0,102,255,.04);  animation-direction: reverse; }
+    .ring-2 { inset: 56px; border-color: rgba(245,158,11,.35); background: rgba(245,158,11,.04); animation-direction: normal; }
+    .ring-1 { inset: 84px; border-color: rgba(16,185,129,.35); background: rgba(16,185,129,.04); animation-direction: reverse; }
+    .ring-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; font-weight: 700; }
+    .ring-4 .ring-label { color: #EF4444; }
+    .ring-3 .ring-label { color: #0066FF; }
+    .ring-2 .ring-label { color: #F59E0B; }
+    .ring-1 .ring-label { color: #10B981; }
+    .sec-center { position: absolute; inset: 112px; border-radius: 50%; background: var(--surface); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; font-weight: 700; color: var(--text-primary); text-align: center; letter-spacing: 0.06em; box-shadow: var(--shadow); }
+    @keyframes rotSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* ── OVERVIEW CARDS ─────────────────────────────── */
+    .security-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .sec-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; box-shadow: var(--shadow-sm); transition: all 0.25s ease; }
+    .sec-card:hover { border-color: var(--accent); box-shadow: var(--shadow); transform: translateY(-2px); }
+    .sc-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .sc-icon { font-size: 22px; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; background: var(--bg-alt); border-radius: var(--radius-sm); flex-shrink: 0; }
+    .sc-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+    .sc-domain { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; font-weight: 700; padding: 2px 8px; border-radius: 3px; display: inline-block; }
+    .sc-domain.identity { background: rgba(245,158,11,.12); color: #F59E0B; }
+    .sc-domain.runtime  { background: rgba(239,68,68,.1);   color: #EF4444; }
+    .sc-domain.network  { background: rgba(0,102,255,.1);   color: #0066FF; }
+    .sc-domain.supply   { background: rgba(16,185,129,.1);  color: #10B981; }
+    .sc-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+    /* ── DOMAIN SECTIONS ───────────────────────────── */
+    .sec-domains { display: flex; flex-direction: column; gap: 0; margin-top: 80px; }
+    .sec-domain-block {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+      background: var(--surface);
+    }
+    .sdb-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 32px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s ease;
+      gap: 20px;
+    }
+    .sdb-header:hover { background: var(--bg-alt); }
+    .sdb-header-left { display: flex; align-items: center; gap: 20px; }
+    .sdb-emoji { font-size: 32px; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; background: var(--bg-alt); border-radius: var(--radius); flex-shrink: 0; }
+    .sdb-meta {}
+    .sdb-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; color: var(--text-muted); font-weight: 700; margin-bottom: 4px; text-transform: uppercase; }
+    .sdb-title { font-family: var(--font-display); font-size: 22px; font-weight: 900; color: var(--text-primary); line-height: 1.1; }
+    .sdb-count { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); white-space: nowrap; }
+    .sdb-chevron { width: 22px; height: 22px; color: var(--text-muted); transition: transform 0.35s ease; flex-shrink: 0; }
+    .sec-domain-block.open .sdb-chevron { transform: rotate(180deg); }
+    .sec-domain-block.open .sdb-header { background: var(--accent-dim); }
+    .sec-domain-block.open .sdb-title { color: var(--accent); }
+
+    .sdb-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1);
+    }
+    .sec-domain-block.open .sdb-body { max-height: 3000px; }
+    .sdb-inner { padding: 0 32px 32px; border-top: 1px solid var(--border); }
+
+    /* Bullet groups inside each domain */
+    .sdb-group { margin-top: 24px; }
+    .sdb-group-label {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em;
+      color: var(--accent); font-weight: 700; text-transform: uppercase;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+    }
+    .sdb-group-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .sdb-bullets { display: flex; flex-direction: column; gap: 8px; }
+    .sdb-bullet {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 10px 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .sdb-bullet:hover { border-color: var(--border-light); background: var(--surface-2); }
+    .sdb-bullet-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0; margin-top: 7px;
+    }
+    .sdb-bullet-text { font-size: 15px; color: var(--text-secondary); line-height: 1.65; }
+    .sdb-bullet-text strong { color: var(--text-primary); font-weight: 600; }
+    /* sub-bullets */
+    .sdb-sub { margin-top: 6px; display: flex; flex-direction: column; gap: 4px; padding-left: 4px; }
+    .sdb-sub-item { display: flex; gap: 8px; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+    .sdb-sub-item::before { content: '○'; color: var(--text-muted); flex-shrink: 0; font-size: 11px; margin-top: 1px; }
+
+    /* domain color accents */
+    .sdb-k8s  .sdb-bullet-dot { background: #8B5CF6; }
+    .sdb-k8s  .sdb-group-label { color: #8B5CF6; }
+    .sdb-net  .sdb-bullet-dot { background: #0066FF; }
+    .sdb-net  .sdb-group-label { color: #0066FF; }
+    .sdb-iam  .sdb-bullet-dot { background: #F59E0B; }
+    .sdb-iam  .sdb-group-label { color: #F59E0B; }
+    .sdb-plat .sdb-bullet-dot { background: #10B981; }
+    .sdb-plat .sdb-group-label { color: #10B981; }
+    .sdb-gov  .sdb-bullet-dot { background: #EF4444; }
+    .sdb-gov  .sdb-group-label { color: #EF4444; }
+
+    @media(max-width:1024px){ .security-layout{grid-template-columns:1fr;} .security-rings-wrap{display:none;} }
+    @media(max-width:768px){ .security-cards{grid-template-columns:1fr;} .sdb-header{padding:20px;} .sdb-inner{padding:0 20px 24px;} }
+  </style>
+</head>
+<body>
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">TALHA.REHMAN</a>
+    <ul class="nav-links" role="list">
+      <li><a href="about.html" class="nav-link">About Me</a></li>
+      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
+      <li><a href="pipeline.html" class="nav-link">Pipeline</a></li>
+      <li><a href="kubernetes.html" class="nav-link">Kubernetes</a></li>
+      <li><a href="security.html" class="nav-link active">Security</a></li>
+      <li><a href="work.html" class="nav-link">Work</a></li>
+      <li><a href="projects.html" class="nav-link">Projects</a></li>
+      <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-status" id="nav-status-pill">
+      <span class="nav-status-dot"></span>
+      <span class="nav-status-text">ONLINE</span>
+    </div>
+  </div>
+</nav>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <div class="section-label-tag">SECURITY ENGINEERING</div>
+      <h1 class="page-title">Security Isn't<br>a Layer. It's Everywhere.</h1>
+      <p class="page-desc">Defense in depth — from the identity plane to the container runtime. Zero Trust architecture, GovCloud-grade enforcement, and documented compliance controls throughout.</p>
+    </div>
+    <div class="page-number">04</div>
+  </div>
+
+  <!-- OVERVIEW SECTION -->
+  <section class="section" style="padding-bottom:48px;">
+    <div class="container">
+      <div class="security-layout">
+        <div class="security-rings-wrap" aria-hidden="true">
+          <div class="sec-rings">
+            <div class="sec-ring ring-4"><span class="ring-label">RUNTIME</span></div>
+            <div class="sec-ring ring-3"><span class="ring-label">NETWORK</span></div>
+            <div class="sec-ring ring-2"><span class="ring-label">IDENTITY</span></div>
+            <div class="sec-ring ring-1"><span class="ring-label">SUPPLY CHAIN</span></div>
+            <div class="sec-center">ZERO<br>TRUST</div>
+          </div>
+        </div>
+        <div class="security-cards">
+          <div class="sec-card">
+            <div class="sc-header">
+              <div class="sc-icon">🔑</div>
+              <div class="sc-info"><div class="sc-title">IAM / IRSA / Pod Identity</div><div class="sc-domain identity">IDENTITY</div></div>
+            </div>
+            <p class="sc-desc">Fine-grained IAM roles per service account via IRSA and EKS Pod Identity. Least-privilege enforced at every boundary. KMS separation of duties. No hardcoded credentials.</p>
+          </div>
+          <div class="sec-card">
+            <div class="sc-header">
+              <div class="sc-icon">📋</div>
+              <div class="sc-info"><div class="sc-title">Kyverno Policy Engine</div><div class="sc-domain runtime">RUNTIME</div></div>
+            </div>
+            <p class="sc-desc">Cluster-wide admission enforcement on GovCloud EKS. Blocks privileged containers, enforces image registries, validates signatures with Cosign, restricts host access.</p>
+          </div>
+          <div class="sec-card">
+            <div class="sc-header">
+              <div class="sc-icon">🌐</div>
+              <div class="sc-info"><div class="sc-title">Zero-Trust Networking</div><div class="sc-domain network">NETWORK</div></div>
+            </div>
+            <p class="sc-desc">Default-deny NetworkPolicies across all namespaces. Istio REGISTRY_ONLY egress control. Security group tightening. GitOps-only production access model.</p>
+          </div>
+          <div class="sec-card">
+            <div class="sc-header">
+              <div class="sc-icon">🔍</div>
+              <div class="sc-info"><div class="sc-title">Supply Chain Security</div><div class="sc-domain supply">SUPPLY CHAIN</div></div>
+            </div>
+            <p class="sc-desc">Cosign-based image signing integrated into CI/CD. Trivy vulnerability scanning with attestations. Private ECR mirroring for GovCloud-isolated environments.</p>
+          </div>
+          <div class="sec-card">
+            <div class="sc-header">
+              <div class="sc-icon">🔐</div>
+              <div class="sc-info"><div class="sc-title">KMS &amp; Encryption</div><div class="sc-domain identity">IDENTITY</div></div>
+            </div>
+            <p class="sc-desc">Customer-managed KMS keys with separation of duties. CloudTrail-based usage analysis. EBS, EFS, RDS, S3, and etcd encryption catalogued and enforced.</p>
+          </div>
+          <div class="sec-card">
+            <div class="sc-header">
+              <div class="sc-icon">🛡</div>
+              <div class="sc-info"><div class="sc-title">GuardDuty &amp; Compliance</div><div class="sc-domain runtime">RUNTIME</div></div>
+            </div>
+            <p class="sc-desc">GuardDuty findings tracked through closure. FedRAMP-adjacent GovCloud compliance documentation. Audit-ready before/after gap analysis. Cluster verification test suites.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILED DOMAIN SECTIONS -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="section-label-tag">DETAILED BREAKDOWN</div>
+      <h2 class="section-heading" style="font-size:clamp(28px,3.5vw,44px);margin-bottom:12px;">What Was Actually Done.</h2>
+      <p style="font-size:16px;color:var(--text-secondary);margin-bottom:48px;max-width:600px;line-height:1.7;">Click each domain to expand the full list of security controls designed, implemented, and verified in production.</p>
+
+      <div class="sec-domains" id="sec-domains">
+
+        <!-- 1. KUBERNETES SECURITY -->
+        <div class="sec-domain-block sdb-k8s open" id="sdb-1">
+          <div class="sdb-header" role="button" aria-expanded="true" aria-controls="sdb-body-1" onclick="toggleDomain(this)">
+            <div class="sdb-header-left">
+              <div class="sdb-emoji">🛡</div>
+              <div class="sdb-meta">
+                <div class="sdb-num">DOMAIN 01</div>
+                <div class="sdb-title">Kubernetes Security &amp; Policy Enforcement</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span class="sdb-count">17 controls</span>
+              <svg class="sdb-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="sdb-body" id="sdb-body-1">
+            <div class="sdb-inner">
+              <div class="sdb-group">
+                <div class="sdb-group-label">Policy Engine Setup</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Deployed <strong>Kyverno</strong> as cluster-wide policy engine on <strong>AWS GovCloud EKS</strong> with HA admission controllers and background / cleanup / reporting controllers.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Mirrored Kyverno container images to <strong>private ECR</strong> because GHCR was unreachable in GovCloud.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Designed and enforced container <strong>image registry allow-list policies</strong> restricting images to private ECR only.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Fixed Kyverno <strong>image-registry matching logic</strong> for multi-level registry paths.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">Image Signing &amp; Supply Chain</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Implemented <strong>Cosign-based container image signature verification</strong> using key-based verification for GovCloud environments.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Integrated <strong>image-signing steps into CI/CD pipelines</strong> across multiple application repositories.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Resolved <strong>GovCloud IRSA/STS regional endpoint and ECR authentication issues</strong> affecting signature verification.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Built an automated <strong>Kubernetes CronJob to refresh short-lived ECR authentication tokens</strong> every 6 hours using IRSA. Applied minimal container privileges to the workflow.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Designed a <strong>container vulnerability-scanning pipeline</strong> using Trivy + Cosign vulnerability attestations + Kyverno admission verification (implementation placed on hold).</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">Cluster-Wide Admission Policies</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Authored cluster-wide Kyverno policies restricting:
+                    <div class="sdb-sub">
+                      <div class="sdb-sub-item">Privileged containers</div>
+                      <div class="sdb-sub-item">Host networking</div>
+                      <div class="sdb-sub-item">Host PID / IPC namespaces</div>
+                      <div class="sdb-sub-item">HostPath volume mounts</div>
+                    </div>
+                  </div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Defined a <strong>namespace-exception process</strong> for legitimate infrastructure workloads (CNI, storage, monitoring, security agents).</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Enforced <strong>Pod Security Standards (Restricted equivalent)</strong> for PHI/PII namespaces using PSA + Kyverno. Worked around Istio sidecar and PSS compatibility issues.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">Troubleshooting &amp; Migrations</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Resolved <strong>Kyverno/Helm templating conflicts</strong> involving JMESPath syntax.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Fixed <strong>Kyverno policy type-mismatch issues</strong> involving array/string comparisons.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Migrated <strong>Kyverno CRDs between two independent EKS clusters</strong>, including metadata sanitization.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. ZERO-TRUST NETWORKING -->
+        <div class="sec-domain-block sdb-net" id="sdb-2">
+          <div class="sdb-header" role="button" aria-expanded="false" aria-controls="sdb-body-2" onclick="toggleDomain(this)">
+            <div class="sdb-header-left">
+              <div class="sdb-emoji">🌐</div>
+              <div class="sdb-meta">
+                <div class="sdb-num">DOMAIN 02</div>
+                <div class="sdb-title">Zero-Trust Networking &amp; Access Control</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span class="sdb-count">15 controls</span>
+              <svg class="sdb-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="sdb-body" id="sdb-body-2">
+            <div class="sdb-inner">
+              <div class="sdb-group">
+                <div class="sdb-group-label">Network Policies &amp; RBAC</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Designed and rolled out <strong>default-deny Kubernetes NetworkPolicies</strong> across all application namespaces.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Created a <strong>reusable Helm-based NetworkPolicy template</strong> driven by per-namespace dependency mappings.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Restricted <strong>east-west pod-to-pod communication</strong> to explicitly declared dependencies only.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Implemented <strong>RBAC-based namespace isolation</strong> between platform tooling and application workloads.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Created custom <strong>ClusterRoles and ~80 auto-generated RoleBindings</strong>. Implemented IAM-to-Kubernetes group mapping.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Used <strong>node taints and scheduling isolation</strong> to separate platform and application workloads.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">Istio Egress Control</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Investigated centralized Istio egress control — <strong>proved via PoC</strong> that NetworkPolicies and Istio Sidecar scoping were insufficient to block outbound traffic. Implemented <strong>REGISTRY_ONLY</strong> via Istio ServiceEntries.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Built an <strong>evidence-based egress allow-list</strong> using:
+                    <div class="sdb-sub">
+                      <div class="sdb-sub-item">VPC Flow Logs analysis</div>
+                      <div class="sdb-sub-item">ArgoCD configuration and source review</div>
+                      <div class="sdb-sub-item">Application configuration audits</div>
+                    </div>
+                  </div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Covered approved destinations: <strong>source control, container registries, alerting, cloud APIs, and data warehouses</strong>.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Performed <strong>live egress validation across two environments</strong>, verifying both blocked and approved destinations. Identified and fixed a missing allow-list entry during validation.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">AWS Security Groups &amp; Operating Model</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Tightened <strong>AWS Security Groups</strong> across EKS, node groups, management infrastructure, and EFS.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Removed unnecessary <strong>SSH ingress from the managed control plane</strong>. Reduced an overly broad /8 CIDR rule to the actual VPC range.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Replaced unrestricted outbound access with <strong>four explicitly justified port-level rules</strong>.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Designed a <strong>GitOps-only production operating model</strong> prohibiting direct kubectl changes, including a documented emergency break-glass process.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. IAM / IRSA -->
+        <div class="sec-domain-block sdb-iam" id="sdb-3">
+          <div class="sdb-header" role="button" aria-expanded="false" aria-controls="sdb-body-3" onclick="toggleDomain(this)">
+            <div class="sdb-header-left">
+              <div class="sdb-emoji">🔑</div>
+              <div class="sdb-meta">
+                <div class="sdb-num">DOMAIN 03</div>
+                <div class="sdb-title">IAM / IRSA / EKS Pod Identity</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span class="sdb-count">12 controls</span>
+              <svg class="sdb-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="sdb-body" id="sdb-body-3">
+            <div class="sdb-inner">
+              <div class="sdb-group">
+                <div class="sdb-group-label">VPC CNI &amp; Pod Identity Migration</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Migrated <strong>AWS VPC CNI from shared EC2 node IAM role to a dedicated EKS Pod Identity role</strong>. Removed redundant CNI IAM permissions from node-group roles.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Eliminated a <strong>silent credential-fallback path</strong> and improved CloudTrail attribution for CNI API calls.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">IRSA Design &amp; Terraform Modules</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Designed and implemented a <strong>dedicated IRSA role for Kyverno ECR image verification</strong>. Scoped OIDC trust conditions to the exact Kubernetes service account.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Diagnosed an <strong>IAM tagging-permission failure</strong> in the deployment pipeline.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Built a <strong>reusable Terraform module</strong> supporting both IRSA and EKS Pod Identity trust patterns.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">KMS &amp; Least-Privilege IAM</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Investigated and implemented <strong>KMS separation of duties</strong> between key administration and data access.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Performed <strong>CloudTrail-based KMS usage analysis</strong> to determine the real-world access and blast radius before making changes.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Removed an <strong>orphaned, overly permissive IAM policy</strong> containing wildcard EC2 volume permissions.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Created and validated <strong>scoped read-only IAM roles</strong> for developer and admin use. Verified IAM restrictions through live AWS API calls, confirming reads succeeded and writes were denied.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. PLATFORM ENGINEERING -->
+        <div class="sec-domain-block sdb-plat" id="sdb-4">
+          <div class="sdb-header" role="button" aria-expanded="false" aria-controls="sdb-body-4" onclick="toggleDomain(this)">
+            <div class="sdb-header-left">
+              <div class="sdb-emoji">⚙️</div>
+              <div class="sdb-meta">
+                <div class="sdb-num">DOMAIN 04</div>
+                <div class="sdb-title">Multi-Environment / GitOps Platform Engineering</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span class="sdb-count">19 controls</span>
+              <svg class="sdb-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="sdb-body" id="sdb-body-4">
+            <div class="sdb-inner">
+              <div class="sdb-group">
+                <div class="sdb-group-label">Helm &amp; Multi-Cluster Compatibility</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Diagnosed <strong>hardcoded Kubernetes node-group names</strong> across multiple Helm charts. Refactored to use <strong>dynamic node-group selection</strong> with per-application overrides and environment-level defaults.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Enabled the same Helm charts to <strong>deploy across two independent EKS clusters</strong>.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Resolved a <strong>Helm whitespace-stripping issue</strong> that converted a boolean into a string, causing silent config failures.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Fixed an <strong>incorrect StorageClass reference</strong> preventing database persistent-volume binding.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">Admission &amp; Sidecar Issues</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Root-caused <strong>Kyverno admission failures</strong> caused by OpenTelemetry/CloudWatch auto-instrumentation sidecar injection.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Identified <strong>missing IAM trust-policy configuration</strong> for a second cluster's OIDC provider.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Added a required <strong>Kyverno namespace exception</strong> for a test workload to restore admission.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">Production Incidents &amp; Security Response</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Investigated and resolved a <strong>major production incident</strong> involving simultaneous node failures affecting:
+                    <div class="sdb-sub">
+                      <div class="sdb-sub-item">GitOps controller</div>
+                      <div class="sdb-sub-item">Kyverno admission webhooks</div>
+                    </div>
+                    Restored cluster operability and implemented permanent <strong>node-affinity + IaC corrections</strong>.
+                  </div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Investigated an <strong>active security incident involving compromised pipeline credentials</strong> and unauthorized cluster-admin privilege escalation. Identified the malicious RBAC binding, coordinated credential rotation, and tracked GuardDuty findings through closure.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">Integration &amp; Config Fixes</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Diagnosed a <strong>client-side TLS/SSL inspection/proxy interception issue</strong> affecting a production data-warehouse integration. Isolated to the browser/client side after ruling out cluster, certificates, and application code.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Removed <strong>hardcoded sensitive third-party service URLs</strong> from application source code. Integrated third-party configuration through a <strong>secrets-management platform → Kubernetes deployments</strong>.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Investigated and resolved <strong>missing credentials affecting an alerting/notification pipeline</strong>.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Investigated and began implementing <strong>Okta SSO/Auth integration</strong> for internal developer tools.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Diagnosed and fixed a <strong>secondary-cluster database issue</strong> caused by an incorrect node-group name.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. GOVERNANCE -->
+        <div class="sec-domain-block sdb-gov" id="sdb-5">
+          <div class="sdb-header" role="button" aria-expanded="false" aria-controls="sdb-body-5" onclick="toggleDomain(this)">
+            <div class="sdb-header-left">
+              <div class="sdb-emoji">📋</div>
+              <div class="sdb-meta">
+                <div class="sdb-num">DOMAIN 05</div>
+                <div class="sdb-title">Governance, Compliance &amp; Documentation</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <span class="sdb-count">11 controls</span>
+              <svg class="sdb-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="sdb-body" id="sdb-body-5">
+            <div class="sdb-inner">
+              <div class="sdb-group">
+                <div class="sdb-group-label">Policies &amp; Process Documentation</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Authored an <strong>Infrastructure-as-Code enforcement policy</strong> defining Terraform-managed vs. AWS/vendor-managed infrastructure boundaries.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Documented an <strong>emergency-change exception / break-glass process</strong> for production access outside GitOps.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Investigated and documented the <strong>EKS patching process</strong> covering:
+                    <div class="sdb-sub">
+                      <div class="sdb-sub-item">EKS control plane upgrades</div>
+                      <div class="sdb-sub-item">Managed add-on lifecycle</div>
+                      <div class="sdb-sub-item">EC2 management infrastructure patching</div>
+                    </div>
+                  </div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Identified an <strong>observability add-on configuration-preservation risk</strong> before future upgrades — flagged and documented before changes were made.</div></div>
+                </div>
+              </div>
+              <div class="sdb-group">
+                <div class="sdb-group-label">Backup, Encryption &amp; Compliance Audit</div>
+                <div class="sdb-bullets">
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Investigated <strong>backup-encryption posture</strong> across EBS, EFS, and RDS. Catalogued current KMS key usage.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Identified the <strong>absence of an automated backup vault/plan</strong>. Scoped a safe implementation approach without making unapproved production changes.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Produced <strong>before/after gap-analysis documentation</strong> for all implemented security controls.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Created <strong>cluster-verification test suites</strong> for security controls — automated validation of policy enforcement.</div></div>
+                  <div class="sdb-bullet"><div class="sdb-bullet-dot"></div><div class="sdb-bullet-text">Maintained <strong>ticket-ready documentation</strong> supporting audit and compliance review in a regulated <strong>GovCloud / FedRAMP-adjacent environment</strong>.</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /sec-domains -->
+    </div>
+  </section>
+
+<footer id="footer" role="contentinfo">
+  <div class="footer-top-border"></div>
+  <div class="footer-inner">
+    <div class="footer-status">
+      <div class="fs-title">SYSTEM STATUS</div>
+      <div class="fs-grid">
+        <div class="fs-row"><span class="fs-label">Infrastructure</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">CI/CD</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">Kubernetes</span><span class="fs-val operational">OPERATIONAL</span></div>
+        <div class="fs-row"><span class="fs-label">Observability</span><span class="fs-val operational">OPERATIONAL</span></div>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-brand-row">
+      <div class="footer-brand">
+        <div class="fb-name">TALHA REHMAN</div>
+        <div class="fb-title">DevOps / Cloud Engineer</div>
+        <p class="fb-quote">Building infrastructure that works<br>when nobody is watching.</p>
+      </div>
+      <div class="footer-nav">
+        <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
+        <a href="https://instagram.com/talharehman_" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
+        <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
+        <a href="mailto:talha32rehman@gmail.com" class="footer-link">Email</a>
+      </div>
+    </div>
+    <div class="footer-tagline">Ship reliable. Operate confidently.</div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  function toggleDomain(header) {
+    const block = header.closest('.sec-domain-block');
+    const isOpen = block.classList.contains('open');
+    block.classList.toggle('open', !isOpen);
+    header.setAttribute('aria-expanded', String(!isOpen));
+  }
+</script>
+</body>
+</html>
