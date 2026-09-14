@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects — Devistio | Cloud &amp; DevOps Engineering</title>
-  <meta name="description" content="Real production projects built by Talha Rehman — PHI-safe logging, Istio egress, OIDC CI/CD, KMS security, observability platforms and more." />
+  <title>Projects  |  Devistio | Cloud &amp; DevOps Engineering</title>
+  <meta name="description" content="Real production projects built by Talha Rehman , PHI-safe logging, Istio egress, OIDC CI/CD, KMS security, observability platforms and more." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -53,7 +53,7 @@
     <div class="page-header-inner">
       <div class="section-label-tag">PRODUCTION WORK</div>
       <h1 class="page-title">What We've<br>Actually Built.</h1>
-      <p class="page-desc">Real infrastructure. Real problems. Real production environments. Not demos — systems that run in production today.</p>
+      <p class="page-desc">Real infrastructure. Real problems. Real production environments. Not demos: systems that run in production today.</p>
     </div>
     <div class="page-number">05</div>
   </div>
@@ -70,7 +70,7 @@
     <div class="proj-card-body">
       <h3 class="proj-title">PHI/PII-Safe Logging Pipeline</h3>
       <div class="proj-impact" style="color:#8B5CF6">100% HIPAA-Compliant Logging</div>
-      <p class="proj-desc">Built a 3-layer defense-in-depth logging architecture for Kubernetes in a healthcare environment. Stripped URL query strings at the source using Istio Proxy, applied regex pipelines in Grafana Alloy to redact PHI/PII tokens in transit, and routed clean JSON logs into segregated retention tiers in Loki — achieving full HIPAA compliance with zero loss in developer visibility.</p>
+      <p class="proj-desc">Built a 3-layer defense-in-depth logging architecture for Kubernetes in a healthcare environment. Stripped URL query strings at the source using Istio Proxy, applied regex pipelines in Grafana Alloy to redact PHI/PII tokens in transit, and routed clean JSON logs into segregated retention tiers in Loki: achieving full HIPAA compliance with zero loss in developer visibility.</p>
       <ul class="proj-highlights">
         <li>Istio: %REQ_WITHOUT_QUERY% to strip query params</li><li>Alloy DaemonSets with regex redaction pipelines</li><li>Loki storage tiers with clean JSON logs</li><li>Zero PHI/PII in logs · Full observability preserved</li>
       </ul>
@@ -85,9 +85,9 @@
     <div class="proj-card-body">
       <h3 class="proj-title">KMS Separation of Duties</h3>
       <div class="proj-impact" style="color:#F59E0B">Zero Access Creep on Encryption Keys</div>
-      <p class="proj-desc">Enforced AWS KMS Separation of Duties directly at the key policy layer. Traced the complete access model — IAM roles, KMS key policies, grants, service integrations, CI/CD identities, and workload dependencies — before making any changes. Key administrators can now manage encryption keys without being able to access encrypted data, while workloads continue operating without interruption.</p>
+      <p class="proj-desc">Enforced AWS KMS Separation of Duties directly at the key policy layer. Traced the complete access model: IAM roles, KMS key policies, grants, service integrations, CI/CD identities, and workload dependencies: before making any changes. Key administrators can now manage encryption keys without being able to access encrypted data, while workloads continue operating without interruption.</p>
       <ul class="proj-highlights">
-        <li>KMS key policy redesign — admin vs. workload split</li><li>No production disruption during migration</li><li>Full CloudTrail audit of all key usage</li><li>Terraform-managed, reproducible policy</li>
+        <li>KMS key policy redesign: admin vs. workload split</li><li>No production disruption during migration</li><li>Full CloudTrail audit of all key usage</li><li>Terraform-managed, reproducible policy</li>
       </ul>
       <div class="proj-tags"><span class="mtag">AWS KMS</span><span class="mtag">IAM</span><span class="mtag">Terraform</span><span class="mtag">Terragrunt</span><span class="mtag">EKS</span></div>
     </div>
@@ -145,7 +145,7 @@
     <div class="proj-card-body">
       <h3 class="proj-title">VPC CNI Pod Identity Migration</h3>
       <div class="proj-impact" style="color:#EF4444">Reduced Blast Radius · Least-Privilege CNI</div>
-      <p class="proj-desc">Discovered that the aws-node DaemonSet was silently relying on worker node IAM roles for ENI and IP management — meaning every node carried permissions intended for only one system component. Implemented EKS Pod Identity with a dedicated least-privilege IAM role for VPC CNI, associated it with the aws-node service account, and removed the CNI policy from the node IAM role entirely. Zero network disruption.</p>
+      <p class="proj-desc">Discovered that the aws-node DaemonSet was silently relying on worker node IAM roles for ENI and IP management: meaning every node carried permissions intended for only one system component. Implemented EKS Pod Identity with a dedicated least-privilege IAM role for VPC CNI, associated it with the aws-node service account, and removed the CNI policy from the node IAM role entirely. Zero network disruption.</p>
       <ul class="proj-highlights">
         <li>EKS Pod Identity for aws-node service account</li><li>CNI policy removed from node IAM role</li><li>Workload-scoped credentials, reduced blast radius</li><li>Zero disruption to pod networking after migration</li>
       </ul>
@@ -162,7 +162,7 @@
       <div class="proj-impact" style="color:#8B5CF6">Zero Public Endpoints · Multi-Account Telemetry</div>
       <p class="proj-desc">Built a secure multi-account observability pipeline using AWS PrivateLink, allowing external AWS accounts to send logs, metrics, and traces into the platform without any public internet exposure. Internal NLBs exposed via PrivateLink endpoint services, with Route53 TXT record DNS verification and TLS termination via ACM. Fully automated with Terraform and Spacelift.</p>
       <ul class="proj-highlights">
-        <li>PrivateLink — no VPC peering or transit gateway</li><li>Loki / Mimir / Tempo each with dedicated endpoints</li><li>Route53 DNS verification for clean service domains</li><li>Terraform + Spacelift fully automated infrastructure</li>
+        <li>PrivateLink: no VPC peering or transit gateway</li><li>Loki / Mimir / Tempo each with dedicated endpoints</li><li>Route53 DNS verification for clean service domains</li><li>Terraform + Spacelift fully automated infrastructure</li>
       </ul>
       <div class="proj-tags"><span class="mtag">AWS PrivateLink</span><span class="mtag">NLB</span><span class="mtag">EKS</span><span class="mtag">Route53</span><span class="mtag">Loki</span><span class="mtag">Mimir</span><span class="mtag">Tempo</span></div>
     </div>
@@ -177,7 +177,7 @@
       <div class="proj-impact" style="color:#F59E0B">AI-Assisted Troubleshooting · Per-Org Isolation</div>
       <p class="proj-desc">Designed and implemented a production-grade Grafana MCP (Model Context Protocol) server on AWS EKS. Enables secure, org-scoped, read-only access to the observability stack for AI-driven troubleshooting. Access controlled via VPN + MFA, TLS-enabled ALB, org-scoped Grafana service accounts, and full Kubernetes RBAC isolation. All secrets externalized via AWS Secrets Manager.</p>
       <ul class="proj-highlights">
-        <li>One MCP instance per Grafana org — zero cross-tenant access</li><li>VPN + MFA + TLS-enabled ALB entry control</li><li>Read-only enforced (disable-write flag)</li><li>GitOps app-of-apps delivery via ArgoCD</li>
+        <li>One MCP instance per Grafana org: zero cross-tenant access</li><li>VPN + MFA + TLS-enabled ALB entry control</li><li>Read-only enforced (disable-write flag)</li><li>GitOps app-of-apps delivery via ArgoCD</li>
       </ul>
       <div class="proj-tags"><span class="mtag">EKS</span><span class="mtag">ArgoCD</span><span class="mtag">Grafana</span><span class="mtag">AWS Secrets Manager</span><span class="mtag">External Secrets</span><span class="mtag">KEDA</span></div>
     </div>
@@ -190,9 +190,9 @@
     <div class="proj-card-body">
       <h3 class="proj-title">Clinical Notes PDF Recovery</h3>
       <div class="proj-impact" style="color:#10B981">200+ Records Recovered · Zero Downtime</div>
-      <p class="proj-desc">Doctors couldn't open, print, or share clinical note PDFs in a production EHR system — corrupted, outdated, or out of sync with the database. Without any code deployment, used AWS SSM Session Manager on a canary EC2 instance to access the app securely, then executed a Django management command following a strict Dry Run → Verify → Wet Run pattern. 9 practice groups fixed, 200+ clinical notes regenerated.</p>
+      <p class="proj-desc">Doctors couldn't open, print, or share clinical note PDFs in a production EHR system: corrupted, outdated, or out of sync with the database. Without any code deployment, used AWS SSM Session Manager on a canary EC2 instance to access the app securely, then executed a Django management command following a strict Dry Run → Verify → Wet Run pattern. 9 practice groups fixed, 200+ clinical notes regenerated.</p>
       <ul class="proj-highlights">
-        <li>AWS SSM — no SSH, no exposed ports</li><li>Dry Run first → Verify → Wet Run only when confident</li><li>No schema changes · No deployments · No downtime</li><li>Full audit trail logged throughout</li>
+        <li>AWS SSM: no SSH, no exposed ports</li><li>Dry Run first → Verify → Wet Run only when confident</li><li>No schema changes · No deployments · No downtime</li><li>Full audit trail logged throughout</li>
       </ul>
       <div class="proj-tags"><span class="mtag">AWS SSM</span><span class="mtag">Django</span><span class="mtag">EC2</span><span class="mtag">MySQL</span><span class="mtag">Python</span></div>
     </div>
@@ -205,7 +205,7 @@
     <div class="proj-card-body">
       <h3 class="proj-title">Automated S3 Media Storage (Dev/QA)</h3>
       <div class="proj-impact" style="color:#0066FF">Dev/QA Now Behaves Like Prod</div>
-      <p class="proj-desc">Dev and QA couldn't properly test media workflows because environment parity was missing. Built separate S3 buckets for Dev and QA using Terraform — AES-256 encryption enforced, versioning on, public access fully blocked. Spacelift CI/CD pipelines deploy consistently across environments. No manual setup, no drift — clean, consistent, repeatable media handling.</p>
+      <p class="proj-desc">Dev and QA couldn't properly test media workflows because environment parity was missing. Built separate S3 buckets for Dev and QA using Terraform: AES-256 encryption enforced, versioning on, public access fully blocked. Spacelift CI/CD pipelines deploy consistently across environments. No manual setup, no drift: clean, consistent, repeatable media handling.</p>
       <ul class="proj-highlights">
         <li>Separate Dev & QA S3 buckets via Terraform modules</li><li>AES-256 encryption + versioning enabled by default</li><li>Public access fully blocked at bucket policy level</li><li>Spacelift pipeline for consistent cross-env deploys</li>
       </ul>

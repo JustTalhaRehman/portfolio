@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work — Talha Rehman</title>
+  <title>Work  |  Talha Rehman</title>
   <meta name="description" content="Real infrastructure solving real problems in production." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -101,9 +101,9 @@
             <div class="op-body">
               <div class="log-stream" id="log-stream" aria-live="polite">
                 <div class="log-line ll-info">[INFO] 15:23:41 api-server started successfully on :8080</div>
-                <div class="log-line ll-info">[INFO] 15:23:42 health check passed — all 24 pods ready</div>
+                <div class="log-line ll-info">[INFO] 15:23:42 health check passed: all 24 pods ready</div>
                 <div class="log-line ll-warn">[WARN] 15:23:43 rate limit approaching configured threshold</div>
-                <div class="log-line ll-info">[INFO] 15:23:44 argocd sync completed — revision abc1234f</div>
+                <div class="log-line ll-info">[INFO] 15:23:44 argocd sync completed: revision abc1234f</div>
                 <div class="log-line ll-info">[INFO] 15:23:45 kyverno policy admitted 3/3 pods</div>
               </div>
             </div>
@@ -148,7 +148,7 @@
           <div class="iac-terminal" id="iac-terminal">
             <div class="term-header">
               <div class="term-dots"><span class="td red"></span><span class="td yellow"></span><span class="td green"></span></div>
-              <div class="term-title">spacelift — terraform plan</div>
+              <div class="term-title">spacelift: terraform plan</div>
             </div>
             <div class="term-body" id="term-body">
               <div class="tl prompt">$ spacelift run --stack production-eks</div>
@@ -235,7 +235,7 @@
     const now = new Date();
     const ts = [now.getHours(),now.getMinutes(),now.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
     line.className = 'log-line '+(logs[idx].includes('WARN')?'ll-warn':'ll-info');
-    line.textContent = logs[idx]+' — '+ts;
+    line.textContent = logs[idx]+': '+ts;
     stream.appendChild(line);
     while(stream.children.length>10) stream.removeChild(stream.firstChild);
     idx=(idx+1)%logs.length;

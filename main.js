@@ -1,6 +1,6 @@
 /* =========================================================
-   TALHA REHMAN — DEVOPS PORTFOLIO
-   main.js — Home page (Boot + Three.js hero)
+   TALHA REHMAN: DEVOPS PORTFOLIO
+   main.js: Home page (Boot + Three.js hero)
 ========================================================= */
 
 (function () {
