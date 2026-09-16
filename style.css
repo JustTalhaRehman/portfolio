@@ -1449,13 +1449,13 @@ img { max-width: 100%; display: block; }
 }
 
 .founder-avatar {
-  width: 76px;
-  height: 76px;
+  width: 104px;
+  height: 104px;
   border-radius: 50%;
-  border: 2px solid var(--accent);
+  border: 2.5px solid var(--accent);
   overflow: hidden;
   flex-shrink: 0;
-  box-shadow: 0 0 16px var(--accent-glow);
+  box-shadow: 0 0 20px var(--accent-glow);
 }
 
 .founder-avatar img {
