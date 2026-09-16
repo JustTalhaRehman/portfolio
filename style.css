@@ -1,9 +1,92 @@
 /* =========================================================
    DEVISTIO | Cloud · DevOps · Platform Engineering
    iPhone 18 Pro Deep Burgundy (#4D1821) & White Design System
+   Featuring HUMANE Typeface
    ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Humane Typeface Declarations */
+@font-face {
+  font-family: 'Humane';
+  src: url('fonts/Humane-Thin.woff2') format('woff2'),
+       url('fonts/Humane-Thin.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Humane';
+  src: url('fonts/Humane-ExtraLight.woff2') format('woff2'),
+       url('fonts/Humane-ExtraLight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Humane';
+  src: url('fonts/Humane-Light.woff2') format('woff2'),
+       url('fonts/Humane-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Humane';
+  src: url('fonts/Humane-Regular.woff2') format('woff2'),
+       url('fonts/Humane-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Humane';
+  src: url('fonts/Humane-Medium.woff2') format('woff2'),
+       url('fonts/Humane-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Humane';
+  src: url('fonts/Humane-SemiBold.woff2') format('woff2'),
+       url('fonts/Humane-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Humane';
+  src: url('fonts/Humane-Bold.woff2') format('woff2'),
+       url('fonts/Humane-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Humane';
+  src: url('fonts/Humane-Bold.woff2') format('woff2'),
+       url('fonts/Humane-Bold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Humane';
+  src: url('fonts/Humane-Bold.woff2') format('woff2'),
+       url('fonts/Humane-Bold.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   /* Color Palette - iPhone 18 Pro Deep Burgundy (#4D1821) & White (Default Dark) */
@@ -42,9 +125,9 @@
   --purple:         #A855F7;
   --purple-dim:     rgba(168, 85, 247, 0.12);
 
-  /* Typography */
+  /* Typography - HUMANE for Display & Headings, Inter for Body Copy */
+  --font-display: 'Humane', 'Manrope', system-ui, sans-serif;
   --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
-  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
   --font-mono:    'JetBrains Mono', 'SF Mono', monospace;
 
   /* Sizing & Spacing */
@@ -154,6 +237,11 @@ button {
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
 /* Subtle Technical Grid Background */
 .bg-grid {
   position: relative;
@@ -239,12 +327,12 @@ img { max-width: 100%; display: block; }
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(32px, 4.5vw, 48px);
+  font-size: clamp(42px, 6vw, 68px);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 0.95;
   color: var(--text-primary);
-  letter-spacing: -0.025em;
-  margin-bottom: 14px;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
 }
 
 .section-desc {
@@ -262,10 +350,10 @@ img { max-width: 100%; display: block; }
   gap: 10px;
   padding: 12px 24px;
   border-radius: var(--radius);
-  font-family: var(--font-sans);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   transition: var(--transition);
   cursor: pointer;
   white-space: nowrap;
@@ -273,7 +361,7 @@ img { max-width: 100%; display: block; }
 
 .btn-sm {
   padding: 8px 16px;
-  font-size: 13px;
+  font-size: 15px;
   border-radius: var(--radius-sm);
 }
 
@@ -356,9 +444,9 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-mono);
-  font-size: 17px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
   letter-spacing: 0.08em;
   color: var(--text-primary);
 }
@@ -397,8 +485,10 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-link {
-  font-size: 14px;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--text-secondary);
   padding: 8px 16px;
   border-radius: var(--radius-sm);
@@ -536,12 +626,12 @@ img { max-width: 100%; display: block; }
 
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(40px, 6.2vw, 68px);
-  font-weight: 900;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-size: clamp(56px, 9vw, 100px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
   color: var(--text-primary);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .hero-headline .text-gradient {
@@ -701,11 +791,12 @@ img { max-width: 100%; display: block; }
 
 .domain-title {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 12px;
-  line-height: 1.25;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
 }
 
 .domain-desc {
@@ -1128,11 +1219,12 @@ img { max-width: 100%; display: block; }
 
 .work-title {
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 30px;
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 16px;
-  line-height: 1.25;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
 }
 
 .work-block {
@@ -1388,10 +1480,11 @@ img { max-width: 100%; display: block; }
 
 .proof-val {
   font-family: var(--font-display);
-  font-size: clamp(30px, 3.2vw, 40px);
-  font-weight: 900;
+  font-size: clamp(48px, 6vw, 76px);
+  font-weight: 800;
   color: var(--accent-cyan);
-  line-height: 1;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
   margin-bottom: 8px;
 }
 
@@ -1426,9 +1519,11 @@ img { max-width: 100%; display: block; }
 
 .behind-title {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 42px;
   font-weight: 800;
   color: var(--text-primary);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
   margin-bottom: 14px;
 }
 
@@ -1474,10 +1569,12 @@ img { max-width: 100%; display: block; }
 
 .founder-name {
   font-family: var(--font-display);
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 2px;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
 }
 
 .founder-title {
@@ -1747,10 +1844,11 @@ img { max-width: 100%; display: block; }
 
 .cs-title {
   font-family: var(--font-display);
-  font-size: clamp(24px, 3.5vw, 32px);
+  font-size: clamp(34px, 4.5vw, 48px);
   font-weight: 800;
   color: var(--text-primary);
-  line-height: 1.2;
+  line-height: 0.98;
+  letter-spacing: 0.02em;
 }
 
 .cs-metrics-pill {
