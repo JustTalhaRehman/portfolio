@@ -3,288 +3,694 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work | Devistio</title>
-  <meta name="description" content="Devistio delivers real infrastructure solutions for real production environments." />
+  <title>Engineering &amp; Technical Case Studies | Devistio</title>
+  <meta name="description" content="In-depth technical case studies in Kubernetes security, zero-trust egress, IAM least-privilege, GitOps platform engineering, and enterprise observability." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
-<body><nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">DEVISTIO</a>
-    <ul class="nav-links" role="list">
-      <li><a href="about.html" class="nav-link">About Us</a></li>
-      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
-      <li><a href="pipeline.html" class="nav-link">Pipeline</a></li>
-      <li><a href="kubernetes.html" class="nav-link">Kubernetes</a></li>
-      <li><a href="security.html" class="nav-link">Security</a></li>
-      <li><a href="work.html" class="nav-link active">Work</a></li>
-      <li><a href="projects.html" class="nav-link">Projects</a></li>
-      <li><a href="blogs.html" class="nav-link">Blogs</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
-    </ul>
-    <div class="nav-status" id="nav-status-pill">
-      <span class="nav-status-dot"></span>
-      <span class="nav-status-text">ONLINE</span>
-    </div>
-  </div>
-</nav>
+<body class="bg-grid">
 
-  <div class="page-header">
-    <div class="page-header-inner">
-      <div class="section-label-tag">CLIENT ENGAGEMENTS</div>
-      <h1 class="page-title">Production Deliveries.</h1>
-      <p class="page-desc">Every engagement is a production environment. Every solution ships to real clients with real uptime requirements.</p>
-    </div>
-    <div class="page-number">07</div>
-  </div>
+  <!-- =========================================================
+       NAVIGATION BAR
+       ========================================================= -->
+  <header>
+    <nav id="navbar" role="navigation" aria-label="Main Navigation">
+      <div class="nav-container">
+        <a href="index.html" class="brand-logo" aria-label="Devistio Home">
+          <div class="brand-mark">D</div>
+          <span>DEVISTIO</span>
+          <span class="brand-tag">ENGINEERING</span>
+        </a>
 
-  <section class="section">
+        <div class="nav-menu" id="nav-menu">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="work.html" class="nav-link active">Engineering / Work</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+          <div class="status-pill" title="All infrastructure systems operational">
+            <span class="status-indicator"></span>
+            <span>SYSTEMS ONLINE</span>
+          </div>
+          <a href="index.html#contact" class="btn btn-sm btn-primary">Talk to Us</a>
+          <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle Navigation Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         PAGE HERO
+         ========================================================= -->
+    <section class="page-hero">
+      <div class="container">
+        <div style="max-width:820px;">
+          <div class="section-tag">Deep Technical Case Studies</div>
+          <h1 class="section-title">Production Engineering Deliveries.</h1>
+          <p class="section-desc">
+            Technical dissections of real-world engagements. Each case study documents the architectural context, specific engineering bottlenecks, rigorous technical solutions, toolchains, and measurable production outcomes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CASE STUDIES COLLECTION (7 DEEP CASES)
+         ========================================================= -->
+    <section class="section" style="padding-top:40px;">
+      <div class="container">
+        <div class="case-studies-list">
+
+          <!-- CASE STUDY 1 -->
+          <article class="case-study-item" id="case-1">
+            <div class="cs-header">
+              <div>
+                <div class="cs-num-tag">CASE STUDY 01 // KUBERNETES ADMISSION &amp; SECURITY</div>
+                <h2 class="cs-title">Kubernetes Security Hardening &amp; Policy Enforcement</h2>
+              </div>
+              <div class="cs-metrics-pill">CIS Benchmark Compliant · 0 Unsigned Containers</div>
+            </div>
+
+            <div class="cs-structure-grid">
+              <!-- Context -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">01 // Context</div>
+                <p class="cs-box-body">
+                  An enterprise client operating mission-critical workloads in <strong>AWS GovCloud (US)</strong> on Amazon EKS required defense-in-depth cluster hardening. Because external internet egress was tightly restricted and GitHub Container Registry (GHCR) was unreachable, all upstream artifacts had to be securely mirrored, validated, and continuously verified against federal compliance baselines.
+                </p>
+              </div>
+
+              <!-- Challenge -->
+              <div class="cs-section-box">
+                <div class="cs-box-label challenge">02 // Challenge</div>
+                <p class="cs-box-body">
+                  Workloads ran with unverified container images from external repositories. Several application pods ran with escalated privileges (HostPath, root user, host namespaces). Implementing admission webhooks in GovCloud faced regional STS authentication hurdles, short-lived ECR token expirations (12 hours), and risk of cluster lockouts if the webhook controllers failed.
+                </p>
+              </div>
+
+              <!-- Approach -->
+              <div class="cs-section-box full-width">
+                <div class="cs-box-label">03 // Engineering Approach</div>
+                <p class="cs-box-body">
+                  Devistio engineered a resilient, cluster-wide admission and verification pipeline without relying on external SaaS endpoints:
+                </p>
+                <div class="cs-bullet-list">
+                  <div class="cs-bullet-item">
+                    <strong>HA Kyverno Deployment:</strong> Deployed highly available Kyverno admission controllers with dedicated background, cleanup, and reporting controllers, completely mirrored to private AWS ECR.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Image Allowlisting &amp; Cosign Verification:</strong> Formulated cluster-wide policies permitting container pulls exclusively from private ECR repositories. Enforced cryptographic signature verification via Cosign using KMS key-based authentication.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Automated Token Refresh Workflow:</strong> Designed a hardened Kubernetes CronJob backed by IRSA (IAM Roles for Service Accounts) running every 6 hours with regional STS endpoints to refresh ECR authentication credentials autonomously.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Pod Security Standards (Restricted):</strong> Enforced PSA Restricted profiles blocking privileged containers, hostPID, hostIPC, and HostPath mounts. Established explicit, audited namespace exception policies for legitimate infrastructure agents (VPC CNI, EBS CSI, Datadog/Alloy).
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>securityContext Hardening:</strong> Enforced `runAsNonRoot: true`, `readOnlyRootFilesystem: true`, and dropped `ALL` capabilities across all application pods.
+                  </div>
+                </div>
+
+                <!-- Technical Policy Snippet -->
+                <div class="code-preview-box">
+                  <div class="code-header">
+                    <span>kyverno-verify-ecr-images.yaml</span>
+                    <span>Admission Policy</span>
+                  </div>
+                  <div class="code-body"><span class="c-keyword">apiVersion</span>: <span class="c-string">kyverno.io/v1</span>
+<span class="c-keyword">kind</span>: <span class="c-string">ClusterPolicy</span>
+<span class="c-prop">metadata</span>:
+  <span class="c-prop">name</span>: <span class="c-string">enforce-signed-private-ecr</span>
+<span class="c-prop">spec</span>:
+  <span class="c-prop">validationFailureAction</span>: <span class="c-string">Enforce</span>
+  <span class="c-prop">rules</span>:
+  - <span class="c-prop">name</span>: <span class="c-string">verify-cosign-signature</span>
+    <span class="c-prop">match</span>:
+      <span class="c-prop">any</span>:
+      - <span class="c-prop">resources</span>:
+          <span class="c-prop">kinds</span>: [<span class="c-string">Pod</span>]
+    <span class="c-prop">verifyImages</span>:
+    - <span class="c-prop">imageReferences</span>: [<span class="c-string">"*.dkr.ecr.us-gov-west-1.amazonaws.com/*"</span>]
+      <span class="c-prop">attestors</span>:
+      - <span class="c-prop">entries</span>:
+        - <span class="c-prop">keys</span>:
+            <span class="c-prop">kms</span>: <span class="c-string">"awskms:///arn:aws-us-gov:kms:us-gov-west-1:XXXXXXXXXXXX:key/kyverno-cosign-key"</span></div>
+                </div>
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">04 // Technologies</div>
+                <div class="domain-tags" style="border:none;padding:0;margin:0;">
+                  <span class="tag-badge">Amazon EKS (GovCloud)</span>
+                  <span class="tag-badge">Kyverno HA</span>
+                  <span class="tag-badge">Cosign</span>
+                  <span class="tag-badge">AWS ECR</span>
+                  <span class="tag-badge">IRSA</span>
+                  <span class="tag-badge">Pod Security Standards</span>
+                  <span class="tag-badge">Helm</span>
+                </div>
+              </div>
+
+              <!-- Result -->
+              <div class="cs-section-box">
+                <div class="cs-box-label result">05 // Result</div>
+                <p class="cs-box-body">
+                  100% of untrusted, unverified, or privileged container deployments blocked at admission time. Zero runtime breakages across 40+ microservices, verified audit trail via Kyverno PolicyReports, and audit-ready FedRAMP compliance posture.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CASE STUDY 2 -->
+          <article class="case-study-item" id="case-2">
+            <div class="cs-header">
+              <div>
+                <div class="cs-num-tag">CASE STUDY 02 // NETWORK SECURITY</div>
+                <h2 class="cs-title">Zero-Trust Networking &amp; Centralized Egress Control</h2>
+              </div>
+              <div class="cs-metrics-pill">100% Egress Audited · Zero Direct Outbound Access</div>
+            </div>
+
+            <div class="cs-structure-grid">
+              <!-- Context -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">01 // Context</div>
+                <p class="cs-box-body">
+                  A high-throughput distributed platform required isolation between application workloads and platform management tools. Production clusters previously operated with open pod-to-pod networking and unrestricted default egress to the internet.
+                </p>
+              </div>
+
+              <!-- Challenge -->
+              <div class="cs-section-box challenge">
+                <div class="cs-box-label challenge">02 // Challenge</div>
+                <p class="cs-box-body">
+                  Simple CIDR filtering at the AWS Security Group level was insufficient to prevent data exfiltration over approved ports (80/443). Additionally, blanket egress blocking risked terminating critical third-party API dependencies (Stripe, Twilio, external data warehouses) without prior telemetry.
+                </p>
+              </div>
+
+              <!-- Approach -->
+              <div class="cs-section-box full-width">
+                <div class="cs-box-label">03 // Engineering Approach</div>
+                <p class="cs-box-body">
+                  Implemented an evidence-based zero-trust network topology using Kubernetes native controls and Istio egress routing:
+                </p>
+                <div class="cs-bullet-list">
+                  <div class="cs-bullet-item">
+                    <strong>Evidence-Based Egress Discovery:</strong> Analyzed multi-gigabyte VPC Flow Logs and ArgoCD application configs to catalog all valid external endpoints before enforcing network boundaries.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Istio Centralized Egress Gateway:</strong> Configured Istio service mesh in `REGISTRY_ONLY` outbound traffic mode. Outbound calls that lack an explicit `ServiceEntry` are rejected at the Envoy proxy boundary.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Default-Deny East-West Policies:</strong> Developed reusable Helm NetworkPolicy templates enforcing default-deny ingress and egress across all namespaces, explicitly permitting only designated microservice routes.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>AWS Security Group Hardening:</strong> Replaced broad `/8` CIDR blocks on node groups with narrow `/24` VPC subnet rules, removed SSH ingress on the managed control plane, and enforced strict security group rules for EFS/RDS access.
+                  </div>
+                </div>
+
+                <div class="code-preview-box">
+                  <div class="code-header">
+                    <span>istio-egress-service-entry.yaml</span>
+                    <span>Zero-Trust Outbound Rule</span>
+                  </div>
+                  <div class="code-body"><span class="c-keyword">apiVersion</span>: <span class="c-string">networking.istio.io/v1beta1</span>
+<span class="c-keyword">kind</span>: <span class="c-string">ServiceEntry</span>
+<span class="c-prop">metadata</span>:
+  <span class="c-prop">name</span>: <span class="c-string">allow-external-apis</span>
+  <span class="c-prop">namespace</span>: <span class="c-string">istio-system</span>
+<span class="c-prop">spec</span>:
+  <span class="c-prop">hosts</span>:
+  - <span class="c-string">"api.external-warehouse.com"</span>
+  - <span class="c-string">"*.amazonaws.com"</span>
+  <span class="c-prop">location</span>: <span class="c-string">MESH_EXTERNAL</span>
+  <span class="c-prop">ports</span>:
+  - <span class="c-prop">number</span>: <span class="c-string">443</span>
+    <span class="c-prop">name</span>: <span class="c-string">https</span>
+    <span class="c-prop">protocol</span>: <span class="c-string">TLS</span>
+  <span class="c-prop">resolution</span>: <span class="c-string">DNS</span></div>
+                </div>
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">04 // Technologies</div>
+                <div class="domain-tags" style="border:none;padding:0;margin:0;">
+                  <span class="tag-badge">Istio Egress Gateway</span>
+                  <span class="tag-badge">ServiceEntry</span>
+                  <span class="tag-badge">Kubernetes NetworkPolicy</span>
+                  <span class="tag-badge">VPC Flow Logs</span>
+                  <span class="tag-badge">AWS Security Groups</span>
+                  <span class="tag-badge">mTLS</span>
+                </div>
+              </div>
+
+              <!-- Result -->
+              <div class="cs-section-box">
+                <div class="cs-box-label result">05 // Result</div>
+                <p class="cs-box-body">
+                  All unapproved external requests instantaneously blocked with zero silent exfiltration paths. 100% of egress traffic routed through monitored Envoy proxies, with full telemetry streamed into Grafana Tempo and Loki.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CASE STUDY 3 -->
+          <article class="case-study-item" id="case-3">
+            <div class="cs-header">
+              <div>
+                <div class="cs-num-tag">CASE STUDY 03 // IDENTITY &amp; ACCESS</div>
+                <h2 class="cs-title">IAM Modernization: IRSA, EKS Pod Identity &amp; KMS Separation</h2>
+              </div>
+              <div class="cs-metrics-pill">Zero Node-Level Privilege Leaks · Verified API Boundaries</div>
+            </div>
+
+            <div class="cs-structure-grid">
+              <!-- Context -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">01 // Context</div>
+                <p class="cs-box-body">
+                  The client utilized Amazon EKS with standard managed node groups. System components like `aws-node` (VPC CNI) and application workloads were executing under the shared EC2 instance profile, giving any pod running on that node the ability to invoke AWS API actions intended for system DaemonSets.
+                </p>
+              </div>
+
+              <!-- Challenge -->
+              <div class="cs-section-box challenge">
+                <div class="cs-box-label challenge">02 // Challenge</div>
+                <p class="cs-box-body">
+                  If an application container was compromised, attackers could leverage node IAM credentials to query EC2 network interfaces and manipulate security parameters. Furthermore, AWS KMS keys possessed monolithic policies where administrative roles could also decrypt confidential client data without separation.
+                </p>
+              </div>
+
+              <!-- Approach -->
+              <div class="cs-section-box full-width">
+                <div class="cs-box-label">03 // Engineering Approach</div>
+                <p class="cs-box-body">
+                  Devistio executed a non-disruptive migration towards dedicated workload identities and granular KMS governance:
+                </p>
+                <div class="cs-bullet-list">
+                  <div class="cs-bullet-item">
+                    <strong>EKS Pod Identity Migration:</strong> Configured AWS EKS Pod Identity for the `aws-node` DaemonSet with dedicated least-privilege IAM policies. Stripped the `AmazonEKS_CNI_Policy` from the worker node instance role entirely, terminating the silent credential fallback path.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Scoped IRSA Trusts:</strong> Built reusable Terraform modules for application service accounts using OIDC federation, scoping the IAM trust policy strictly to the cluster OIDC endpoint, namespace, and service account name.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>KMS Separation of Duties:</strong> Split KMS key policies into dedicated Key Administrators (key rotation, tagging, deletion) and Key Users (encrypt/decrypt for designated IAM roles). Prohibited administrators from reading or decrypting sensitive application payloads.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>CloudTrail Blast Radius Verification:</strong> Executed live AWS CLI test suites verifying that read operations succeeded while write/tampering actions returned explicit `AccessDenied` errors.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">04 // Technologies</div>
+                <div class="domain-tags" style="border:none;padding:0;margin:0;">
+                  <span class="tag-badge">EKS Pod Identity</span>
+                  <span class="tag-badge">AWS IRSA</span>
+                  <span class="tag-badge">AWS KMS</span>
+                  <span class="tag-badge">AWS CloudTrail</span>
+                  <span class="tag-badge">Terraform Modules</span>
+                  <span class="tag-badge">OIDC Federation</span>
+                </div>
+              </div>
+
+              <!-- Result -->
+              <div class="cs-section-box">
+                <div class="cs-box-label result">05 // Result</div>
+                <p class="cs-box-body">
+                  Node IAM roles completely decoupled from workload identity. Cryptographic separation of duties enforced across customer-managed KMS keys with definitive CloudTrail audit attribution for all AWS API calls.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CASE STUDY 4 -->
+          <article class="case-study-item" id="case-4">
+            <div class="cs-header">
+              <div>
+                <div class="cs-num-tag">CASE STUDY 04 // GITOPS PLATFORMING</div>
+                <h2 class="cs-title">Multi-Environment GitOps Platform Engineering</h2>
+              </div>
+              <div class="cs-metrics-pill">100% Declarative Delivery · Multi-Cluster Parity</div>
+            </div>
+
+            <div class="cs-structure-grid">
+              <!-- Context -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">01 // Context</div>
+                <p class="cs-box-body">
+                  The client maintained staging and production clusters across separate AWS accounts. Helm charts contained hardcoded node-group names, static replica counts, and unmanaged secrets, resulting in deployments failing whenever pushed to secondary clusters.
+                </p>
+              </div>
+
+              <!-- Challenge -->
+              <div class="cs-section-box challenge">
+                <div class="cs-box-label challenge">02 // Challenge</div>
+                <p class="cs-box-body">
+                  During a major production incident, simultaneous node group terminations broke both the GitOps controller and Kyverno admission webhooks, preventing corrective deployments from applying due to admission webhook timeouts.
+                </p>
+              </div>
+
+              <!-- Approach -->
+              <div class="cs-section-box full-width">
+                <div class="cs-box-label">03 // Engineering Approach</div>
+                <p class="cs-box-body">
+                  Standardized the deployment ecosystem into a resilient, self-healing GitOps architecture:
+                </p>
+                <div class="cs-bullet-list">
+                  <div class="cs-bullet-item">
+                    <strong>Dynamic Node-Group Abstraction:</strong> Refactored Helm charts to decouple node affinities from static AWS names, replacing them with dynamic node-selector labels and environment-level defaults.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>ArgoCD App-of-Apps Architecture:</strong> Structured a hierarchical GitOps repository pattern separating platform dependencies (Ingress, Cert-Manager, Kyverno, Alloy) from tenant workloads.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Admission Webhook Failure Resilience:</strong> Tuned Kyverno webhook failure policies to `Ignore` for essential infrastructure namespaces during bootstrap, preventing circular deadlocks during cluster recovery.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>External Secrets Integration:</strong> Interfaced AWS Secrets Manager with External Secrets Operator (ESO), injecting runtime secrets directly into Kubernetes Secrets without storing plaintext in Git.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">04 // Technologies</div>
+                <div class="domain-tags" style="border:none;padding:0;margin:0;">
+                  <span class="tag-badge">ArgoCD</span>
+                  <span class="tag-badge">Helm 3</span>
+                  <span class="tag-badge">External Secrets Operator</span>
+                  <span class="tag-badge">AWS Secrets Manager</span>
+                  <span class="tag-badge">Terraform</span>
+                  <span class="tag-badge">KEDA</span>
+                </div>
+              </div>
+
+              <!-- Result -->
+              <div class="cs-section-box">
+                <div class="cs-box-label result">05 // Result</div>
+                <p class="cs-box-body">
+                  The same declarative Helm charts now deploy cleanly across both primary and disaster-recovery clusters. Full cluster bootstrap reduced from days of manual tinkering to an automated 35-minute GitOps reconciliation.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CASE STUDY 5 -->
+          <article class="case-study-item" id="case-5">
+            <div class="cs-header">
+              <div>
+                <div class="cs-num-tag">CASE STUDY 05 // OBSERVABILITY &amp; SRE</div>
+                <h2 class="cs-title">Enterprise Observability &amp; Production Reliability</h2>
+              </div>
+              <div class="cs-metrics-pill">MTTR 45m → 8m (~50%+ Reduction) · Unified LGTM Stack</div>
+            </div>
+
+            <div class="cs-structure-grid">
+              <!-- Context -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">01 // Context</div>
+                <p class="cs-box-body">
+                  A high-volume healthcare cloud platform required deep observability to diagnose microservice latency spikes and pod scheduling anomalies. Logs, metrics, and traces were scattered across disjointed tools without trace ID propagation.
+                </p>
+              </div>
+
+              <!-- Challenge -->
+              <div class="cs-section-box challenge">
+                <div class="cs-box-label challenge">02 // Challenge</div>
+                <p class="cs-box-body">
+                  Because the application processed sensitive clinical and personal data, raw query parameters and payloads were at risk of leaking into log indices, creating compliance violations. Storage costs for unindexed log dumps were growing exponentially.
+                </p>
+              </div>
+
+              <!-- Approach -->
+              <div class="cs-section-box full-width">
+                <div class="cs-box-label">03 // Engineering Approach</div>
+                <p class="cs-box-body">
+                  Devistio deployed a compliant, high-performance telemetry pipeline leveraging the Grafana LGTM architecture:
+                </p>
+                <div class="cs-bullet-list">
+                  <div class="cs-bullet-item">
+                    <strong>Grafana Alloy Centralized Collector:</strong> Deployed Grafana Alloy as a cluster DaemonSet, unifying log scraping, Prometheus metric scraping, and OpenTelemetry trace ingestion.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>In-Flight Redaction Pipelines:</strong> Configured regex masking in Alloy to strip PHI/PII tokens and scrubbed URL query strings at the ingress boundary via Istio Envoy filters.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Unified Trace-to-Log Correlation:</strong> Interlinked Tempo distributed spans with Loki log streams and Prometheus metric dashboards using standardized OpenTelemetry context propagation.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>SRE Triage Playbooks:</strong> Built automated alert definitions and runbooks targeting pending pods, PVC mount deadlocks, and container crash-loop backoffs.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">04 // Technologies</div>
+                <div class="domain-tags" style="border:none;padding:0;margin:0;">
+                  <span class="tag-badge">Grafana</span>
+                  <span class="tag-badge">Loki</span>
+                  <span class="tag-badge">Tempo</span>
+                  <span class="tag-badge">Mimir</span>
+                  <span class="tag-badge">Grafana Alloy</span>
+                  <span class="tag-badge">OpenTelemetry</span>
+                  <span class="tag-badge">Prometheus</span>
+                </div>
+              </div>
+
+              <!-- Result -->
+              <div class="cs-section-box">
+                <div class="cs-box-label result">05 // Result</div>
+                <p class="cs-box-body">
+                  Mean Time To Resolution (MTTR) dropped from 45 minutes to under 8 minutes (~82% improvement). 100% HIPAA-compliant redacted logging streams with zero developer visibility blind spots.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CASE STUDY 6 -->
+          <article class="case-study-item" id="case-6">
+            <div class="cs-header">
+              <div>
+                <div class="cs-num-tag">CASE STUDY 06 // CLOUD ARCHITECTURE &amp; GOVERNANCE</div>
+                <h2 class="cs-title">AWS Infrastructure Architecture &amp; Security Governance</h2>
+              </div>
+              <div class="cs-metrics-pill">Zero Manual Drifts · Audited Break-Glass Model</div>
+            </div>
+
+            <div class="cs-structure-grid">
+              <!-- Context -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">01 // Context</div>
+                <p class="cs-box-body">
+                  An enterprise organization with multiple AWS accounts needed to formalize its infrastructure lifecycle, establish strict boundary controls between automated IaC pipelines and manual changes, and document auditable disaster recovery.
+                </p>
+              </div>
+
+              <!-- Challenge -->
+              <div class="cs-section-box challenge">
+                <div class="cs-box-label challenge">02 // Challenge</div>
+                <p class="cs-box-body">
+                  Engineers frequently made emergency console modifications that were not captured in Terraform, causing pipeline drift. Patching EKS versions and add-ons carried risks of overwriting custom telemetry configurations.
+                </p>
+              </div>
+
+              <!-- Approach -->
+              <div class="cs-section-box full-width">
+                <div class="cs-box-label">03 // Engineering Approach</div>
+                <p class="cs-box-body">
+                  Devistio instituted an enterprise governance framework powered by automated tooling:
+                </p>
+                <div class="cs-bullet-list">
+                  <div class="cs-bullet-item">
+                    <strong>IaC Ownership Boundary Enforcement:</strong> Authored definitive IaC policies declaring all AWS resources as Terraform-managed, with automated Spacelift runs detecting and reversing out-of-band drifts.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Controlled Break-Glass Process:</strong> Established a time-bound, audited emergency procedure granting temporary write access only upon dual-engineer sign-off with automatic CloudTrail alarm notifications.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>EKS Upgrade Lifecycle Runbook:</strong> Documented phased upgrade workflows for EKS control plane releases, managed node groups, and AWS VPC CNI / CoreDNS / Kube-Proxy add-ons.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Backup Encryption Posture:</strong> Catalogued customer-managed KMS key usage across EBS volumes, RDS Aurora clusters, and S3 buckets, confirming automated daily snapshots and cross-region replication.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">04 // Technologies</div>
+                <div class="domain-tags" style="border:none;padding:0;margin:0;">
+                  <span class="tag-badge">Terraform</span>
+                  <span class="tag-badge">Terragrunt</span>
+                  <span class="tag-badge">Spacelift</span>
+                  <span class="tag-badge">AWS KMS</span>
+                  <span class="tag-badge">AWS CloudTrail</span>
+                  <span class="tag-badge">RDS Aurora Multi-AZ</span>
+                </div>
+              </div>
+
+              <!-- Result -->
+              <div class="cs-section-box">
+                <div class="cs-box-label result">05 // Result</div>
+                <p class="cs-box-body">
+                  Achieved complete infrastructure traceability with zero unmanaged production resources. Passed external third-party security audits without non-conformities.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CASE STUDY 7 -->
+          <article class="case-study-item" id="case-7">
+            <div class="cs-header">
+              <div>
+                <div class="cs-num-tag">CASE STUDY 07 // CI/CD AUTOMATION</div>
+                <h2 class="cs-title">Zero-Trust CI/CD with OIDC &amp; Ephemeral Authentication</h2>
+              </div>
+              <div class="cs-metrics-pill">0 Stored Secrets · 15-min Session Token TTL</div>
+            </div>
+
+            <div class="cs-structure-grid">
+              <!-- Context -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">01 // Context</div>
+                <p class="cs-box-body">
+                  The client ran deployment pipelines using long-lived static AWS access keys stored in CI secrets vaults. Over time, key rotation was neglected, and static keys were duplicated across repositories, presenting an active privilege escalation risk.
+                </p>
+              </div>
+
+              <!-- Challenge -->
+              <div class="cs-section-box challenge">
+                <div class="cs-box-label challenge">02 // Challenge</div>
+                <p class="cs-box-body">
+                  Pipelines required broad IAM privileges to build AMIs and trigger AWS Systems Manager (SSM) automation on management instances. If any CI runner was compromised, static credentials could be extracted and used maliciously outside the pipeline.
+                </p>
+              </div>
+
+              <!-- Approach -->
+              <div class="cs-section-box full-width">
+                <div class="cs-box-label">03 // Engineering Approach</div>
+                <p class="cs-box-body">
+                  Devistio modernized the delivery pipeline to use ephemeral federated credentials:
+                </p>
+                <div class="cs-bullet-list">
+                  <div class="cs-bullet-item">
+                    <strong>OIDC Federation with AWS STS:</strong> Established OpenID Connect trust relationships between CI/CD providers (CircleCI &amp; GitHub Actions) and AWS IAM, allowing jobs to exchange cryptographic JWTs for temporary STS session tokens.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>15-Minute Ephemeral Tokens:</strong> Configured STS session tokens with maximum 15-minute lifespans, eliminating persistent attack vectors.
+                  </div>
+                  <div class="cs-bullet-item">
+                    <strong>Automated SSM Session Sync:</strong> Automated configuration state synchronization across master nodes using AWS SSM Session Manager commands, eliminating SSH ports entirely.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="cs-section-box">
+                <div class="cs-box-label">04 // Technologies</div>
+                <div class="domain-tags" style="border:none;padding:0;margin:0;">
+                  <span class="tag-badge">AWS OIDC Federation</span>
+                  <span class="tag-badge">AWS STS AssumeRole</span>
+                  <span class="tag-badge">CircleCI</span>
+                  <span class="tag-badge">GitHub Actions</span>
+                  <span class="tag-badge">AWS Systems Manager</span>
+                  <span class="tag-badge">Terraform</span>
+                </div>
+              </div>
+
+              <!-- Result -->
+              <div class="cs-section-box">
+                <div class="cs-box-label result">05 // Result</div>
+                <p class="cs-box-body">
+                  Eliminated 100% of stored static AWS credentials across all repositories. Successfully executed 120+ consecutive automated pipeline runs with zero authentication failures.
+                </p>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Back to Home CTA -->
+        <div style="text-align:center;margin-top:64px;padding:48px 24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);">
+          <h3 style="font-family:var(--font-display);font-size:28px;font-weight:800;color:#FFFFFF;margin-bottom:12px;">
+            Have a Similar Engineering Challenge?
+          </h3>
+          <p style="font-size:15px;color:var(--text-secondary);max-width:540px;margin:0 auto 28px;line-height:1.7;">
+            Connect directly with our platform and cloud security engineers to discuss architectural design, cluster hardening, or reliability engagements.
+          </p>
+          <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;">
+            <a href="index.html#contact" class="btn btn-primary">
+              <span>Schedule Engineering Discussion</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="index.html" class="btn btn-outline">
+              <span>Return to Homepage</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <div class="missions-grid">
-        <article class="mission-card">
-          <div class="mc-id">MISSION_001</div>
-          <h3 class="mc-title">Production EKS Security Hardening</h3>
-          <div class="mc-meta">
-            <div class="mcm-row"><span class="mcm-key">ENVIRONMENT</span><span class="mcm-val">AWS GovCloud</span></div>
-            <div class="mcm-row"><span class="mcm-key">STACK</span><span class="mcm-val">EKS · Kyverno · Istio · NetworkPolicy</span></div>
-            <div class="mcm-row"><span class="mcm-key">FOCUS</span><span class="mcm-val">Security · Networking · Compliance</span></div>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-mark">D</div>
+            <span>DEVISTIO</span>
           </div>
-          <p class="mc-desc">Hardened production EKS cluster from baseline to CIS-compliant. Implemented Kyverno admission policies, default-deny network policies, and Istio mTLS across all services. Reduced attack surface by 70%.</p>
-          <div class="mc-tags"><span class="mtag">Kyverno</span><span class="mtag">Istio</span><span class="mtag">NetworkPolicy</span><span class="mtag">CIS Benchmark</span></div>
-          <div class="mc-glow"></div>
-        </article>
-        <article class="mission-card">
-          <div class="mc-id">MISSION_002</div>
-          <h3 class="mc-title">Centralized Egress Architecture</h3>
-          <div class="mc-meta">
-            <div class="mcm-row"><span class="mcm-key">PROBLEM</span><span class="mcm-val">Unrestricted outbound traffic</span></div>
-            <div class="mcm-row"><span class="mcm-key">APPROACH</span><span class="mcm-val">Istio Egress Gateway · ServiceEntries</span></div>
-            <div class="mcm-row"><span class="mcm-key">RESULT</span><span class="mcm-val">Controlled external communication</span></div>
-          </div>
-          <p class="mc-desc">Designed and deployed a centralized egress architecture using Istio Egress Gateway and ServiceEntries. All outbound traffic now routes through audited, monitored gateways with explicit allowlists.</p>
-          <div class="mc-tags"><span class="mtag">Istio</span><span class="mtag">Egress Gateway</span><span class="mtag">ServiceEntry</span><span class="mtag">mTLS</span></div>
-          <div class="mc-glow"></div>
-        </article>
-        <article class="mission-card">
-          <div class="mc-id">MISSION_003</div>
-          <h3 class="mc-title">Full-Stack Observability Platform</h3>
-          <div class="mc-meta">
-            <div class="mcm-row"><span class="mcm-key">STACK</span><span class="mcm-val">Grafana · Loki · Mimir · Tempo · Alloy</span></div>
-            <div class="mcm-row"><span class="mcm-key">SCOPE</span><span class="mcm-val">Multi-cluster · Multi-tenant</span></div>
-            <div class="mcm-row"><span class="mcm-key">OUTCOME</span><span class="mcm-val">MTTR 45m → 8m</span></div>
-          </div>
-          <p class="mc-desc">Built and deployed the full Grafana LGTM stack across a multi-cluster environment. Unified logs, metrics, and traces into a single pane. Mean time to resolution dropped from 45 minutes to under 8 minutes.</p>
-          <div class="mc-tags"><span class="mtag">Grafana</span><span class="mtag">Loki</span><span class="mtag">Tempo</span><span class="mtag">Mimir</span><span class="mtag">Alloy</span></div>
-          <div class="mc-glow"></div>
-        </article>
-      </div>
-
-      <!-- Observability Section -->
-      <div style="margin-top: 80px;">
-        <div class="section-label-tag">OBSERVABILITY</div>
-        <h2 class="section-heading" style="font-size:clamp(32px,4vw,48px);margin-bottom:16px;">If it runs in production,<br>we monitor it.</h2>
-        <p class="section-sub" style="margin-bottom:36px;">Full-stack observability across logs, metrics, and distributed traces.</p>
-
-        <div class="obs-metrics-bar" id="obs-metrics-bar" role="status">
-          <div class="obs-metric-item"><div class="omi-val" id="omi-rps">2,847</div><div class="omi-label">REQ / SEC</div></div>
-          <div class="obs-metric-item"><div class="omi-val green" id="omi-uptime">99.98%</div><div class="omi-label">UPTIME</div></div>
-          <div class="obs-metric-item"><div class="omi-val" id="omi-latency">124ms</div><div class="omi-label">P99 LATENCY</div></div>
-          <div class="obs-metric-item"><div class="omi-val amber" id="omi-error">0.02%</div><div class="omi-label">ERROR RATE</div></div>
-          <div class="obs-metric-item"><div class="omi-val" id="omi-pods">24</div><div class="omi-label">ACTIVE PODS</div></div>
+          <p>
+            Devistio is a specialist Cloud, DevOps, and Platform Engineering company. We design, automate, secure, and operate production-grade cloud platforms at enterprise scale.
+          </p>
         </div>
 
-        <div class="obs-panels">
-          <div class="obs-panel">
-            <div class="op-header"><div class="op-title">LOGS</div><div class="op-tools">Loki · Alloy</div><div class="op-dot green"></div></div>
-            <div class="op-body">
-              <div class="log-stream" id="log-stream" aria-live="polite">
-                <div class="log-line ll-info">[INFO] 15:23:41 api-server started successfully on :8080</div>
-                <div class="log-line ll-info">[INFO] 15:23:42 health check passed: all 24 pods ready</div>
-                <div class="log-line ll-warn">[WARN] 15:23:43 rate limit approaching configured threshold</div>
-                <div class="log-line ll-info">[INFO] 15:23:44 argocd sync completed: revision abc1234f</div>
-                <div class="log-line ll-info">[INFO] 15:23:45 kyverno policy admitted 3/3 pods</div>
-              </div>
-            </div>
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <div class="footer-links-list">
+            <a href="index.html" class="footer-link-item">Home</a>
+            <a href="work.html" class="footer-link-item">Engineering / Work</a>
+            <a href="index.html#domains" class="footer-link-item">What We Do</a>
+            <a href="index.html#architecture" class="footer-link-item">Reference Architecture</a>
+            <a href="index.html#contact" class="footer-link-item">Contact Us</a>
           </div>
-          <div class="obs-panel">
-            <div class="op-header"><div class="op-title">METRICS</div><div class="op-tools">Prometheus · Mimir · Grafana</div><div class="op-dot green"></div></div>
-            <div class="op-body">
-              <div class="chart-block"><div class="chart-label">REQUEST RATE (req/s)</div><canvas id="chart-rps" width="260" height="70"></canvas></div>
-              <div class="chart-block"><div class="chart-label">CPU UTILIZATION (%)</div><canvas id="chart-cpu" width="260" height="70"></canvas></div>
-            </div>
-          </div>
-          <div class="obs-panel">
-            <div class="op-header"><div class="op-title">TRACES</div><div class="op-tools">Tempo · Istio</div><div class="op-dot green"></div></div>
-            <div class="op-body">
-              <div class="trace-list">
-                <div class="trace-item"><div class="ti-name">GET /api/health</div><div class="ti-track"><div class="ti-fill" style="width:8%"></div></div><div class="ti-ms">12ms</div></div>
-                <div class="trace-item"><div class="ti-name">POST /api/deploy</div><div class="ti-track"><div class="ti-fill" style="width:85%"></div></div><div class="ti-ms">312ms</div></div>
-                <div class="trace-item"><div class="ti-name">GET /api/pods</div><div class="ti-track"><div class="ti-fill" style="width:30%"></div></div><div class="ti-ms">48ms</div></div>
-                <div class="trace-item"><div class="ti-name">PUT /api/config</div><div class="ti-track"><div class="ti-fill" style="width:55%"></div></div><div class="ti-ms">124ms</div></div>
-                <div class="trace-item"><div class="ti-name">GET /metrics</div><div class="ti-track"><div class="ti-fill" style="width:5%"></div></div><div class="ti-ms">8ms</div></div>
-              </div>
-            </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Direct Connect</div>
+          <div class="footer-links-list">
+            <a href="mailto:talha@devistio.com" class="footer-link-item">talha@devistio.com</a>
+            <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="footer-link-item">WhatsApp Support</a>
+            <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="footer-link-item">LinkedIn Page</a>
           </div>
         </div>
       </div>
 
-      <!-- IaC Terminal -->
-      <div style="margin-top:80px;">
-        <div class="section-label-tag">INFRASTRUCTURE AS CODE</div>
-        <h2 class="section-heading" style="font-size:clamp(32px,4vw,48px);margin-bottom:16px;">Every Resource Defined,<br>Versioned, and Auditable.</h2>
-        <p class="section-sub" style="margin-bottom:36px;">Every resource defined, versioned, reviewed, and applied through a controlled pipeline.</p>
-        <div class="iac-layout">
-          <div class="iac-pipeline">
-            <div class="iac-step"><div class="iac-step-icon">📝</div><div class="iac-step-info"><div class="iac-step-name">Terraform</div><div class="iac-step-desc">Modular HCL, reusable modules, state in S3</div></div></div>
-            <div class="iac-arrow-down">↓</div>
-            <div class="iac-step"><div class="iac-step-icon">🔧</div><div class="iac-step-info"><div class="iac-step-name">Terragrunt</div><div class="iac-step-desc">DRY configs, environment hierarchy</div></div></div>
-            <div class="iac-arrow-down">↓</div>
-            <div class="iac-step"><div class="iac-step-icon">🚀</div><div class="iac-step-info"><div class="iac-step-name">Spacelift</div><div class="iac-step-desc">Policy-driven automation, drift detection</div></div></div>
-            <div class="iac-arrow-down">↓</div>
-            <div class="iac-step iac-step-target"><div class="iac-step-icon">☁</div><div class="iac-step-info"><div class="iac-step-name">AWS</div><div class="iac-step-desc">EKS · VPC · IAM · RDS · S3 · Route53 · KMS</div></div></div>
-          </div>
-          <div class="iac-terminal" id="iac-terminal">
-            <div class="term-header">
-              <div class="term-dots"><span class="td red"></span><span class="td yellow"></span><span class="td green"></span></div>
-              <div class="term-title">spacelift: terraform plan</div>
-            </div>
-            <div class="term-body" id="term-body">
-              <div class="tl prompt">$ spacelift run --stack production-eks</div>
-              <div class="tl output">Initializing provider plugins...</div>
-              <div class="tl output">Refreshing Terraform state in-flight...</div>
-              <div class="tl blank"></div>
-              <div class="tl output">Terraform generated the following execution plan:</div>
-              <div class="tl blank"></div>
-              <div class="tl output">  # aws_eks_node_group.workers will be updated in-place</div>
-              <div class="tl output">  ~ resource "aws_eks_node_group" "workers" {</div>
-              <div class="tl add">      + desired_size = 5  <span class="tl-comment"># (was 3)</span></div>
-              <div class="tl add">      + max_size     = 10 <span class="tl-comment"># (was 6)</span></div>
-              <div class="tl output">    }</div>
-              <div class="tl blank"></div>
-              <div class="tl success">Plan: 18 to add, 2 to change, 0 to destroy.</div>
-              <div class="tl blank"></div>
-              <div class="tl check">✓ Infrastructure validated</div>
-              <div class="tl check">✓ Security policies passed</div>
-              <div class="tl check">✓ Cost estimate: +$124.50/month</div>
-              <div class="tl blank"></div>
-              <div class="tl prompt">$ <span class="cursor" id="term-cursor">█</span></div>
-            </div>
-          </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Devistio. All rights reserved. Built for production reliability.</div>
+        <div>
+          <span>Multi-Region AWS</span> · <span>Kubernetes 1.30</span> · <span>CIS Benchmark</span>
         </div>
       </div>
     </div>
-  </section>
+  </footer>
 
-<footer id="footer" role="contentinfo">
-  <div class="footer-top-border"></div>
-  <div class="footer-inner">
-    <div class="footer-status">
-      <div class="fs-title">SYSTEM STATUS</div>
-      <div class="fs-grid">
-        <div class="fs-row"><span class="fs-label">Infrastructure</span><span class="fs-val operational">OPERATIONAL</span></div>
-        <div class="fs-row"><span class="fs-label">CI/CD</span><span class="fs-val operational">OPERATIONAL</span></div>
-        <div class="fs-row"><span class="fs-label">Kubernetes</span><span class="fs-val operational">OPERATIONAL</span></div>
-        <div class="fs-row"><span class="fs-label">Observability</span><span class="fs-val operational">OPERATIONAL</span></div>
-      </div>
-    </div>
-    <div class="footer-divider"></div>
-    <div class="footer-brand-row">
-      <div class="footer-brand">
-        <div class="fb-name">DEVISTIO</div>
-        <div class="fb-title">Cloud &amp; DevOps Engineering Company</div>
-        <p class="fb-quote">We build infrastructure that works<br>at the scale your business demands.</p>
-      </div>
-      <div class="footer-nav">
-        <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
-        <a href="https://instagram.com/talharehman_" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
-        <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
-        <a href="mailto:talha@devistio.com" class="footer-link">talha@devistio.com</a>
-      </div>
-    </div>
-    <div class="footer-tagline">Ship reliable. Operate confidently.</div>
-  </div>
-</footer>
-<script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
-
-  // Live metrics
-  let rps = 2847, latency = 124, pods = 24;
-  const rpsEl = document.getElementById('omi-rps');
-  const latEl = document.getElementById('omi-latency');
-  const podEl = document.getElementById('omi-pods');
-  setInterval(() => {
-    rps += Math.floor((Math.random()-0.45)*80); rps = Math.max(2200,Math.min(3400,rps));
-    latency += Math.floor((Math.random()-0.5)*10); latency = Math.max(80,Math.min(200,latency));
-    pods += Math.random()>0.9?(Math.random()>0.5?1:-1):0; pods=Math.max(20,Math.min(30,pods));
-    if(rpsEl) rpsEl.textContent = rps.toLocaleString();
-    if(latEl) latEl.textContent = latency+'ms';
-    if(podEl) podEl.textContent = pods;
-  }, 2000);
-
-  // Log stream
-  const logs = ['[INFO] api-server handling 2847 req/s','[INFO] argocd sync completed','[INFO] kyverno admitted pod','[INFO] cert-manager renewed certificate','[INFO] istio-proxy: mTLS handshake','[WARN] rate limit at 87%','[INFO] vault unsealed','[INFO] prometheus scraped 3842 metrics'];
-  const stream = document.getElementById('log-stream');
-  let idx = 0;
-  setInterval(() => {
-    if(!stream) return;
-    const line = document.createElement('div');
-    const now = new Date();
-    const ts = [now.getHours(),now.getMinutes(),now.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
-    line.className = 'log-line '+(logs[idx].includes('WARN')?'ll-warn':'ll-info');
-    line.textContent = logs[idx]+': '+ts;
-    stream.appendChild(line);
-    while(stream.children.length>10) stream.removeChild(stream.firstChild);
-    idx=(idx+1)%logs.length;
-  }, 1800);
-
-  // Sparklines
-  function drawChart(id, color) {
-    const canvas = document.getElementById(id);
-    if(!canvas) return;
-    const parent = canvas.parentElement;
-    canvas.width = parent ? parent.clientWidth - 36 : 260;
-    canvas.height = 70;
-    const ctx = canvas.getContext('2d');
-    let data = Array.from({length:30}, (_,i) => 40 + 40*(0.5+0.5*Math.sin(i*0.5+Math.random()*0.4)));
-    function draw() {
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      const cw=canvas.width,ch=canvas.height;
-      const mn=Math.min(...data),mx=Math.max(...data),rng=mx-mn||1;
-      const pts=data.map((v,i)=>({x:i/(data.length-1)*cw,y:ch-((v-mn)/rng)*(ch-8)-4}));
-      const grad=ctx.createLinearGradient(0,0,0,ch);
-      grad.addColorStop(0,color+'40'); grad.addColorStop(1,color+'00');
-      ctx.beginPath(); ctx.moveTo(pts[0].x,ch); ctx.lineTo(pts[0].x,pts[0].y);
-      pts.forEach((p,i)=>{if(!i)return;const pv=pts[i-1],cpx=(pv.x+p.x)/2;ctx.bezierCurveTo(cpx,pv.y,cpx,p.y,p.x,p.y);});
-      ctx.lineTo(pts[pts.length-1].x,ch); ctx.closePath(); ctx.fillStyle=grad; ctx.fill();
-      ctx.beginPath(); ctx.moveTo(pts[0].x,pts[0].y);
-      pts.forEach((p,i)=>{if(!i)return;const pv=pts[i-1],cpx=(pv.x+p.x)/2;ctx.bezierCurveTo(cpx,pv.y,cpx,p.y,p.x,p.y);});
-      ctx.strokeStyle=color; ctx.lineWidth=1.5; ctx.shadowColor=color; ctx.shadowBlur=4; ctx.stroke(); ctx.shadowBlur=0;
-      const last=pts[pts.length-1];
-      ctx.beginPath(); ctx.arc(last.x,last.y,3,0,Math.PI*2); ctx.fillStyle=color; ctx.shadowColor=color; ctx.shadowBlur=8; ctx.fill(); ctx.shadowBlur=0;
-    }
-    let frame=0;
-    function tick() {frame++;if(frame%40===0){data.push(Math.max(20,Math.min(100,data[data.length-1]+(Math.random()-0.48)*8)));if(data.length>40)data.shift();draw();}requestAnimationFrame(tick);}
-    draw(); tick();
-  }
-  drawChart('chart-rps','#0066FF');
-  drawChart('chart-cpu','#10B981');
-
-  // Terminal reveal
-  const terminal = document.getElementById('iac-terminal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
-        const lines = document.querySelectorAll('#term-body .tl');
-        lines.forEach(l => l.style.opacity='0');
-        lines.forEach((l,i) => setTimeout(()=>{l.style.transition='opacity 0.3s ease';l.style.opacity='1';},i*120));
-        observer.unobserve(terminal);
-      }
-    });
-  },{threshold:0.3});
-  if(terminal) observer.observe(terminal);
-</script>
-</body></html>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -3,136 +3,1131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Devistio | Cloud &amp; DevOps Engineering</title>
-  <meta name="description" content="Devistio is a Cloud &amp; DevOps engineering company that builds, automates, secures and operates production-grade cloud infrastructure." />
+  <title>Devistio | Cloud, DevOps &amp; Platform Engineering</title>
+  <meta name="description" content="Devistio designs, automates, secures, and operates production cloud platforms, Kubernetes clusters, and infrastructure as code." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
-<body>
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<body class="bg-grid">
 
-  <!-- BOOT OVERLAY -->
-  <div id="boot-overlay" role="dialog" aria-label="System initializing">
-    <div class="boot-content">
-      <div class="boot-logo">DEVISTIO</div>
-      <div class="boot-subtitle">DEVISTIO.COM: SYSTEM INITIALIZING</div>
-      <div class="boot-progress-wrap">
-        <div class="boot-progress-track"><div class="boot-progress-fill" id="boot-fill"></div></div>
-        <span class="boot-percent" id="boot-percent">0%</span>
-      </div>
-      <div class="boot-checks" id="boot-checks">
-        <div class="boot-check" id="bc-aws">✓ AWS</div>
-        <div class="boot-check" id="bc-k8s">✓ Kubernetes</div>
-        <div class="boot-check" id="bc-cicd">✓ CI/CD Pipeline</div>
-        <div class="boot-check" id="bc-infra">✓ Infrastructure</div>
-        <div class="boot-check" id="bc-sec">✓ Security Layer</div>
-        <div class="boot-check" id="bc-obs">✓ Observability Stack</div>
-      </div>
-      <div class="boot-ready" id="boot-ready">SYSTEM READY</div>
-    </div>
-  </div>
+  <!-- =========================================================
+       NAVIGATION BAR
+       ========================================================= -->
+  <header>
+    <nav id="navbar" role="navigation" aria-label="Main Navigation">
+      <div class="nav-container">
+        <a href="index.html" class="brand-logo" aria-label="Devistio Home">
+          <div class="brand-mark">D</div>
+          <span>DEVISTIO</span>
+          <span class="brand-tag">ENGINEERING</span>
+        </a>
 
-<nav id="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">DEVISTIO</a>
-    <ul class="nav-links" role="list">
-      <li><a href="about.html" class="nav-link">About Us</a></li>
-      <li><a href="infrastructure.html" class="nav-link">Infrastructure</a></li>
-      <li><a href="pipeline.html" class="nav-link">Pipeline</a></li>
-      <li><a href="kubernetes.html" class="nav-link">Kubernetes</a></li>
-      <li><a href="security.html" class="nav-link">Security</a></li>
-      <li><a href="work.html" class="nav-link">Work</a></li>
-      <li><a href="projects.html" class="nav-link">Projects</a></li>
-      <li><a href="blogs.html" class="nav-link">Blogs</a></li>
-      <li><a href="contact.html" class="nav-link">Contact</a></li>
-    </ul>
-    <div class="nav-status" id="nav-status-pill">
-      <span class="nav-status-dot"></span>
-      <span class="nav-status-text">ONLINE</span>
-    </div>
-  </div>
-</nav>
+        <div class="nav-menu" id="nav-menu">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="work.html" class="nav-link">Engineering / Work</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
 
-  <!-- HERO -->
-  <section id="hero" aria-label="Hero">
-    <canvas id="three-canvas" aria-hidden="true"></canvas>
-    <div class="hero-grid-overlay" aria-hidden="true"></div>
+        <div class="nav-actions">
+          <div class="status-pill" title="All infrastructure systems operational">
+            <span class="status-indicator"></span>
+            <span>SYSTEMS ONLINE</span>
+          </div>
+          <a href="#contact" class="btn btn-sm btn-primary">Talk to Us</a>
+          <button class="nav-mobile-toggle" id="nav-toggle" aria-label="Toggle Navigation Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-    <div class="hero-status-panel" role="status">
-      <div class="hsp-header"><span class="hsp-dot"></span> SYSTEMS ONLINE</div>
-      <div class="hsp-rows">
-        <div class="hsp-row"><span class="hsp-label">AWS</span><span class="hsp-val" data-status="online">ONLINE</span></div>
-        <div class="hsp-row"><span class="hsp-label">KUBERNETES</span><span class="hsp-val" data-status="online">ONLINE</span></div>
-        <div class="hsp-row"><span class="hsp-label">CI/CD</span><span class="hsp-val" data-status="online">ONLINE</span></div>
-        <div class="hsp-row"><span class="hsp-label">MONITORING</span><span class="hsp-val" data-status="online">ONLINE</span></div>
-      </div>
-    </div>
+  <main>
+    <!-- =========================================================
+         1. HERO SECTION
+         ========================================================= -->
+    <section class="hero" id="hero" aria-label="Introduction">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <span>Production Cloud &amp; Platform Engineering</span>
+          </div>
 
-    <div class="hero-content">
-      <div class="hero-eyebrow">DEVISTIO: CLOUD &amp; DEVOPS ENGINEERING</div>
-      <h1 class="hero-name">Devistio</h1>
-      <div class="hero-title">Cloud &amp; DevOps Engineering</div>
-      <p class="hero-tagline">We build, automate, secure and operate cloud<br>infrastructure that doesn't fall apart in production.</p>
-      <div class="hero-cta">
-        <a href="infrastructure.html" class="btn btn-primary">OUR CAPABILITIES</a>
-        <a href="about.html" class="btn btn-ghost">ABOUT US</a>
-      </div>
-      <div class="hero-topology" aria-hidden="true">
-        <span class="topo-node">Git</span><span class="topo-arrow">→</span>
-        <span class="topo-node">CI</span><span class="topo-arrow">→</span>
-        <span class="topo-node">Container</span><span class="topo-arrow">→</span>
-        <span class="topo-node">Kubernetes</span><span class="topo-arrow">→</span>
-        <span class="topo-node">AWS</span><span class="topo-arrow">→</span>
-        <span class="topo-node">Monitoring</span>
-      </div>
-    </div>
+          <h1 class="hero-headline">
+            Cloud. DevOps.<br />
+            <span class="text-gradient">Platform Engineering.</span>
+          </h1>
 
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <span>EXPLORE OUR WORK</span>
-      <div class="scroll-line"></div>
-    </div>
-  </section>
+          <p class="hero-subheadline">
+            Devistio designs, automates, secures, and operates production cloud platforms and infrastructure. We engineer resilient AWS architectures, production Kubernetes environments, and auditable GitOps workflows that stay reliable under enterprise scale.
+          </p>
 
-<footer id="footer" role="contentinfo">
-  <div class="footer-top-border"></div>
-  <div class="footer-inner">
-    <div class="footer-status">
-      <div class="fs-title">SYSTEM STATUS</div>
-      <div class="fs-grid">
-        <div class="fs-row"><span class="fs-label">Infrastructure</span><span class="fs-val operational">OPERATIONAL</span></div>
-        <div class="fs-row"><span class="fs-label">CI/CD</span><span class="fs-val operational">OPERATIONAL</span></div>
-        <div class="fs-row"><span class="fs-label">Kubernetes</span><span class="fs-val operational">OPERATIONAL</span></div>
-        <div class="fs-row"><span class="fs-label">Observability</span><span class="fs-val operational">OPERATIONAL</span></div>
+          <div class="hero-ctas">
+            <a href="work.html" class="btn btn-primary">
+              <span>Explore Engineering</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <span>Talk to Us</span>
+            </a>
+          </div>
+
+          <!-- Technical Core Indicators -->
+          <div class="hero-stack-bar" role="region" aria-label="Core Engineering Capabilities">
+            <div class="stack-item"><strong>AWS</strong> Multi-Account</div>
+            <div class="stack-item"><strong>Kubernetes</strong> EKS &amp; Istio</div>
+            <div class="stack-item"><strong>IaC</strong> Terraform &amp; Terragrunt</div>
+            <div class="stack-item"><strong>GitOps</strong> ArgoCD Delivery</div>
+            <div class="stack-item"><strong>Security</strong> Kyverno &amp; Zero-Trust</div>
+            <div class="stack-item"><strong>Observability</strong> Grafana LGTM</div>
+            <div class="stack-item"><strong>SRE</strong> 99.99% Reliability</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         2. WHAT WE DO (6 ENGINEERING DOMAINS)
+         ========================================================= -->
+    <section class="section section-alt" id="domains" aria-label="Engineering Domains">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">Engineering Domains</div>
+          <h2 class="section-title">What We Do.</h2>
+          <p class="section-desc">
+            Deep technical execution across the core cloud infrastructure and platform engineering lifecycle. No generic consulting buzzwords—only production-grade engineering.
+          </p>
+        </div>
+
+        <div class="domains-grid">
+          <!-- 1. Cloud Infrastructure -->
+          <article class="domain-card">
+            <div class="domain-card-header">
+              <div class="domain-icon-box">☁</div>
+              <span class="domain-index">01 // CLOUD</span>
+            </div>
+            <h3 class="domain-title">Cloud Infrastructure</h3>
+            <p class="domain-desc">
+              Multi-account AWS architectures engineered for high availability and isolation. Production VPC design, Transit Gateway, PrivateLink, EKS, EC2, ECS, Aurora MySQL/PostgreSQL, ElastiCache, S3 lifecycle policies, Route53 DNS, and automated infrastructure lifecycle management.
+            </p>
+            <div class="domain-tags">
+              <span class="tag-badge">AWS Multi-Account</span>
+              <span class="tag-badge">VPC Topology</span>
+              <span class="tag-badge">Transit Gateway</span>
+              <span class="tag-badge">RDS Aurora</span>
+              <span class="tag-badge">PrivateLink</span>
+            </div>
+          </article>
+
+          <!-- 2. Platform Engineering -->
+          <article class="domain-card">
+            <div class="domain-card-header">
+              <div class="domain-icon-box">⚙</div>
+              <span class="domain-index">02 // PLATFORM</span>
+            </div>
+            <h3 class="domain-title">Platform Engineering</h3>
+            <p class="domain-desc">
+              Kubernetes platform operations and standardized developer environments. Reusable Infrastructure as Code modules, GitOps deployment models, environment parity, workload isolation, cluster lifecycle management, admission automation, and platform reliability engineering.
+            </p>
+            <div class="domain-tags">
+              <span class="tag-badge">GitOps Delivery</span>
+              <span class="tag-badge">Modular IaC</span>
+              <span class="tag-badge">Multi-Cluster Ops</span>
+              <span class="tag-badge">Workload Isolation</span>
+              <span class="tag-badge">Developer Enablement</span>
+            </div>
+          </article>
+
+          <!-- 3. Kubernetes -->
+          <article class="domain-card">
+            <div class="domain-card-header">
+              <div class="domain-icon-box">⎈</div>
+              <span class="domain-index">03 // K8S</span>
+            </div>
+            <h3 class="domain-title">Kubernetes</h3>
+            <p class="domain-desc">
+              Amazon EKS cluster architecture, Helm packaging, ArgoCD GitOps pipelines, KEDA event-driven autoscaling, and Cluster Autoscaler. Production Istio service mesh, pod networking, Pod Security Admission (PSA), Kyverno policy enforcement, and runtime troubleshooting.
+            </p>
+            <div class="domain-tags">
+              <span class="tag-badge">Amazon EKS</span>
+              <span class="tag-badge">Helm &amp; ArgoCD</span>
+              <span class="tag-badge">Istio Mesh</span>
+              <span class="tag-badge">KEDA Autoscaling</span>
+              <span class="tag-badge">Kyverno Admission</span>
+            </div>
+          </article>
+
+          <!-- 4. DevOps & Automation -->
+          <article class="domain-card">
+            <div class="domain-card-header">
+              <div class="domain-icon-box">⚡</div>
+              <span class="domain-index">04 // DEVOPS</span>
+            </div>
+            <h3 class="domain-title">DevOps &amp; Automation</h3>
+            <p class="domain-desc">
+              Reproducible IaC workflows with Terraform, OpenTofu, and Terragrunt. Automated CI/CD pipelines via GitHub Actions, CircleCI, Jenkins, CodePipeline, and Spacelift. Automated environment promotion, drift detection, non-disruptive rollbacks, Python, Bash, and AWS Systems Manager.
+            </p>
+            <div class="domain-tags">
+              <span class="tag-badge">Terraform / OpenTofu</span>
+              <span class="tag-badge">Terragrunt</span>
+              <span class="tag-badge">Spacelift CI/CD</span>
+              <span class="tag-badge">GitHub Actions</span>
+              <span class="tag-badge">AWS SSM</span>
+            </div>
+          </article>
+
+          <!-- 5. Cloud Security -->
+          <article class="domain-card">
+            <div class="domain-card-header">
+              <div class="domain-icon-box">🛡</div>
+              <span class="domain-index">05 // SECURITY</span>
+            </div>
+            <h3 class="domain-title">Cloud Security</h3>
+            <p class="domain-desc">
+              Least-privilege IAM, KMS Separation of Duties, IRSA, and EKS Pod Identity. Cluster-wide admission policies via Kyverno, Cosign cryptographic image signature verification, Trivy scanning, default-deny NetworkPolicies, Pod Security Standards, egress filtering, and security governance.
+            </p>
+            <div class="domain-tags">
+              <span class="tag-badge">KMS Separation</span>
+              <span class="tag-badge">EKS Pod Identity</span>
+              <span class="tag-badge">Cosign Verification</span>
+              <span class="tag-badge">Zero-Trust Egress</span>
+              <span class="tag-badge">NetworkPolicy</span>
+            </div>
+          </article>
+
+          <!-- 6. Observability & Reliability -->
+          <article class="domain-card">
+            <div class="domain-card-header">
+              <div class="domain-icon-box">📊</div>
+              <span class="domain-index">06 // SRE</span>
+            </div>
+            <h3 class="domain-title">Observability &amp; Reliability</h3>
+            <p class="domain-desc">
+              Unified telemetry across logs, metrics, traces, and continuous profiling. Full Grafana LGTM stack (Loki, Mimir, Tempo, Pyroscope, Alloy) alongside CloudWatch, Datadog, Prometheus, and Sentry. Proactive alerting, root cause analysis, incident response, and ~50% faster MTTR.
+            </p>
+            <div class="domain-tags">
+              <span class="tag-badge">Grafana LGTM</span>
+              <span class="tag-badge">Alloy Telemetry</span>
+              <span class="tag-badge">CloudWatch / Datadog</span>
+              <span class="tag-badge">Distributed Tracing</span>
+              <span class="tag-badge">SRE / RCA</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         3. HOW WE ENGINEER (ENGINEERING LIFECYCLE FLOW)
+         ========================================================= -->
+    <section class="section" id="lifecycle" aria-label="Engineering Lifecycle">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Engineering Approach</div>
+          <h2 class="section-title">How We Engineer.</h2>
+          <p class="section-desc">
+            We don't simply deploy infrastructure into the cloud. Devistio evaluates existing topologies, isolates risks, enforces infrastructure as code, validates admission and network controls, monitors production, and iteratively optimizes for stability.
+          </p>
+        </div>
+
+        <div class="lifecycle-flow" role="list">
+          <div class="lifecycle-step" role="listitem">
+            <div class="lifecycle-step-num">STEP 01</div>
+            <div class="lifecycle-step-name">Assess</div>
+            <p class="lifecycle-step-desc">Audit current cloud architectures, security postures, VPC layouts, and operational bottlenecks.</p>
+          </div>
+
+          <div class="lifecycle-step" role="listitem">
+            <div class="lifecycle-step-num">STEP 02</div>
+            <div class="lifecycle-step-name">Design</div>
+            <p class="lifecycle-step-desc">Architect scalable, highly available multi-account systems with zero-trust networking and strict blast radius controls.</p>
+          </div>
+
+          <div class="lifecycle-step" role="listitem">
+            <div class="lifecycle-step-num">STEP 03</div>
+            <div class="lifecycle-step-name">Automate</div>
+            <p class="lifecycle-step-desc">Codify every resource through modular Terraform, Terragrunt, Helm charts, and GitOps delivery pipelines.</p>
+          </div>
+
+          <div class="lifecycle-step" role="listitem">
+            <div class="lifecycle-step-num">STEP 04</div>
+            <div class="lifecycle-step-name">Secure</div>
+            <p class="lifecycle-step-desc">Embed least-privilege IAM, workload identity, admission policies, container image signing, and egress controls.</p>
+          </div>
+
+          <div class="lifecycle-step" role="listitem">
+            <div class="lifecycle-step-num">STEP 05</div>
+            <div class="lifecycle-step-name">Deploy</div>
+            <p class="lifecycle-step-desc">Execute safe, auditable deployments through Spacelift and ArgoCD with automated rollback and drift detection.</p>
+          </div>
+
+          <div class="lifecycle-step" role="listitem">
+            <div class="lifecycle-step-num">STEP 06</div>
+            <div class="lifecycle-step-name">Observe</div>
+            <p class="lifecycle-step-desc">Ingest correlated logs, metrics, traces, and profiling data with Grafana LGTM to diagnose production issues instantly.</p>
+          </div>
+
+          <div class="lifecycle-step" role="listitem">
+            <div class="lifecycle-step-num">STEP 07</div>
+            <div class="lifecycle-step-name">Optimize</div>
+            <p class="lifecycle-step-desc">Continuously tune autoscaling policies, container resource requests, network egress costs, and platform reliability.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4. ARCHITECTURE VISUALIZATION
+         ========================================================= -->
+    <section class="section section-alt" id="architecture" aria-label="Reference Architecture">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">Enterprise Architecture</div>
+          <h2 class="section-title">Reference Production Platform.</h2>
+          <p class="section-desc">
+            A high-level blueprint illustrating how AWS networking, Kubernetes orchestration, GitOps delivery, security admission controls, and observability pipelines integrate seamlessly.
+          </p>
+        </div>
+
+        <div class="architecture-container">
+          <div class="architecture-meta-bar">
+            <div class="arch-title-group">
+              <span class="arch-badge">ENTERPRISE PLATFORM TOPOLOGY</span>
+              <span style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted);">AWS Multi-Account / GovCloud &amp; Commercial</span>
+            </div>
+            <div class="arch-controls">
+              <button class="arch-btn active" data-layer="all">All Layers</button>
+              <button class="arch-btn" data-layer="k8s">Kubernetes</button>
+              <button class="arch-btn" data-layer="sec">Security</button>
+              <button class="arch-btn" data-layer="obs">Observability</button>
+            </div>
+          </div>
+
+          <div class="architecture-diagram" id="arch-canvas">
+            <!-- Left Column: Delivery & Control Plane -->
+            <div class="arch-col">
+              <div class="arch-box">
+                <div class="arch-box-header">
+                  <span class="arch-box-title">01. Delivery Plane</span>
+                  <span class="tag-badge">GitOps</span>
+                </div>
+                <div class="arch-nodes-list">
+                  <div class="arch-node">
+                    <span>ArgoCD GitOps Engine</span>
+                    <span class="node-meta">App-of-Apps</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>Terraform / Terragrunt</span>
+                    <span class="node-meta">IaC Modules</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>Spacelift Automation</span>
+                    <span class="node-meta">Drift Detection</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>OIDC / AWS STS</span>
+                    <span class="node-meta">No Stored Keys</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="arch-box">
+                <div class="arch-box-header">
+                  <span class="arch-box-title">02. AWS Core Network</span>
+                  <span class="tag-badge">Multi-AZ</span>
+                </div>
+                <div class="arch-nodes-list">
+                  <div class="arch-node">
+                    <span>Transit Gateway</span>
+                    <span class="node-meta">Hub-Spoke</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>AWS PrivateLink</span>
+                    <span class="node-meta">Zero Public IP</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>Security Groups / NACLs</span>
+                    <span class="node-meta">Port Hardened</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Center Column: Kubernetes Workload Cluster -->
+            <div class="arch-col">
+              <div class="arch-cluster-center">
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <div style="font-family:var(--font-mono);font-size:12px;font-weight:700;color:#FFFFFF;display:flex;align-items:center;gap:8px;">
+                    <span style="color:var(--accent-cyan);">⎈</span> Amazon EKS Managed Cluster (v1.30)
+                  </div>
+                  <span class="tag-badge">HA Control Plane</span>
+                </div>
+
+                <!-- Cluster Inner Pods -->
+                <div class="cluster-nodes-grid">
+                  <div class="cluster-pod-box">
+                    <div class="pod-title">
+                      <span>🛡 Admission &amp; Policy</span>
+                    </div>
+                    <div style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;">
+                      HA Kyverno Admission Webhooks · Cosign Signature Verification · ECR Token Refresh
+                    </div>
+                    <div class="pod-policy-status">✓ Enforcing PSA Restricted</div>
+                  </div>
+
+                  <div class="cluster-pod-box">
+                    <div class="pod-title">
+                      <span>🌐 Istio Service Mesh</span>
+                    </div>
+                    <div style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;">
+                      Strict mTLS · Centralized Egress Gateway · REGISTRY_ONLY ServiceEntries
+                    </div>
+                    <div class="pod-policy-status">✓ Egress Audited</div>
+                  </div>
+
+                  <div class="cluster-pod-box">
+                    <div class="pod-title">
+                      <span>🔑 Workload Identity</span>
+                    </div>
+                    <div style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;">
+                      EKS Pod Identity (aws-node VPC CNI) + Scoped IRSA per ServiceAccount
+                    </div>
+                    <div class="pod-policy-status">✓ Least-Privilege IAM</div>
+                  </div>
+
+                  <div class="cluster-pod-box">
+                    <div class="pod-title">
+                      <span>⚡ Autoscaling Engine</span>
+                    </div>
+                    <div style="font-size:12px;color:var(--text-secondary);margin-bottom:6px;">
+                      KEDA Event-Driven Scaling + AWS EKS Cluster Autoscaler / Bottlerocket
+                    </div>
+                    <div class="pod-policy-status">✓ Multi-AZ Resilient</div>
+                  </div>
+                </div>
+
+                <!-- Default-Deny NetworkPolicy Layer -->
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+                  <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);">Default-Deny Kubernetes NetworkPolicies</span>
+                  <span style="font-family:var(--font-mono);font-size:10px;color:var(--accent-cyan);">East-West Restricted</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Observability & State Store -->
+            <div class="arch-col">
+              <div class="arch-box">
+                <div class="arch-box-header">
+                  <span class="arch-box-title">03. Telemetry Plane</span>
+                  <span class="tag-badge">Grafana LGTM</span>
+                </div>
+                <div class="arch-nodes-list">
+                  <div class="arch-node">
+                    <span>Grafana Alloy Agent</span>
+                    <span class="node-meta">Collector</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>Loki Log Aggregation</span>
+                    <span class="node-meta">HIPAA / Redacted</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>Mimir Metrics Storage</span>
+                    <span class="node-meta">Multi-Tenant</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>Tempo Distributed Traces</span>
+                    <span class="node-meta">Trace-to-Log</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="arch-box">
+                <div class="arch-box-header">
+                  <span class="arch-box-title">04. Data &amp; Security</span>
+                  <span class="tag-badge">AWS Native</span>
+                </div>
+                <div class="arch-nodes-list">
+                  <div class="arch-node">
+                    <span>RDS Aurora Multi-AZ</span>
+                    <span class="node-meta">PostgreSQL</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>AWS KMS Multi-Key</span>
+                    <span class="node-meta">Separation Duties</span>
+                  </div>
+                  <div class="arch-node">
+                    <span>AWS Secrets Manager</span>
+                    <span class="node-meta">Externalized</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. SELECTED ENGINEERING WORK (HOMEPAGE 6 HIGH-VALUE AREAS)
+         ========================================================= -->
+    <section class="section" id="work" aria-label="Selected Engineering Work">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Engineering Case Studies</div>
+          <h2 class="section-title">Selected Engineering Work.</h2>
+          <p class="section-desc">
+            High-value technical engagements demonstrating hands-on execution across Kubernetes security, zero-trust egress, IAM least privilege, GitOps platforming, and production SRE.
+          </p>
+        </div>
+
+        <div class="work-grid">
+          <!-- Area 1 -->
+          <article class="work-card">
+            <div class="work-card-header">
+              <span class="work-badge">CASE 01 // KUBERNETES SECURITY</span>
+              <span class="work-metric">100% Policy Admitted</span>
+            </div>
+            <h3 class="work-title">Kubernetes Security &amp; Policy Enforcement</h3>
+            
+            <div class="work-block">
+              <div class="work-label">Problem Statement</div>
+              <p class="work-text">
+                An enterprise EKS deployment in AWS GovCloud required strict CIS and FedRAMP-adjacent security controls, but suffered from unverified public registries, broad pod privileges, and GHCR connectivity restrictions.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Engineering Approach</div>
+              <p class="work-text">
+                Architected HA Kyverno on GovCloud EKS with private ECR mirroring and ECR-only registry allowlists. Implemented Cosign image signature verification, an automated IRSA ECR credential refresh CronJob, Pod Security Standards (Restricted equivalent), and namespace exceptions for CNI/monitoring agents.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Outcome</div>
+              <p class="work-text">
+                Cluster-wide enforcement of unprivileged containers and signed artifacts with zero disruption to legitimate platform infrastructure.
+              </p>
+            </div>
+
+            <div class="work-tech-row">
+              <span class="tech-chip">AWS GovCloud</span>
+              <span class="tech-chip">Amazon EKS</span>
+              <span class="tech-chip">Kyverno HA</span>
+              <span class="tech-chip">Cosign</span>
+              <span class="tech-chip">ECR Mirroring</span>
+              <span class="tech-chip">IRSA</span>
+            </div>
+          </article>
+
+          <!-- Area 2 -->
+          <article class="work-card">
+            <div class="work-card-header">
+              <span class="work-badge">CASE 02 // ZERO-TRUST NETWORK</span>
+              <span class="work-metric">Zero Unrestricted Egress</span>
+            </div>
+            <h3 class="work-title">Zero-Trust Networking &amp; Egress Control</h3>
+            
+            <div class="work-block">
+              <div class="work-label">Problem Statement</div>
+              <p class="work-text">
+                Workloads could communicate freely across namespaces and initiate unrestricted outbound internet connections, creating compliance audit risks and severe data exfiltration exposure.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Engineering Approach</div>
+              <p class="work-text">
+                Rolled out default-deny Kubernetes NetworkPolicies using reusable Helm templates mapped to declared dependencies. Implemented Istio REGISTRY_ONLY egress control with explicit ServiceEntries based on VPC Flow Logs analysis. Hardened AWS Security Groups and eliminated unnecessary control plane SSH.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Outcome</div>
+              <p class="work-text">
+                Every pod-to-pod and external connection is explicitly allowlisted, logged, and audited without degrading application throughput.
+              </p>
+            </div>
+
+            <div class="work-tech-row">
+              <span class="tech-chip">NetworkPolicies</span>
+              <span class="tech-chip">Istio Service Mesh</span>
+              <span class="tech-chip">ServiceEntries</span>
+              <span class="tech-chip">VPC Flow Logs</span>
+              <span class="tech-chip">Security Groups</span>
+            </div>
+          </article>
+
+          <!-- Area 3 -->
+          <article class="work-card">
+            <div class="work-card-header">
+              <span class="work-badge">CASE 03 // IDENTITY PLANE</span>
+              <span class="work-metric">Zero Silent Fallbacks</span>
+            </div>
+            <h3 class="work-title">IAM / IRSA &amp; EKS Pod Identity</h3>
+            
+            <div class="work-block">
+              <div class="work-label">Problem Statement</div>
+              <p class="work-text">
+                Worker node EC2 roles carried broad IAM policies shared across all pods, while KMS customer-managed keys granted administrative and cryptographic operations to the same principals.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Engineering Approach</div>
+              <p class="work-text">
+                Migrated aws-node VPC CNI from shared node IAM roles to dedicated EKS Pod Identity, eliminating credential fallback. Enforced KMS Separation of Duties by splitting key administration from workload encryption, audited access via CloudTrail, and built reusable Terraform IRSA modules.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Outcome</div>
+              <p class="work-text">
+                Isolated blast radius per microservice with definitive CloudTrail attribution and verified read/write IAM boundary enforcement.
+              </p>
+            </div>
+
+            <div class="work-tech-row">
+              <span class="tech-chip">EKS Pod Identity</span>
+              <span class="tech-chip">IRSA</span>
+              <span class="tech-chip">KMS Separation</span>
+              <span class="tech-chip">CloudTrail Audit</span>
+              <span class="tech-chip">Terraform</span>
+            </div>
+          </article>
+
+          <!-- Area 4 -->
+          <article class="work-card">
+            <div class="work-card-header">
+              <span class="work-badge">CASE 04 // PLATFORM OPS</span>
+              <span class="work-metric">Multi-Cluster Parity</span>
+            </div>
+            <h3 class="work-title">Multi-Environment GitOps Platform</h3>
+            
+            <div class="work-block">
+              <div class="work-label">Problem Statement</div>
+              <p class="work-text">
+                Hardcoded cluster node-group names and ad-hoc YAML manifests prevented consistent deployments across primary and secondary staging/production clusters.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Engineering Approach</div>
+              <p class="work-text">
+                Refactored Helm charts and Terraform modules for dynamic node-group selection with environment overrides. Implemented ArgoCD GitOps pipelines, externalized secrets integration, resolved admission webhook race conditions, and instituted a GitOps-only operating model.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Outcome</div>
+              <p class="work-text">
+                Standardized multi-cluster deployments with reproducible rollouts, zero config drift, and automated incident recovery.
+              </p>
+            </div>
+
+            <div class="work-tech-row">
+              <span class="tech-chip">ArgoCD</span>
+              <span class="tech-chip">Helm 3</span>
+              <span class="tech-chip">Multi-Cluster EKS</span>
+              <span class="tech-chip">Secrets Manager</span>
+              <span class="tech-chip">GitOps Model</span>
+            </div>
+          </article>
+
+          <!-- Area 5 -->
+          <article class="work-card">
+            <div class="work-card-header">
+              <span class="work-badge">CASE 05 // SRE OBSERVABILITY</span>
+              <span class="work-metric">~50% Faster MTTR</span>
+            </div>
+            <h3 class="work-title">Observability &amp; Production Reliability</h3>
+            
+            <div class="work-block">
+              <div class="work-label">Problem Statement</div>
+              <p class="work-text">
+                Disparate logging silos and unlinked trace metrics caused severe troubleshooting delays during production Kubernetes workload incidents and storage mount failures.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Engineering Approach</div>
+              <p class="work-text">
+                Deployed full Grafana LGTM stack (Loki, Mimir, Tempo, Pyroscope, Alloy) alongside CloudWatch and Datadog. Configured trace-to-log correlation, regex pipelines for sensitive token scrubbing, synthetic uptime testing, and standardized runbooks for pod scheduling and PVC failures.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Outcome</div>
+              <p class="work-text">
+                Reduced Mean Time To Resolution (MTTR) by approximately 50% through single-pane-of-glass trace correlation and instant root cause detection.
+              </p>
+            </div>
+
+            <div class="work-tech-row">
+              <span class="tech-chip">Grafana LGTM</span>
+              <span class="tech-chip">Grafana Alloy</span>
+              <span class="tech-chip">Tempo Traces</span>
+              <span class="tech-chip">Loki Logs</span>
+              <span class="tech-chip">Prometheus</span>
+            </div>
+          </article>
+
+          <!-- Area 6 -->
+          <article class="work-card">
+            <div class="work-card-header">
+              <span class="work-badge">CASE 06 // GOVERNANCE</span>
+              <span class="work-metric">Audit-Ready Compliance</span>
+            </div>
+            <h3 class="work-title">AWS Infrastructure &amp; Security Governance</h3>
+            
+            <div class="work-block">
+              <div class="work-label">Problem Statement</div>
+              <p class="work-text">
+                Complex enterprise environments lacked distinct IaC ownership boundaries, standardized EKS patching procedures, documented break-glass access, and verified backup plans.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Engineering Approach</div>
+              <p class="work-text">
+                Authored IaC enforcement policies delineating Terraform vs AWS-managed boundaries. Documented controlled break-glass emergency processes, structured EKS control plane and add-on upgrade runbooks, and executed backup-encryption audits across EBS, EFS, and RDS Aurora.
+              </p>
+            </div>
+
+            <div class="work-block">
+              <div class="work-label">Outcome</div>
+              <p class="work-text">
+                Comprehensive before/after security gap analysis and ticket-ready documentation meeting strict enterprise compliance standards.
+              </p>
+            </div>
+
+            <div class="work-tech-row">
+              <span class="tech-chip">IaC Governance</span>
+              <span class="tech-chip">EKS Upgrades</span>
+              <span class="tech-chip">Break-Glass Process</span>
+              <span class="tech-chip">RDS Aurora Backup</span>
+              <span class="tech-chip">Security Audit</span>
+            </div>
+          </article>
+        </div>
+
+        <!-- Deeper Link CTA -->
+        <div style="text-align:center;margin-top:48px;">
+          <a href="work.html" class="btn btn-primary" style="padding:14px 32px;">
+            <span>Explore In-Depth Technical Case Studies &amp; Architecture Details</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         6. TECHNOLOGY STACK MATRIX
+         ========================================================= -->
+    <section class="section section-alt" id="stack" aria-label="Technology Stack">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">Engineered Tooling</div>
+          <h2 class="section-title">Technology Stack.</h2>
+          <p class="section-desc">
+            Organized by technical domain. We select and master enterprise-tested tools tailored to high-reliability production platforms.
+          </p>
+        </div>
+
+        <div class="stack-matrix">
+          <!-- Cloud -->
+          <div class="stack-group">
+            <div class="stack-group-title">Cloud Infrastructure</div>
+            <div class="stack-items-wrap">
+              <span class="tech-pill priority">AWS</span>
+              <span class="tech-pill priority">Amazon EKS</span>
+              <span class="tech-pill">VPC</span>
+              <span class="tech-pill">EC2 / ECS</span>
+              <span class="tech-pill">RDS Aurora</span>
+              <span class="tech-pill">ElastiCache</span>
+              <span class="tech-pill">S3</span>
+              <span class="tech-pill">Route53</span>
+              <span class="tech-pill">Transit Gateway</span>
+              <span class="tech-pill">PrivateLink</span>
+            </div>
+          </div>
+
+          <!-- Kubernetes & Containers -->
+          <div class="stack-group">
+            <div class="stack-group-title">Kubernetes &amp; Containers</div>
+            <div class="stack-items-wrap">
+              <span class="tech-pill priority">Kubernetes</span>
+              <span class="tech-pill priority">Helm</span>
+              <span class="tech-pill priority">ArgoCD</span>
+              <span class="tech-pill">Docker</span>
+              <span class="tech-pill">Istio Mesh</span>
+              <span class="tech-pill">KEDA</span>
+              <span class="tech-pill">Cluster Autoscaler</span>
+              <span class="tech-pill">Kyverno</span>
+              <span class="tech-pill">Bottlerocket</span>
+            </div>
+          </div>
+
+          <!-- Infrastructure as Code -->
+          <div class="stack-group">
+            <div class="stack-group-title">Infrastructure as Code</div>
+            <div class="stack-items-wrap">
+              <span class="tech-pill priority">Terraform</span>
+              <span class="tech-pill priority">Terragrunt</span>
+              <span class="tech-pill">OpenTofu</span>
+              <span class="tech-pill">Spacelift</span>
+              <span class="tech-pill">Ansible</span>
+              <span class="tech-pill">HCL Modules</span>
+            </div>
+          </div>
+
+          <!-- CI/CD & GitOps -->
+          <div class="stack-group">
+            <div class="stack-group-title">CI/CD &amp; GitOps</div>
+            <div class="stack-items-wrap">
+              <span class="tech-pill priority">ArgoCD</span>
+              <span class="tech-pill priority">GitHub Actions</span>
+              <span class="tech-pill">CircleCI</span>
+              <span class="tech-pill">AWS CodePipeline</span>
+              <span class="tech-pill">Jenkins</span>
+              <span class="tech-pill">Spacelift</span>
+            </div>
+          </div>
+
+          <!-- Cloud Security -->
+          <div class="stack-group">
+            <div class="stack-group-title">Cloud Security</div>
+            <div class="stack-items-wrap">
+              <span class="tech-pill priority">Kyverno</span>
+              <span class="tech-pill priority">KMS</span>
+              <span class="tech-pill priority">EKS Pod Identity</span>
+              <span class="tech-pill">IRSA</span>
+              <span class="tech-pill">Cosign</span>
+              <span class="tech-pill">Trivy</span>
+              <span class="tech-pill">NetworkPolicies</span>
+              <span class="tech-pill">Security Groups</span>
+              <span class="tech-pill">HashiCorp Vault</span>
+            </div>
+          </div>
+
+          <!-- Observability -->
+          <div class="stack-group">
+            <div class="stack-group-title">Observability &amp; Metrics</div>
+            <div class="stack-items-wrap">
+              <span class="tech-pill priority">Grafana</span>
+              <span class="tech-pill priority">Prometheus</span>
+              <span class="tech-pill priority">Loki</span>
+              <span class="tech-pill">Tempo</span>
+              <span class="tech-pill">Mimir</span>
+              <span class="tech-pill">Pyroscope</span>
+              <span class="tech-pill">Grafana Alloy</span>
+              <span class="tech-pill">CloudWatch</span>
+              <span class="tech-pill">Datadog</span>
+              <span class="tech-pill">Sentry</span>
+            </div>
+          </div>
+
+          <!-- Networking -->
+          <div class="stack-group">
+            <div class="stack-group-title">Networking</div>
+            <div class="stack-items-wrap">
+              <span class="tech-pill priority">AWS VPC CNI</span>
+              <span class="tech-pill priority">Istio Ingress/Egress</span>
+              <span class="tech-pill">AWS PrivateLink</span>
+              <span class="tech-pill">Transit Gateway</span>
+              <span class="tech-pill">ALB / NLB</span>
+              <span class="tech-pill">CoreDNS</span>
+              <span class="tech-pill">Envoy</span>
+            </div>
+          </div>
+
+          <!-- Automation -->
+          <div class="stack-group">
+            <div class="stack-group-title">Automation &amp; Scripting</div>
+            <div class="stack-items-wrap">
+              <span class="tech-pill priority">Python</span>
+              <span class="tech-pill priority">Bash</span>
+              <span class="tech-pill">AWS Systems Manager</span>
+              <span class="tech-pill">AWS CLI</span>
+              <span class="tech-pill">CronJobs</span>
+              <span class="tech-pill">GitOps Controllers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         7. DUAL SECTION: SECURITY BY DESIGN & RELIABILITY OPS
+         ========================================================= -->
+    <section class="section" id="security-reliability" aria-label="Security and Reliability Principles">
+      <div class="container">
+        <div class="dual-section-grid">
+          <!-- Security by Design -->
+          <article class="dual-card">
+            <div class="dual-card-header">
+              <div class="dual-icon">🛡</div>
+              <h3 class="dual-title">Security by Design</h3>
+            </div>
+            <p class="dual-desc">
+              Security is not a checkbox bolted on before release. At Devistio, defense-in-depth is embedded directly into Terraform modules, cluster configurations, and pipeline definitions from day zero.
+            </p>
+            <div class="dual-checklist">
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Least Privilege Everywhere:</strong> Scoped IAM, IRSA, and EKS Pod Identity instead of shared node roles.</div>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Admission Gatekeeping:</strong> Kyverno admission controllers validate Cosign signatures and enforce PSA Restricted.</div>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Zero-Trust Isolation:</strong> Default-deny NetworkPolicies and Istio REGISTRY_ONLY egress allowlists.</div>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Cryptographic Separation:</strong> Customer-managed KMS keys with segregated admin and encryption duties.</div>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Secretless CI/CD:</strong> Short-lived OIDC STS authentication tokens eliminating long-lived credentials.</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Reliability & Operations -->
+          <article class="dual-card">
+            <div class="dual-card-header">
+              <div class="dual-icon">⚡</div>
+              <h3 class="dual-title">Reliability &amp; Operations</h3>
+            </div>
+            <p class="dual-desc">
+              Building infrastructure is only half the battle; operating it under real production loads with rigorous SRE disciplines is where business continuity is won.
+            </p>
+            <div class="dual-checklist">
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Rapid Root Cause Analysis:</strong> Correlated logs, metrics, and distributed traces to slash MTTR.</div>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Auditable Change Controls:</strong> GitOps-driven workflows with automated validation and fast rollback paths.</div>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Disaster Recovery Posture:</strong> Encrypted multi-AZ data stores with verified cross-region backup policies.</div>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Kubernetes Troubleshooting:</strong> Deep triage of node exhaustion, webhook failures, and PVC race conditions.</div>
+              </div>
+              <div class="check-item">
+                <span class="check-icon">✓</span>
+                <div><strong>Continuous Optimization:</strong> Automated pod rightsizing, KEDA scaling, and egress cost containment.</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         8. CREDIBILITY & ENGINEERING LEADERSHIP
+         ========================================================= -->
+    <section class="section section-alt" id="credibility" aria-label="Engineering Experience">
+      <div class="container">
+        <div class="credibility-card">
+          <div class="credibility-grid">
+            <div>
+              <div class="section-tag">Technical Credibility</div>
+              <h2 class="cred-title">Production-Tested Engineering Behind Devistio.</h2>
+              <p class="cred-p">
+                Devistio is built by platform engineers who have operated mission-critical infrastructure across AWS multi-account architectures, production Kubernetes environments, and regulated GovCloud and HIPAA-adjacent clouds.
+              </p>
+              <p class="cred-p">
+                We believe that reliable infrastructure must be reproducible, observable, auditable, and secure. We avoid fragile manual configurations in favor of hardened Infrastructure as Code, automated admission gates, and zero-trust networking.
+              </p>
+
+              <div class="cred-highlights">
+                <div class="cred-highlight-box">
+                  <div class="ch-val">99.99%</div>
+                  <div class="ch-label">Target Production Availability</div>
+                </div>
+                <div class="cred-highlight-box">
+                  <div class="ch-val">~50%</div>
+                  <div class="ch-label">Observed MTTR Reduction</div>
+                </div>
+                <div class="cred-highlight-box">
+                  <div class="ch-val">100%</div>
+                  <div class="ch-label">IaC / Versioned Infrastructure</div>
+                </div>
+                <div class="cred-highlight-box">
+                  <div class="ch-val">Zero</div>
+                  <div class="ch-label">Long-Lived CI/CD Keys</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Engineering Contributor Box -->
+            <div class="engineer-profile-box">
+              <div class="engineer-header">
+                <div class="engineer-avatar">
+                  <img src="talha.png" alt="Talha Rehman, Lead DevOps &amp; Platform Engineer at Devistio" />
+                </div>
+                <div class="engineer-info">
+                  <div class="eng-name">Talha Rehman</div>
+                  <div class="eng-role">Lead DevOps &amp; Platform Engineer</div>
+                </div>
+              </div>
+              <p class="engineer-bio">
+                Experienced in AWS multi-account governance, production Kubernetes clusters (EKS), Kyverno admission engines, Istio service mesh, Spacelift/ArgoCD pipelines, and full-stack Grafana LGTM observability. Contributes hands-on engineering execution across Devistio client engagements.
+              </p>
+              <div class="engineer-links">
+                <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="eng-link">LinkedIn ↗</a>
+                <a href="mailto:talha@devistio.com" class="eng-link">talha@devistio.com ↗</a>
+                <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="eng-link">WhatsApp ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         9. CONTACT & CONSULTATION (#contact)
+         ========================================================= -->
+    <section class="section" id="contact" aria-label="Contact Devistio">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <div class="section-tag">Start a Conversation</div>
+            <h2 class="section-title">Talk to Our Engineers.</h2>
+            <p class="section-desc">
+              Whether you are planning a greenfield AWS multi-account migration, hardening an Amazon EKS cluster for compliance, designing GitOps pipelines, or unifying observability, we’re ready to partner on technical execution.
+            </p>
+
+            <div class="contact-channels">
+              <a href="mailto:talha@devistio.com" class="channel-card">
+                <div class="channel-icon">✉</div>
+                <div class="channel-info">
+                  <div class="channel-type">Direct Engineering Inquiry</div>
+                  <div class="channel-val">talha@devistio.com</div>
+                </div>
+              </a>
+
+              <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="channel-card">
+                <div class="channel-icon">💬</div>
+                <div class="channel-info">
+                  <div class="channel-type">Direct Message / WhatsApp</div>
+                  <div class="channel-val">+92 315 656 9204</div>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="channel-card">
+                <div class="channel-icon">in</div>
+                <div class="channel-info">
+                  <div class="channel-type">LinkedIn Network</div>
+                  <div class="channel-val">Devistio Engineering</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Consultation Form -->
+          <div class="contact-form-box">
+            <form id="contact-form" onsubmit="handleFormSubmit(event)">
+              <div class="form-group">
+                <label class="form-label" for="client-name">Your Name</label>
+                <input class="form-input" type="text" id="client-name" placeholder="Alex Morgan" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="client-email">Work Email</label>
+                <input class="form-input" type="email" id="client-email" placeholder="alex@company.com" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="client-domain">Primary Engineering Area</label>
+                <select class="form-select" id="client-domain" required>
+                  <option value="" disabled selected>Select an engineering priority...</option>
+                  <option value="cloud-infra">AWS Multi-Account / Cloud Infrastructure</option>
+                  <option value="kubernetes-platform">Kubernetes &amp; Platform Engineering</option>
+                  <option value="security-admission">Cloud Security, Kyverno &amp; Zero-Trust</option>
+                  <option value="gitops-devops">GitOps, Terraform &amp; CI/CD Automation</option>
+                  <option value="observability-sre">Grafana LGTM Observability &amp; Reliability</option>
+                  <option value="other">Other Production Architecture Challenge</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="client-message">Brief Project Requirements</label>
+                <textarea class="form-textarea" id="client-message" placeholder="Outline your current infrastructure stack, timelines, or primary engineering objectives..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width:100%;">
+                <span>Send Engineering Inquiry</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+              <p id="form-feedback" style="font-family:var(--font-mono);font-size:12px;color:var(--green-bright);margin-top:12px;text-align:center;display:none;">
+                ✓ Inquiry received. An engineer will follow up shortly.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="brand-logo">
+            <div class="brand-mark">D</div>
+            <span>DEVISTIO</span>
+          </div>
+          <p>
+            Devistio is a specialist Cloud, DevOps, and Platform Engineering company. We design, automate, secure, and operate production-grade cloud platforms at enterprise scale.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Navigation</div>
+          <div class="footer-links-list">
+            <a href="index.html" class="footer-link-item">Home</a>
+            <a href="work.html" class="footer-link-item">Engineering / Work</a>
+            <a href="#domains" class="footer-link-item">What We Do</a>
+            <a href="#architecture" class="footer-link-item">Reference Architecture</a>
+            <a href="#contact" class="footer-link-item">Contact Us</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Direct Connect</div>
+          <div class="footer-links-list">
+            <a href="mailto:talha@devistio.com" class="footer-link-item">talha@devistio.com</a>
+            <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="footer-link-item">WhatsApp Support</a>
+            <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="footer-link-item">LinkedIn Page</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link-item">GitHub Repository</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Devistio. All rights reserved. Built for production reliability.</div>
+        <div>
+          <span>Multi-Region AWS</span> · <span>Kubernetes 1.30</span> · <span>CIS Benchmark</span>
+        </div>
       </div>
     </div>
-    <div class="footer-divider"></div>
-    <div class="footer-brand-row">
-      <div class="footer-brand">
-        <div class="fb-name">DEVISTIO</div>
-        <div class="fb-title">Cloud &amp; DevOps Engineering Company</div>
-        <p class="fb-quote">We build infrastructure that works<br>at the scale your business demands.</p>
-      </div>
-      <div class="footer-nav">
-        <a href="https://wa.me/923156569204" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a>
-        <a href="https://instagram.com/talharehman_" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram</a>
-        <a href="https://www.linkedin.com/in/talha-rehman-devops-engineer/" target="_blank" rel="noopener noreferrer" class="footer-link">LinkedIn</a>
-        <a href="mailto:talha@devistio.com" class="footer-link">talha@devistio.com</a>
-      </div>
-    </div>
-    <div class="footer-tagline">Ship reliable. Operate confidently.</div>
-  </div>
-</footer>
+  </footer>
+
   <script src="main.js"></script>
-<script>
-  // Nav scroll state
-  window.addEventListener('scroll', () => {
-    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
-</script>
 </body>
 </html>
