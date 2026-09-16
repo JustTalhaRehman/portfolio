@@ -1,119 +1,36 @@
 /* =========================================================
    DEVISTIO | Cloud · DevOps · Platform Engineering
-   iPhone 18 Pro Deep Burgundy (#4D1821) & White Design System
-   Featuring HUMANE Typeface
+   Premium B2B Engineering Design System
    ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
-/* Humane Typeface Declarations */
-@font-face {
-  font-family: 'Humane';
-  src: url('fonts/Humane-Thin.woff2') format('woff2'),
-       url('fonts/Humane-Thin.woff') format('woff');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Humane';
-  src: url('fonts/Humane-ExtraLight.woff2') format('woff2'),
-       url('fonts/Humane-ExtraLight.woff') format('woff');
-  font-weight: 200;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Humane';
-  src: url('fonts/Humane-Light.woff2') format('woff2'),
-       url('fonts/Humane-Light.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Humane';
-  src: url('fonts/Humane-Regular.woff2') format('woff2'),
-       url('fonts/Humane-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Humane';
-  src: url('fonts/Humane-Medium.woff2') format('woff2'),
-       url('fonts/Humane-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Humane';
-  src: url('fonts/Humane-SemiBold.woff2') format('woff2'),
-       url('fonts/Humane-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Humane';
-  src: url('fonts/Humane-Bold.woff2') format('woff2'),
-       url('fonts/Humane-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Humane';
-  src: url('fonts/Humane-Bold.woff2') format('woff2'),
-       url('fonts/Humane-Bold.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Humane';
-  src: url('fonts/Humane-Bold.woff2') format('woff2'),
-       url('fonts/Humane-Bold.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
-  /* Color Palette - iPhone 18 Pro Deep Burgundy (#4D1821) & White (Default Dark) */
-  --bg:           #100407; /* Deepest dark burgundy-black */
-  --bg-alt:       #17060A; /* Dark velvet burgundy */
-  --surface:      #21090E; /* Rich burgundy surface */
-  --surface-2:    #2C0D14; /* Elevated burgundy card */
-  --surface-3:    #3A121B; /* Highlighted card */
-  --surface-hover:#4A1723;
+  /* Color Palette - Deep Slate / Space Dark (Default) */
+  --bg:           #080C14;
+  --bg-alt:       #0C121E;
+  --surface:      #101726;
+  --surface-2:    #151E32;
+  --surface-3:    #1B263F;
+  --surface-hover:#1E2B48;
 
-  --border:       rgba(255, 255, 255, 0.10);
-  --border-light: rgba(255, 255, 255, 0.18);
-  --border-glow:  rgba(126, 34, 53, 0.55);
-  --border-cyan:  rgba(255, 174, 188, 0.40);
+  --border:       rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.14);
+  --border-glow:  rgba(0, 102, 255, 0.35);
+  --border-cyan:  rgba(0, 229, 255, 0.35);
 
-  --text-primary:   #FFFFFF; /* Pure brilliant crisp white */
-  --text-secondary: #F3DEE2; /* Pearlescent soft white */
-  --text-muted:     #BD9DA4; /* Mauve-tinted muted white */
-  --text-dim:       #8A6B72;
+  --text-primary:   #F1F5F9;
+  --text-secondary: #94A3B8;
+  --text-muted:     #64748B;
+  --text-dim:       #475569;
 
-  /* Accent Tones - Deep Dark Red with Purple Undertones (#4D1821) */
-  --accent:         #4D1821; /* Signature iPhone 18 Pro Burgundy */
-  --accent-bright:  #7E2235; /* Vibrant rich wine crimson */
-  --accent-cyan:    #FFAEBC; /* Frosted luminous rose-white / pearl highlight */
-  --accent-dim:     rgba(77, 24, 33, 0.45);
-  --accent-glow:    rgba(126, 34, 53, 0.50);
-  --cyan-dim:       rgba(255, 174, 188, 0.12);
+  /* Accent Tones */
+  --accent:         #0066FF;
+  --accent-bright:  #2979FF;
+  --accent-cyan:    #00E5FF;
+  --accent-dim:     rgba(0, 102, 255, 0.12);
+  --accent-glow:    rgba(0, 102, 255, 0.30);
+  --cyan-dim:       rgba(0, 229, 255, 0.12);
 
   --green:          #10B981;
   --green-bright:   #34D399;
@@ -122,12 +39,12 @@
   --amber-dim:      rgba(245, 158, 11, 0.12);
   --red:            #EF4444;
   --red-dim:        rgba(239, 68, 68, 0.12);
-  --purple:         #A855F7;
-  --purple-dim:     rgba(168, 85, 247, 0.12);
+  --purple:         #8B5CF6;
+  --purple-dim:     rgba(139, 92, 246, 0.12);
 
-  /* Typography - HUMANE for Display & Headings, Inter for Body Copy */
-  --font-display: 'Humane', 'Manrope', system-ui, sans-serif;
+  /* Typography */
   --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Manrope', system-ui, -apple-system, sans-serif;
   --font-mono:    'JetBrains Mono', 'SF Mono', monospace;
 
   /* Sizing & Spacing */
@@ -141,44 +58,45 @@
   --radius-xl: 24px;
 
   /* Shadows */
-  --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.5);
-  --shadow:     0 8px 26px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(77, 24, 33, 0.35);
-  --shadow-lg:  0 18px 52px rgba(0, 0, 0, 0.8), 0 4px 18px rgba(77, 24, 33, 0.5);
-  --shadow-glow:0 0 32px rgba(77, 24, 33, 0.6);
+  --shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow:     0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-lg:  0 16px 48px rgba(0, 0, 0, 0.65);
+  --shadow-glow:0 0 30px rgba(0, 102, 255, 0.2);
 
-  --nav-bg: rgba(16, 4, 7, 0.88);
-  --nav-bg-scrolled: rgba(16, 4, 7, 0.97);
+  --nav-bg: rgba(8, 12, 20, 0.85);
+  --nav-bg-scrolled: rgba(8, 12, 20, 0.95);
 
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
   --transition: all 0.22s ease;
 }
 
-/* Light Theme Overrides - Studio White & iPhone 18 Pro Burgundy */
+/* Light Theme Overrides */
 [data-theme="light"] {
-  --bg:           #FAF6F7; /* Luminous soft alabaster white */
-  --bg-alt:       #F3E8EB; /* Silk blush white */
-  --surface:      #FFFFFF; /* Pure crisp brilliant white */
-  --surface-2:    #F7EEF0;
-  --surface-3:    #EBDCE0;
-  --surface-hover:#E3D0D5;
+  /* Color Palette - Clean Enterprise Light */
+  --bg:           #F8FAFC;
+  --bg-alt:       #F1F5F9;
+  --surface:      #FFFFFF;
+  --surface-2:    #F8FAFC;
+  --surface-3:    #E2E8F0;
+  --surface-hover:#EDF2F7;
 
-  --border:       rgba(77, 24, 33, 0.12);
-  --border-light: rgba(77, 24, 33, 0.22);
-  --border-glow:  rgba(77, 24, 33, 0.28);
-  --border-cyan:  rgba(77, 24, 33, 0.30);
+  --border:       rgba(15, 23, 42, 0.08);
+  --border-light: rgba(15, 23, 42, 0.15);
+  --border-glow:  rgba(0, 102, 255, 0.20);
+  --border-cyan:  rgba(2, 132, 199, 0.30);
 
-  --text-primary:   #1A0508; /* Deep obsidian burgundy */
-  --text-secondary: #4D2129; /* Dark cocoa burgundy */
-  --text-muted:     #784E56;
-  --text-dim:       #9E757D;
+  --text-primary:   #0F172A;
+  --text-secondary: #475569;
+  --text-muted:     #64748B;
+  --text-dim:       #94A3B8;
 
   /* Accent Tones */
-  --accent:         #4D1821; /* Signature iPhone 18 Pro Burgundy */
-  --accent-bright:  #6E1E2D;
-  --accent-cyan:    #4D1821; /* Strong contrast burgundy */
-  --accent-dim:     rgba(77, 24, 33, 0.08);
-  --accent-glow:    rgba(77, 24, 33, 0.22);
-  --cyan-dim:       rgba(77, 24, 33, 0.08);
+  --accent:         #0066FF;
+  --accent-bright:  #1A73E8;
+  --accent-cyan:    #0284C7;
+  --accent-dim:     rgba(0, 102, 255, 0.08);
+  --accent-glow:    rgba(0, 102, 255, 0.18);
+  --cyan-dim:       rgba(2, 132, 199, 0.10);
 
   --green:          #059669;
   --green-bright:   #10B981;
@@ -191,13 +109,13 @@
   --purple-dim:     rgba(124, 58, 237, 0.10);
 
   /* Shadows */
-  --shadow-sm:  0 1px 3px rgba(77, 24, 33, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow:     0 4px 18px rgba(77, 24, 33, 0.09), 0 1px 4px rgba(0, 0, 0, 0.04);
-  --shadow-lg:  0 14px 40px rgba(77, 24, 33, 0.14), 0 4px 12px rgba(0, 0, 0, 0.05);
-  --shadow-glow:0 0 28px rgba(77, 24, 33, 0.18);
+  --shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow:     0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg:  0 12px 36px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-glow:0 0 24px rgba(0, 102, 255, 0.12);
 
-  --nav-bg: rgba(250, 246, 247, 0.90);
-  --nav-bg-scrolled: rgba(255, 255, 255, 0.98);
+  --nav-bg: rgba(248, 250, 252, 0.88);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.97);
 }
 
 *, *::before, *::after {
@@ -236,11 +154,6 @@ button {
 
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  letter-spacing: 0.02em;
-}
 
 /* Subtle Technical Grid Background */
 .bg-grid {
@@ -327,12 +240,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(42px, 6vw, 68px);
+  font-size: clamp(32px, 4.5vw, 48px);
   font-weight: 800;
-  line-height: 0.95;
+  line-height: 1.15;
   color: var(--text-primary);
-  letter-spacing: 0.02em;
-  margin-bottom: 16px;
+  letter-spacing: -0.025em;
+  margin-bottom: 14px;
 }
 
 .section-desc {
@@ -350,11 +263,10 @@ h1, h2, h3, h4, h5, h6 {
   gap: 10px;
   padding: 12px 24px;
   border-radius: var(--radius);
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   transition: var(--transition);
   cursor: pointer;
   white-space: nowrap;
@@ -362,38 +274,35 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-sm {
   padding: 8px 16px;
-  font-size: 16px;
-  letter-spacing: 0.05em;
+  font-size: 13px;
   border-radius: var(--radius-sm);
 }
 
 .btn-primary {
-  background: #FFFFFF;
-  color: #26090F;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.25);
-  font-weight: 700;
+  background: var(--accent);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 16px var(--accent-glow);
 }
 
 .btn-primary:hover {
-  background: #FEECEF;
-  color: #120407;
-  box-shadow: 0 6px 26px rgba(255, 255, 255, 0.4), 0 0 24px rgba(126, 34, 53, 0.5);
+  background: var(--accent-bright);
+  box-shadow: 0 6px 24px var(--accent-glow), 0 0 16px rgba(0, 229, 255, 0.4);
   transform: translateY(-2px);
+  color: #FFFFFF;
 }
 
 .btn-outline {
-  background: rgba(77, 24, 33, 0.35);
-  color: #FFFFFF;
-  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
 }
 
 .btn-outline:hover {
-  background: #4D1821;
-  border-color: #FFAEBC;
+  background: var(--surface-2);
+  border-color: var(--accent);
   color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(77, 24, 33, 0.5);
 }
 
 .btn-ghost {
@@ -446,9 +355,9 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 800;
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--text-primary);
 }
@@ -456,8 +365,7 @@ h1, h2, h3, h4, h5, h6 {
 .brand-mark {
   width: 28px;
   height: 28px;
-  background: linear-gradient(135deg, #7E2235 0%, #4D1821 100%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-cyan) 100%);
   border-radius: 6px;
   display: flex;
   align-items: center;
@@ -465,7 +373,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #FFFFFF;
   font-weight: 800;
   font-size: 15px;
-  box-shadow: 0 0 16px rgba(77, 24, 33, 0.7);
+  box-shadow: 0 0 14px var(--accent-glow);
 }
 
 .brand-tag {
@@ -487,11 +395,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-link {
-  font-family: var(--font-display);
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 500;
   color: var(--text-secondary);
   padding: 8px 16px;
   border-radius: var(--radius-sm);
@@ -601,7 +506,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 80px;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 20%, rgba(77, 24, 33, 0.45) 0%, transparent 65%);
+  background: radial-gradient(circle at 50% 20%, rgba(0, 102, 255, 0.08) 0%, transparent 60%);
 }
 
 .hero-content {
@@ -620,8 +525,8 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.12em;
   color: var(--accent-cyan);
   text-transform: uppercase;
-  background: rgba(77, 24, 33, 0.5);
-  border: 1px solid rgba(255, 174, 188, 0.35);
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
   padding: 6px 16px;
   border-radius: 24px;
   margin-bottom: 24px;
@@ -629,16 +534,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(56px, 9vw, 100px);
-  font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: 0.02em;
+  font-size: clamp(40px, 6.2vw, 68px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   color: var(--text-primary);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .hero-headline .text-gradient {
-  background: linear-gradient(135deg, #FFFFFF 30%, #FFAEBC 70%, #8A2538 100%);
+  background: linear-gradient(135deg, #FFFFFF 30%, var(--accent-cyan) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -794,12 +699,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .domain-title {
   font-family: var(--font-display);
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 12px;
-  line-height: 1.05;
-  letter-spacing: 0.02em;
+  line-height: 1.25;
 }
 
 .domain-desc {
@@ -1127,7 +1031,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .arch-cluster-center {
-  background: rgba(77, 24, 33, 0.22);
+  background: rgba(0, 102, 255, 0.04);
   border: 1.5px dashed var(--border-glow);
   border-radius: var(--radius-lg);
   padding: 24px;
@@ -1222,12 +1126,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .work-title {
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 16px;
-  line-height: 1.05;
-  letter-spacing: 0.02em;
+  line-height: 1.25;
 }
 
 .work-block {
@@ -1347,15 +1250,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .tech-pill.priority {
-  border-color: rgba(126, 34, 53, 0.65);
-  color: #FFFFFF;
-  background: rgba(77, 24, 33, 0.45);
+  border-color: rgba(0, 102, 255, 0.4);
+  color: var(--text-primary);
+  background: rgba(0, 102, 255, 0.1);
   font-weight: 600;
 }
 
 .tech-pill:hover {
   border-color: var(--accent-cyan);
-  color: #FFFFFF;
+  color: var(--accent-cyan);
   transform: translateY(-1px);
 }
 
@@ -1483,11 +1386,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .proof-val {
   font-family: var(--font-display);
-  font-size: clamp(48px, 6vw, 76px);
-  font-weight: 800;
+  font-size: clamp(30px, 3.2vw, 40px);
+  font-weight: 900;
   color: var(--accent-cyan);
-  line-height: 0.95;
-  letter-spacing: 0.02em;
+  line-height: 1;
   margin-bottom: 8px;
 }
 
@@ -1522,11 +1424,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .behind-title {
   font-family: var(--font-display);
-  font-size: 42px;
+  font-size: 32px;
   font-weight: 800;
   color: var(--text-primary);
-  line-height: 0.95;
-  letter-spacing: 0.02em;
   margin-bottom: 14px;
 }
 
@@ -1572,12 +1472,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .founder-name {
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--text-primary);
   margin-bottom: 2px;
-  line-height: 1.05;
-  letter-spacing: 0.02em;
 }
 
 .founder-title {
@@ -1800,7 +1698,7 @@ h1, h2, h3, h4, h5, h6 {
 .page-hero {
   padding-top: calc(var(--nav-h) + 48px);
   padding-bottom: 56px;
-  background: radial-gradient(circle at 50% 0%, rgba(77, 24, 33, 0.45) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
   border-bottom: 1px solid var(--border);
 }
 
@@ -1847,11 +1745,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .cs-title {
   font-family: var(--font-display);
-  font-size: clamp(34px, 4.5vw, 48px);
+  font-size: clamp(24px, 3.5vw, 32px);
   font-weight: 800;
   color: var(--text-primary);
-  line-height: 0.98;
-  letter-spacing: 0.02em;
+  line-height: 1.2;
 }
 
 .cs-metrics-pill {
@@ -2029,46 +1926,18 @@ h1, h2, h3, h4, h5, h6 {
    ========================================================= */
 [data-theme="light"] .bg-grid::before {
   background-image: 
-    linear-gradient(to right, rgba(77, 24, 33, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(77, 24, 33, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
 }
 
 [data-theme="light"] .hero {
-  background: radial-gradient(circle at 50% 20%, rgba(77, 24, 33, 0.08) 0%, transparent 60%);
-}
-
-[data-theme="light"] .page-hero {
-  background: radial-gradient(circle at 50% 0%, rgba(77, 24, 33, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle at 50% 20%, rgba(0, 102, 255, 0.06) 0%, transparent 60%);
 }
 
 [data-theme="light"] .hero-headline .text-gradient {
-  background: linear-gradient(135deg, #1A0508 20%, #4D1821 70%, #7E2235 100%);
+  background: linear-gradient(135deg, var(--accent) 15%, var(--accent-bright) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-[data-theme="light"] .btn-primary {
-  background: #4D1821;
-  color: #FFFFFF;
-  border-color: #4D1821;
-  box-shadow: 0 4px 16px rgba(77, 24, 33, 0.25);
-}
-
-[data-theme="light"] .btn-primary:hover {
-  background: #6E1E2D;
-  color: #FFFFFF;
-  box-shadow: 0 6px 20px rgba(77, 24, 33, 0.35);
-}
-
-[data-theme="light"] .btn-outline {
-  background: #FFFFFF;
-  color: #4D1821;
-  border-color: #4D1821;
-}
-
-[data-theme="light"] .btn-outline:hover {
-  background: #FAF2F4;
-  color: #4D1821;
 }
 
 [data-theme="light"] .hero-stack-bar {
@@ -2107,7 +1976,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 [data-theme="light"] .code-block {
-  background: #180609;
+  background: #0F172A;
 }
 
 [data-theme="light"] .status-pill {

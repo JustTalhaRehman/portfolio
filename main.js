@@ -34,17 +34,13 @@
       } catch (e) {}
     }
 
-    // Initialize state: check stored preference, default to dark Burgundy
-    let savedTheme = null;
-    try {
-      savedTheme = localStorage.getItem('devistio-theme');
-    } catch (e) {}
-    applyTheme(savedTheme === 'light' ? 'light' : 'dark');
+    // Initialize state
+    const isCurrentlyLight = document.documentElement.getAttribute('data-theme') === 'light';
+    applyTheme(isCurrentlyLight ? 'light' : 'dark');
 
-    toggleBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const current = document.documentElement.getAttribute('data-theme');
-      applyTheme(current === 'light' ? 'dark' : 'light');
+    toggleBtn.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      applyTheme(isLight ? 'dark' : 'light');
     });
   }
 
