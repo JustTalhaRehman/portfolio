@@ -1,4 +1,25 @@
+# Dependencies
+node_modules
+node_modules/
+**/node_modules/**
+/.pnp
+.pnp.js
+
+# Next.js build
+.next
+.next/
+out
+out/
+
+# Production & temp
+build/
+dist/
+*.log
+*.zip
 .DS_Store
 *.DS_Store
 Thumbs.db
-*.zip
+
+# Environment
+.env*.local
+.env
