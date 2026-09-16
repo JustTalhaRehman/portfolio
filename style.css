@@ -1449,20 +1449,22 @@ img { max-width: 100%; display: block; }
 }
 
 .founder-avatar {
-  width: 104px;
-  height: 104px;
-  border-radius: 50%;
-  border: 2.5px solid var(--accent);
+  width: 140px;
+  aspect-ratio: 1086 / 1448;
+  height: auto;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-light);
   overflow: hidden;
   flex-shrink: 0;
-  box-shadow: 0 0 20px var(--accent-glow);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), 0 0 16px var(--accent-dim);
 }
 
 .founder-avatar img {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
-  object-position: top center;
+  border-radius: 5px;
 }
 
 .founder-info {
