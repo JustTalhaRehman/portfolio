@@ -18,7 +18,7 @@ export const Hero = () => {
 
         <h1 className="hero-headline">
           DevOps &amp; Cloud<br />
-          <span className="text-gradient">Engineering.</span>
+          <span className="text-gradient">Engineering</span>
         </h1>
 
         <p className="hero-subheadline">

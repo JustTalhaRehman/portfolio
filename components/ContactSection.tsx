@@ -22,7 +22,7 @@ export const ContactSection = () => {
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">Start a Conversation</span>
-          <h2 className="section-title">Let&apos;s Build Your Infrastructure.</h2>
+          <h2 className="section-title">Let&apos;s Build Your Infrastructure</h2>
           <p className="section-desc">
             Direct access to cloud &amp; platform engineering expertise. No sales overhead, no junior handoffs.
           </p>

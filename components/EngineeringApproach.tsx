@@ -46,7 +46,7 @@ export const EngineeringApproach = () => {
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">Engineering Approach</span>
-          <h2 className="section-title">How We Engineer.</h2>
+          <h2 className="section-title">How We Engineer</h2>
           <p className="section-desc">
             A disciplined, production-grade delivery lifecycle built on immutability, automated validation, and continuous telemetry.
           </p>

@@ -32,7 +32,7 @@ export default function EngineeringPage() {
           </div>
           <h1 className="hero-headline" style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', marginBottom: '20px' }}>
             Verified Technical <br />
-            <span className="text-gradient">Deliveries &amp; Architecture.</span>
+            <span className="text-gradient">Deliveries &amp; Architecture</span>
           </h1>
           <p className="hero-subheadline" style={{ fontSize: '16px', maxWidth: '720px', margin: '0 auto 32px' }}>
             Technical dissections of real-world client engagements. Each breakdown documents architectural context, production bottlenecks, concrete technical solutions, and verified outcomes.

@@ -13,7 +13,7 @@ export const TopologyArchitecture = () => {
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">Architecture Topology</span>
-          <h2 className="section-title">Production Cloud Blueprint.</h2>
+          <h2 className="section-title">Production Cloud Blueprint</h2>
           <p className="section-desc">
             Explore our hardened reference architecture: zero-trust network segmentation, isolated Kubernetes node pools, and audited GitOps synchronization.
           </p>

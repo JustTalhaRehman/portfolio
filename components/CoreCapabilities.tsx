@@ -61,7 +61,7 @@ export const CoreCapabilities = () => {
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">Core Capabilities</span>
-          <h2 className="section-title">What We Do.</h2>
+          <h2 className="section-title">What We Do</h2>
           <p className="section-desc">
             Direct technical execution across production cloud environments. Six core engineering capabilities, zero filler.
           </p>

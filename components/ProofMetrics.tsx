@@ -31,7 +31,7 @@ export const ProofMetrics = () => {
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">Track Record</span>
-          <h2 className="section-title">Measurable Reliability.</h2>
+          <h2 className="section-title">Measurable Reliability</h2>
           <p className="section-desc">
             We measure engineering success through uptime, security enforcement, deployment velocity, and infrastructure repeatability.
           </p>

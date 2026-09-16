@@ -62,7 +62,7 @@ export const CaseStudies = () => {
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">Production Work</span>
-          <h2 className="section-title">Verified Engineering Outcomes.</h2>
+          <h2 className="section-title">Verified Engineering Outcomes</h2>
           <p className="section-desc">
             Explore deep technical breakdowns of high-scale Kubernetes migrations, zero-trust security hardening, and multi-region infrastructure.
           </p>

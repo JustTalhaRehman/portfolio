@@ -11,7 +11,7 @@ export const BehindDevistio = () => {
         <div className="behind-devistio-card">
           <div style={{ marginBottom: '24px' }}>
             <span className="section-tag">Leadership</span>
-            <h2 className="section-title">Behind Devistio.</h2>
+            <h2 className="section-title">Behind Devistio</h2>
             <p className="section-desc">
               Devistio is an engineering-first Cloud and DevOps firm founded by Talha Rehman, focused on AWS infrastructure, Kubernetes, platform automation, security, and mission-critical reliability.
             </p>

@@ -76,7 +76,7 @@ export const TechStackMatrix = () => {
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">Production Stack</span>
-          <h2 className="section-title">Battle-Tested Technologies.</h2>
+          <h2 className="section-title">Battle-Tested Technologies</h2>
           <p className="section-desc">
             We build exclusively with proven open-source and cloud-native standards. Every tool in our stack has operated under production load.
           </p>
