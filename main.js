@@ -7,11 +7,42 @@
   'use strict';
 
   document.addEventListener('DOMContentLoaded', () => {
+    initThemeToggle();
     initNav();
     initArchitectureControls();
     initContactForm();
     initSmoothScroll();
   });
+
+  // 0. Light / Dark Theme Toggle
+  function initThemeToggle() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (!toggleBtn) return;
+
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        toggleBtn.setAttribute('title', 'Switch to Dark Theme');
+        toggleBtn.setAttribute('aria-label', 'Switch to Dark Theme');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        toggleBtn.setAttribute('title', 'Switch to Light Theme');
+        toggleBtn.setAttribute('aria-label', 'Switch to Light Theme');
+      }
+      try {
+        localStorage.setItem('devistio-theme', theme);
+      } catch (e) {}
+    }
+
+    // Initialize state
+    const isCurrentlyLight = document.documentElement.getAttribute('data-theme') === 'light';
+    applyTheme(isCurrentlyLight ? 'light' : 'dark');
+
+    toggleBtn.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+  }
 
   // 1. Navbar Scroll State & Mobile Toggle
   function initNav() {
