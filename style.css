@@ -230,12 +230,7 @@ img { max-width: 100%; display: block; }
 }
 
 .section-tag::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-cyan);
-  box-shadow: 0 0 8px var(--accent-cyan);
+  display: none;
 }
 
 .section-title {
@@ -561,18 +556,40 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px 14px;
-  font-family: var(--font-mono);
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--accent-cyan);
+  gap: 12px;
   margin-bottom: 36px;
-  letter-spacing: 0.04em;
+}
+
+.hero-tech-strip .strip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+
+.hero-tech-strip .strip-item svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.hero-tech-strip .strip-item:hover {
+  border-color: var(--accent-cyan);
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 229, 255, 0.15);
 }
 
 .hero-tech-strip .strip-sep {
-  color: var(--text-dim);
-  user-select: none;
+  display: none;
 }
 
 .hero-ctas {
@@ -1225,41 +1242,49 @@ img { max-width: 100%; display: block; }
 }
 
 .stack-group-title::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent-cyan);
+  display: none;
 }
 
 .stack-items-wrap {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 .tech-pill {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--text-primary);
-  background: var(--bg-alt);
+  background: var(--surface);
   border: 1px solid var(--border);
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   transition: var(--transition);
+}
+
+.tech-pill svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  display: block;
 }
 
 .tech-pill.priority {
   border-color: rgba(0, 102, 255, 0.4);
   color: var(--text-primary);
-  background: rgba(0, 102, 255, 0.1);
+  background: rgba(0, 102, 255, 0.12);
   font-weight: 600;
 }
 
 .tech-pill:hover {
   border-color: var(--accent-cyan);
-  color: var(--accent-cyan);
-  transform: translateY(-1px);
+  color: var(--text-primary);
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 229, 255, 0.18);
 }
 
 /* =========================================================
