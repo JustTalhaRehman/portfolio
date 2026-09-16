@@ -351,9 +351,10 @@ h1, h2, h3, h4, h5, h6 {
   padding: 12px 24px;
   border-radius: var(--radius);
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   transition: var(--transition);
   cursor: pointer;
   white-space: nowrap;
@@ -361,7 +362,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn-sm {
   padding: 8px 16px;
-  font-size: 15px;
+  font-size: 16px;
+  letter-spacing: 0.05em;
   border-radius: var(--radius-sm);
 }
 
@@ -486,9 +488,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link {
   font-family: var(--font-display);
-  font-size: 19px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--text-secondary);
   padding: 8px 16px;
   border-radius: var(--radius-sm);
