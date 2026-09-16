@@ -556,13 +556,32 @@ img { max-width: 100%; display: block; }
   margin: 0 auto 36px;
 }
 
+.hero-tech-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  margin-bottom: 36px;
+  letter-spacing: 0.04em;
+}
+
+.hero-tech-strip .strip-sep {
+  color: var(--text-dim);
+  user-select: none;
+}
+
 .hero-ctas {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
 }
 
 /* Core Stack Bar */
@@ -764,6 +783,118 @@ img { max-width: 100%; display: block; }
   font-size: 12px;
   color: var(--text-secondary);
   line-height: 1.55;
+}
+
+/* Engineering Topology Diagram Tree */
+.eng-topology-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 36px 24px;
+  margin-top: 36px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.eng-topology-header {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.topo-diagram-visual {
+  width: 100%;
+  max-width: 660px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.topo-box {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1.5px solid var(--border-light);
+  color: var(--text-primary);
+  text-align: center;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.topo-box.brand {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent-cyan);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.topo-box.leaf {
+  color: var(--accent-bright);
+}
+
+.topo-box.outcome {
+  background: var(--green-dim);
+  border-color: var(--green);
+  color: var(--green-bright);
+  box-shadow: 0 0 16px var(--green-dim);
+}
+
+.topo-box:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-cyan);
+}
+
+.topo-line-v {
+  width: 2px;
+  height: 20px;
+  background: var(--border-light);
+}
+
+.topo-line-h-3 {
+  width: 80%;
+  max-width: 480px;
+  height: 2px;
+  background: var(--border-light);
+  position: relative;
+}
+
+.topo-row-3 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 580px;
+  margin: 6px 0;
+}
+
+.topo-line-h-2 {
+  width: 60%;
+  max-width: 360px;
+  height: 2px;
+  background: var(--border-light);
+  position: relative;
+}
+
+.topo-row-2 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 440px;
+  margin: 6px 0;
 }
 
 /* =========================================================
@@ -1041,6 +1172,23 @@ img { max-width: 100%; display: block; }
   border-radius: 4px;
 }
 
+.work-read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  transition: var(--transition);
+}
+
+.work-card:hover .work-read-more {
+  color: var(--accent-bright);
+  gap: 10px;
+}
+
 /* =========================================================
    TECHNOLOGY STACK MATRIX
    ========================================================= */
@@ -1209,135 +1357,163 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow);
 }
 
-.credibility-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(0, 102, 255, 0.12) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.credibility-grid {
+/* =========================================================
+   ENGINEERING PROOF
+   ========================================================= */
+.proof-metrics-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 48px;
-  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 36px;
 }
 
-.cred-title {
-  font-family: var(--font-display);
-  font-size: 30px;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin-bottom: 16px;
-  line-height: 1.2;
-}
-
-.cred-p {
-  font-size: 15px;
-  color: var(--text-secondary);
-  line-height: 1.75;
-  margin-bottom: 20px;
-}
-
-.cred-highlights {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.cred-highlight-box {
+.proof-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-}
-
-.ch-val {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--accent-cyan);
-  margin-bottom: 4px;
-}
-
-.ch-label {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.engineer-profile-box {
-  background: var(--surface);
-  border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 28px 24px;
+  transition: var(--transition);
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
 
-.engineer-header {
+.proof-card:hover {
+  background: var(--surface-2);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.proof-val {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.2vw, 40px);
+  font-weight: 900;
+  color: var(--accent-cyan);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.proof-title {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.proof-desc {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* =========================================================
+   BEHIND DEVISTIO
+   ========================================================= */
+.behind-devistio-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: var(--shadow-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.behind-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.behind-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.founder-box {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
+  padding: 24px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  flex-wrap: wrap;
 }
 
-.engineer-avatar {
-  width: 60px;
-  height: 60px;
+.founder-avatar {
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   border: 2px solid var(--accent);
   overflow: hidden;
   flex-shrink: 0;
+  box-shadow: 0 0 16px var(--accent-glow);
 }
 
-.engineer-avatar img {
+.founder-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
 }
 
-.engineer-info .eng-name {
+.founder-info {
+  flex: 1;
+  min-width: 220px;
+}
+
+.founder-name {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--text-primary);
+  margin-bottom: 2px;
 }
 
-.engineer-info .eng-role {
+.founder-title {
   font-family: var(--font-mono);
   font-size: 11px;
+  font-weight: 600;
   color: var(--accent-cyan);
-  letter-spacing: 0.05em;
-  margin-top: 2px;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
 }
 
-.engineer-bio {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-}
-
-.engineer-links {
+.founder-channels {
   display: flex;
+  align-items: center;
   gap: 12px;
-  padding-top: 12px;
-  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
 }
 
-.eng-link {
+.founder-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--text-muted);
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 6px;
   transition: var(--transition);
 }
 
-.eng-link:hover {
+.founder-link:hover {
+  color: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  background: var(--surface-2);
+}
   color: var(--accent-cyan);
 }
 
@@ -1700,6 +1876,7 @@ img { max-width: 100%; display: block; }
   .lifecycle-flow { grid-template-columns: repeat(4, 1fr); }
   .stack-matrix { grid-template-columns: repeat(2, 1fr); }
   .architecture-diagram { grid-template-columns: 1fr; }
+  .proof-metrics-grid { grid-template-columns: repeat(2, 1fr); }
   .credibility-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr 1fr; }
@@ -1727,6 +1904,7 @@ img { max-width: 100%; display: block; }
   }
   .domains-grid { grid-template-columns: 1fr; }
   .work-grid { grid-template-columns: 1fr; }
+  .proof-metrics-grid { grid-template-columns: 1fr; }
   .dual-section-grid { grid-template-columns: 1fr; }
   .stack-matrix { grid-template-columns: 1fr; }
   .lifecycle-flow { grid-template-columns: repeat(2, 1fr); }
@@ -1734,6 +1912,13 @@ img { max-width: 100%; display: block; }
   .cs-structure-grid { grid-template-columns: 1fr; }
   .footer-top { grid-template-columns: 1fr; }
   .cred-highlights { grid-template-columns: 1fr; }
+  .behind-devistio-card { padding: 24px; }
+  .founder-box { flex-direction: column; text-align: center; justify-content: center; }
+  .founder-channels { justify-content: center; }
+  .topo-row-3 { flex-direction: column; gap: 8px; width: auto; align-items: center; }
+  .topo-line-h-3 { display: none; }
+  .topo-row-2 { flex-direction: column; gap: 8px; width: auto; align-items: center; }
+  .topo-line-h-2 { display: none; }
 }
 
 /* =========================================================
@@ -1769,19 +1954,24 @@ img { max-width: 100%; display: block; }
 [data-theme="light"] .cred-highlight-box,
 [data-theme="light"] .engineer-profile-box,
 [data-theme="light"] .contact-info-card,
-[data-theme="light"] .contact-form-wrap {
+[data-theme="light"] .contact-form-wrap,
+[data-theme="light"] .proof-card,
+[data-theme="light"] .behind-devistio-card,
+[data-theme="light"] .eng-topology-card {
   box-shadow: var(--shadow-sm);
 }
 
 [data-theme="light"] .domain-card:hover,
 [data-theme="light"] .work-card:hover,
+[data-theme="light"] .proof-card:hover,
 [data-theme="light"] .case-study-item:hover {
   box-shadow: var(--shadow);
 }
 
 [data-theme="light"] .arch-node,
 [data-theme="light"] .cluster-pod-box,
-[data-theme="light"] .cs-section-box {
+[data-theme="light"] .cs-section-box,
+[data-theme="light"] .founder-box {
   background: var(--surface-2);
 }
 
